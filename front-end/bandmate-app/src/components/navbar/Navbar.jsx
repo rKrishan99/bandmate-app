@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLog, setIsLog] = useState(true);
 
   return (
     <nav className="bg-gray-900">
@@ -25,6 +26,18 @@ const Navbar = () => {
               }
             >
               Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/feed"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-navItem-active"
+                  : "text-navItem hover:text-navItem-hover"
+              }
+            >
+              Feed
             </NavLink>
           </li>
           <li>
@@ -54,27 +67,39 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:flex space-x-4">
-          <Link to="/login">
-            <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md">
-              Signin
-            </button>
-          </Link>
-          <Link to="/register">
-            <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md">
-              Signup
-            </button>
-          </Link>
+          {isLog ? (
+            <div className="flex items-center justify-between gap-4 ">
+              <img
+                className="bg-slate-50 rounded-full w-14"
+                src="./avatar.png"
+                alt=""
+              />
+              <div className="flex flex-col">
+                <span className="text-white font-bold text-xl">John Paker</span>
+                <span className="text-white text-sm">Guitarist</span>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <Link to="/login">
+                <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4">
+                  Signin
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md">
+                  Signup
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          {
-            isOpen ? (
-              
-              <img className="md:hidden w-8" src="./close.png" alt="" />
-            ) : (
-              <img className="md:hidden w-10" src="./burger.png" alt="" />
-            )
-          }
-          
+          {isOpen ? (
+            <img className="md:hidden w-8" src="./close.png" alt="" />
+          ) : (
+            <img className="md:hidden w-10" src="./burger.png" alt="" />
+          )}
         </button>
       </div>
       {isOpen && (
@@ -90,6 +115,18 @@ const Navbar = () => {
                 }
               >
                 Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/feed"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-navItem-active"
+                    : "text-navItem hover:text-navItem-hover"
+                }
+              >
+                Feed
               </NavLink>
             </li>
             <li>
@@ -117,16 +154,34 @@ const Navbar = () => {
               </NavLink>
             </li>
             <div className="flex space-x-3">
-              <Link to="/login">
-                <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
-                  Signin
-                </button>
-              </Link>
-              <Link to="/register">
-                <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
-                  Signup
-                </button>
-              </Link>
+              {isLog ? (
+                <div className="flex items-center justify-between gap-4 ">
+                  <img
+                    className="bg-slate-50 rounded-full w-14"
+                    src="./avatar.png"
+                    alt=""
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-white font-bold text-xl">
+                      John Paker
+                    </span>
+                    <span className="text-white text-sm">Guitarist</span>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <Link to="/login">
+                    <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
+                      Signin
+                    </button>
+                  </Link>
+                  <Link to="/register">
+                    <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
+                      Signup
+                    </button>
+                  </Link>
+                </div>
+              )}
             </div>
           </ul>
         </div>
