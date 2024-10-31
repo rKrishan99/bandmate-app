@@ -1,8 +1,11 @@
 import React from 'react'
+import LandingNav from '../../components/navbar/LandingNav'
 
 const About = () => {
   return (
-    <div>About</div>
+    <div>
+      <LandingNav/>
+    </div>
   )
 }
 
