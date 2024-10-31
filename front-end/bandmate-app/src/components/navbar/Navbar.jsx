@@ -1,9 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { NavDropdown } from "../navDropdown/NavDropdown";
+import navItems from "./navItems";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLog, setIsLog] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const avatarRef = useRef(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        avatarRef.current &&
+        !avatarRef.current.contains(event.target)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <nav className="bg-gray-900">
@@ -16,68 +37,40 @@ const Navbar = () => {
           />
         </Link>
         <ul className="hidden md:flex space-x-8">
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-navItem-active"
-                  : "text-navItem hover:text-navItem-hover"
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/feed"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-navItem-active"
-                  : "text-navItem hover:text-navItem-hover"
-              }
-            >
-              Feed
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-navItem-active"
-                  : "text-navItem hover:text-navItem-hover"
-              }
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-navItem-active"
-                  : "text-navItem hover:text-navItem-hover"
-              }
-            >
-              Contact
-            </NavLink>
-          </li>
+          {navItems.map((item) => (
+            <li key={item.label}>
+              <NavLink
+                to={item.address}
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-navItem-active"
+                    : "text-navItem hover:text-navItem-hover"
+                }
+              >
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
         <div className="hidden md:flex space-x-4">
           {isLog ? (
             <div className="flex items-center justify-between gap-4 ">
               <img
-                className="bg-slate-50 rounded-full w-14"
+                ref={avatarRef}
+                className="bg-slate-50 rounded-full w-14 cursor-pointer"
                 src="./avatar.png"
                 alt=""
+                onClick={() => setDropdownOpen(!dropdownOpen)}
               />
-              <div className="flex flex-col">
-                <span className="text-white font-bold text-xl">John Paker</span>
-                <span className="text-white text-sm">Guitarist</span>
-              </div>
+              {dropdownOpen && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute top-28 right-0 mt-2 bg-white rounded-md shadow-lg z-10"
+                >
+                  <NavDropdown />
+                </div>
+              )}
             </div>
           ) : (
             <div>
@@ -105,68 +98,39 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-gray-800">
           <ul className="flex flex-col items-center space-y-4 py-4">
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-navItem-active"
-                    : "text-navItem hover:text-navItem-hover"
-                }
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/feed"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-navItem-active"
-                    : "text-navItem hover:text-navItem-hover"
-                }
-              >
-                Feed
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-navItem-active"
-                    : "text-navItem hover:text-navItem-hover"
-                }
-              >
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/contact"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-navItem-active"
-                    : "text-navItem hover:text-navItem-hover"
-                }
-              >
-                Contact
-              </NavLink>
-            </li>
+            {navItems.map((item) => (
+              <li key={item.label}>
+                <NavLink
+                  to={item.address}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-navItem-active"
+                      : "text-navItem hover:text-navItem-hover"
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
             <div className="flex space-x-3">
               {isLog ? (
                 <div className="flex items-center justify-between gap-4 ">
                   <img
-                    className="bg-slate-50 rounded-full w-14"
+                    ref={avatarRef}
+                    className="bg-slate-50 rounded-full w-14 cursor-pointer"
                     src="./avatar.png"
                     alt=""
+                    onClick={() => setDropdownOpen(!dropdownOpen)}
                   />
-                  <div className="flex flex-col">
-                    <span className="text-white font-bold text-xl">
-                      John Paker
-                    </span>
-                    <span className="text-white text-sm">Guitarist</span>
-                  </div>
+                  {dropdownOpen && (
+                    <div
+                      ref={dropdownRef}
+                      className="absolute  top-28 right-0 mt-2 bg-white rounded-md shadow-lg z-10"
+                      
+                    >
+                      <NavDropdown />
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div>
