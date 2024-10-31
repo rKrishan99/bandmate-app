@@ -12,7 +12,7 @@ const RegisterOptions = () => {
         </Link>
       </div>
       <div className="bg-slate-200 rounded-md p-2">
-        <Link to="/player-register">
+        <Link to="/musician-register">
           <div className="w-[300px] h-[150px] flex items-center justify-center">
             <h1>I'm a Band</h1>
           </div>
