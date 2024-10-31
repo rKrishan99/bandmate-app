@@ -1,8 +1,11 @@
 import React from 'react'
+import Navbar from '../../navbar/Navbar';
 
 const BandDashboard = () => {
   return (
-    <div>Band Dashboard</div>
+    <div>
+        <Navbar></Navbar>
+    </div>
   )
 }
 

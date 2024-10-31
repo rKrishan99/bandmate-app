@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-const LandingNav = () => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -135,4 +135,4 @@ const LandingNav = () => {
   );
 };
 
-export default LandingNav;
+export default Navbar;

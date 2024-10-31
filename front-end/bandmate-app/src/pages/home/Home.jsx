@@ -1,10 +1,10 @@
 import React from 'react'
-import LandingNav from '../../components/navbar/LandingNav'
+import Navbar from '../../components/navbar/Navbar'
 
 const Home = () => {
   return (
     <div>
-        <LandingNav />
+        <Navbar />
         <h1>This is Home</h1>
     </div>
   )
