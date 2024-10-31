@@ -22,8 +22,11 @@ export default {
         accent: {
           DEFAULT: '#f5f3ed',
         },
-        background: '#f5f3ed',
+        background: '#F5F5F5',
         text: '#f7f6f2',
+      },
+      spacing: {
+        cusPadding: '150px',
       },
     },
   },

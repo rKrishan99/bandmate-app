@@ -10,6 +10,7 @@ import BandRegister from "./components/registration/bandRegister/BandRegister";
 import MusicianRegister from "./components/registration/musicianRegister/PlayerRegister";
 import MusicianDashboard from "./components/musician/playerDashboard/MusicianDashboard";
 import BandDashboard from "./components/band/bandDashboard/BandDashboard";
+import BandProfile from "./components/band/bandProfile/BandProfile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/musician-register" element={<MusicianRegister />} />
         <Route path="/musician-dashboard" element={<MusicianDashboard />} />
         <Route path="/band-dashboard" element={<BandDashboard />} />
+        <Route path="/band-profile" element={<BandProfile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

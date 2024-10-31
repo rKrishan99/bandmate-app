@@ -27,11 +27,11 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-gray-900">
-      <div className="flex justify-between items-center md:px-32 md:py-4 px-8 py-2">
+    <nav className="bg-gray-900 sticky top-0 shadow z-8">
+      <div className="flex justify-between items-center md:px-24 md:py-4 px-8 py-2">
         <Link to="/">
           <img
-            className="w-32 md:w-52"
+            className="w-24 md:w-28"
             src="./Bandmate_logo.png"
             alt="Bandmate Logo"
           />
@@ -43,8 +43,8 @@ const Navbar = () => {
                 to={item.address}
                 className={({ isActive }) =>
                   isActive
-                    ? "text-navItem-active"
-                    : "text-navItem hover:text-navItem-hover"
+                    ? "text-navItem-active text-lg"
+                    : "text-navItem text-lg hover:text-navItem-hover"
                 }
               >
                 {item.label}
