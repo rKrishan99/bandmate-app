@@ -20,8 +20,8 @@ const LandingNav = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "text-yellow-600"
-                  : "text-zinc-300 hover:text-yellow-600"
+                  ? "text-navItem-active"
+                  : "text-navItem hover:text-navItem-hover"
               }
             >
               Home
@@ -32,8 +32,8 @@ const LandingNav = () => {
               to="/about"
               className={({ isActive }) =>
                 isActive
-                  ? "text-yellow-600"
-                  : "text-zinc-300 hover:text-yellow-600"
+                  ? "text-navItem-active"
+                  : "text-navItem hover:text-navItem-hover"
               }
             >
               About
@@ -44,8 +44,8 @@ const LandingNav = () => {
               to="/contact"
               className={({ isActive }) =>
                 isActive
-                  ? "text-yellow-600"
-                  : "text-zinc-300 hover:text-yellow-600"
+                  ? "text-navItem-active"
+                  : "text-navItem hover:text-navItem-hover"
               }
             >
               Contact
@@ -55,12 +55,12 @@ const LandingNav = () => {
 
         <div className="hidden md:flex space-x-4">
           <Link to="/login">
-            <button className="bg-yellow-500 text-white hover:bg-black px-8 py-3 rounded-md">
+            <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md">
               Signin
             </button>
           </Link>
           <Link to="/register">
-            <button className="bg-yellow-500 text-white hover:bg-black px-8 py-3 rounded-md">
+            <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md">
               Signup
             </button>
           </Link>
@@ -85,8 +85,8 @@ const LandingNav = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-yellow-600"
-                    : "text-zinc-300 hover:text-yellow-600"
+                    ? "text-navItem-active"
+                    : "text-navItem hover:text-navItem-hover"
                 }
               >
                 Home
@@ -97,8 +97,8 @@ const LandingNav = () => {
                 to="/about"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-yellow-600"
-                    : "text-zinc-300 hover:text-yellow-600"
+                    ? "text-navItem-active"
+                    : "text-navItem hover:text-navItem-hover"
                 }
               >
                 About
@@ -109,8 +109,8 @@ const LandingNav = () => {
                 to="/contact"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-yellow-600"
-                    : "text-zinc-300 hover:text-yellow-600"
+                    ? "text-navItem-active"
+                    : "text-navItem hover:text-navItem-hover"
                 }
               >
                 Contact
@@ -118,12 +118,12 @@ const LandingNav = () => {
             </li>
             <div className="flex space-x-3">
               <Link to="/login">
-                <button className="bg-yellow-500 px-6 py-2 rounded-md text-white hover:bg-black transition-colors duration-300 ease-in-out">
+                <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
                   Signin
                 </button>
               </Link>
               <Link to="/register">
-                <button className="bg-yellow-500 px-6 py-2 rounded-md text-white hover:bg-black transition-colors duration-300 ease-in-out">
+                <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
                   Signup
                 </button>
               </Link>
