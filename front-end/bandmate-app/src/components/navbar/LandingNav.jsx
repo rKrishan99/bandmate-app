@@ -59,7 +59,7 @@ const LandingNav = () => {
               Signin
             </button>
           </Link>
-          <Link to="/signup">
+          <Link to="/register">
             <button className="bg-yellow-500 text-white hover:bg-black px-8 py-3 rounded-md">
               Signup
             </button>
@@ -118,12 +118,12 @@ const LandingNav = () => {
             </li>
             <div className="flex space-x-3">
               <Link to="/login">
-                <button className="bg-yellow-500 text-white hover:bg-black px-6 py-2 rounded-md">
+                <button className="bg-yellow-500 px-6 py-2 rounded-md text-white hover:bg-black transition-colors duration-300 ease-in-out">
                   Signin
                 </button>
               </Link>
-              <Link to="/signup">
-                <button className="bg-yellow-500 text-white hover:bg-black px-6 py-2 rounded-md">
+              <Link to="/register">
+                <button className="bg-yellow-500 px-6 py-2 rounded-md text-white hover:bg-black transition-colors duration-300 ease-in-out">
                   Signup
                 </button>
               </Link>
