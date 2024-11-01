@@ -29,7 +29,29 @@ export default {
       spacing: {
         cusPadding: '150px',
       },
+      
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        /* Firefox-specific styling for hiding scrollbars */
+        ".scrollbar-hidden": {
+          scrollbarWidth: "none", // Hides scrollbar in Firefox
+          "-ms-overflow-style": "none", // Hides scrollbar in IE and Edge
+        },
+        /* Chrome/Safari/WebKit styling for hiding scrollbars */
+        ".scrollbar-webkit-hidden": {
+          "&::-webkit-scrollbar": {
+            display: "none", // Hides scrollbar in Chrome, Safari, and other WebKit browsers
+          },
+        },
+      };
+    
+      addUtilities(newUtilities, ["responsive", "hover"]);
+    }
+    
+    
+
+  ],
 }

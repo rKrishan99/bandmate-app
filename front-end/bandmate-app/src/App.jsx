@@ -18,13 +18,12 @@ function App() {
     <>
     <Navbar />
     <Login />
+    <RegisterOptions />
+    <BandRegister/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        {/* <Route path="/login" element={<Login />} /> */}
-        <Route path="/register" element={<RegisterOptions />} />
-        <Route path="/band-register" element={<BandRegister />} />
         <Route path="/musician-register" element={<MusicianRegister />} />
         <Route path="/musician-dashboard" element={<MusicianDashboard />} />
         <Route path="/band-profile" element={<BandProfile />} />

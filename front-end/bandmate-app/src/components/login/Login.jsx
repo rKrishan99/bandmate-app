@@ -4,6 +4,7 @@ import { Dialog } from "primereact/dialog";
 import { LoginContext } from "../../context/loginContext/LoginContext";
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { RegisterContext } from "../../context/registerContext/RegisterContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
   const [loading, setLoding] = useState(false);
+
+  const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
 
   const validateInputs = () => {
     setEmailError(!email.includes("@")); // Simple validation for email
@@ -35,13 +38,13 @@ const Login = () => {
         header=""
         visible={visibleLogin}
         onHide={() => setVisibleLogin(false)}
-        className="w-full bg-cardBg max-w-md p-6 rounded-xl"
+        className="w-full h-auto bg-cardBg max-w-md p-6 rounded-xl"
         breakpoints={{ "960px": "75vw", "640px": "90vw" }}
       >
         <div className="flex flex-col w-full p-4">
           <h1 className="text-2xl font-bold text-center mb-6">Signin</h1>
 
-          <form className=" flex flex-col gap-6 mt-6">
+          <form className=" h-auto flex flex-col gap-6 mt-6">
             <TextField
               id="outlined-password-input"
               label="Email"
@@ -101,6 +104,15 @@ const Login = () => {
               />
             </div>
           </form>
+          <span
+            className="mt-10 text-blue-700 cursor-pointer"
+            onClick={() => {
+              setVisibleRegister(true);
+              setVisibleLogin(false);
+            }}
+          >
+            I Don't Have an Account
+          </span>
         </div>
       </Dialog>
     </div>
