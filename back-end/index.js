@@ -1,11 +1,16 @@
 const express = require('express');
+const { testDatabaseConnection, getEmailAndPassword, addUser, updateUser,deleteUser } = require('./config/userTableOperation');
+
+const authRoute = require('./routes/authenticationRoute') 
 const app = express();
-const PORT = 3000;
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+testDatabaseConnection();
 
+app.use("/auth", authRoute);
+
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
