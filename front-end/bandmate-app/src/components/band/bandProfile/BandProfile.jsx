@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import Navbar from "../../navbar/Navbar";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import OptionMenu from "../optionMenu/OptionMenu";

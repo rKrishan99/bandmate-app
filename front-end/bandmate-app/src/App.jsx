@@ -11,6 +11,7 @@ import MusicianRegister from "./components/registration/musicianRegister/PlayerR
 import MusicianDashboard from "./components/musician/playerDashboard/MusicianDashboard";
 import BandProfile from "./components/band/bandProfile/BandProfile";
 import Navbar from "./components/navbar/Navbar";
+import '@mui/material'
 
 function App() {
   return (
