@@ -1,14 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { NavDropdown } from "../navDropdown/NavDropdown";
 import navItems from "./navItems";
+import { LoginContext } from "../../context/loginContext/LoginContext";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isLog, setIsLog] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const avatarRef = useRef(null);
+  const islogged = false;
+  const { visibleLogin, setVisibleLogin  } = useContext(LoginContext);
+
+  const handleSetVisible = () => {
+    setVisibleLogin(true);
+  };
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -54,7 +61,7 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:flex space-x-4">
-          {isLog ? (
+          {islogged ? (
             <div className="flex items-center justify-between gap-4 ">
               <img
                 ref={avatarRef}
@@ -74,11 +81,13 @@ const Navbar = () => {
             </div>
           ) : (
             <div>
-              <Link to="/login">
-                <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4">
-                  Signin
-                </button>
-              </Link>
+              <button
+                onClick={handleSetVisible}
+                className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4"
+              >
+                Signin
+              </button>
+
               <Link to="/register">
                 <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md">
                   Signup
@@ -113,7 +122,7 @@ const Navbar = () => {
               </li>
             ))}
             <div className="flex space-x-3">
-              {isLog ? (
+              {islogged ? (
                 <div className="flex items-center justify-between gap-4 ">
                   <img
                     ref={avatarRef}
@@ -126,7 +135,6 @@ const Navbar = () => {
                     <div
                       ref={dropdownRef}
                       className="absolute  top-28 right-0 mt-2 bg-white rounded-md shadow-lg z-10"
-                      
                     >
                       <NavDropdown />
                     </div>
@@ -134,11 +142,13 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div>
-                  <Link to="/login">
-                    <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
-                      Signin
-                    </button>
-                  </Link>
+                  <button
+                    onClick={handleSetVisible}
+                    className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out"
+                  >
+                    Signin
+                  </button>
+
                   <Link to="/register">
                     <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
                       Signup
