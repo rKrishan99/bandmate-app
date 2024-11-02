@@ -7,7 +7,7 @@ import NotFound from "./pages/notFound/NotFound";
 import Login from "./components/login/Login";
 import RegisterOptions from "./components/registration/registerOptions/RegisterOptions"
 import BandRegister from "./components/registration/bandRegister/BandRegister";
-import MusicianRegister from "./components/registration/musicianRegister/PlayerRegister";
+import MusicianRegister from "./components/registration/musicianRegister/MusicianRegister";
 import MusicianDashboard from "./components/musician/playerDashboard/MusicianDashboard";
 import BandProfile from "./components/band/bandProfile/BandProfile";
 import Navbar from "./components/navbar/Navbar";
@@ -20,11 +20,11 @@ function App() {
     <Login />
     <RegisterOptions />
     <BandRegister/>
+    <MusicianRegister/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/musician-register" element={<MusicianRegister />} />
         <Route path="/musician-dashboard" element={<MusicianDashboard />} />
         <Route path="/band-profile" element={<BandProfile />} />
         <Route path="*" element={<NotFound />} />

@@ -5,6 +5,7 @@ import navItems from "./navItems";
 import { LoginContext } from "../../context/loginContext/LoginContext";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
 
+
 const Navbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
