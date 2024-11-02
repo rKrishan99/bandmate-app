@@ -4,8 +4,12 @@ const authRoute = require("./routes/authenticationRoute");
 const vacancyRoute = require("./routes/vacancyRoute");
 const applicationRoute = require("./routes/applicationRoute");
 
+const cors = require("cors");
+
+
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use("/auth", authRoute);
 app.use("/vacancy", vacancyRoute);
