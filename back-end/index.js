@@ -1,11 +1,17 @@
-const express = require('express');
+const express = require("express");
+
+const authRoute = require("./routes/authenticationRoute");
+const vacancyRoute = require("./routes/vacancyRoute");
+const applicationRoute = require("./routes/applicationRoute");
+
 const app = express();
-const PORT = 3000;
+app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+app.use("/auth", authRoute);
+app.use("/vacancy", vacancyRoute);
+app.use("/application", applicationRoute);
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
