@@ -1,6 +1,7 @@
 const {
   addUser,
   getEmailAndPassword,
+  getUserByEmail
 } = require("../config/userTableOperation");
 
 const registerService = async (req, res) => {
@@ -11,10 +12,11 @@ const registerService = async (req, res) => {
     if (!existingUser) {
       // If not, add the user
       await addUser(req.body);
+      const user = await getUserByEmail(req.body.email)
       // Send a 201 Created response with the user data (excluding sensitive information)
       res
         .status(201)
-        .json({ message: "User registered successfully", user: req.body });
+        .json(user);
     } else {
       // If the email is already registered, send a 409 Conflict response
       res.status(409).json({ message: "User with this email already exists" });
