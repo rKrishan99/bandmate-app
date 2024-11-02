@@ -7,21 +7,22 @@ import { RegisterProvider } from "./context/registerContext/RegisterContext.jsx"
 import { BandRegisterProvider } from "./context/bandRegisterContext/BandRegisterContext.jsx";
 import { MusicianRegisterProvider } from "./context/musicianRegisterContext/MusicianRegisterContext.jsx";
 import { CurrentUserProvider } from "./context/currentUserContext/CurrentUserContext.jsx";
+import { FunctionalityProvider } from "./context/functionalityContext/FunctionalityContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  
+  <FunctionalityProvider>
     <RegisterProvider>
       <MusicianRegisterProvider>
         <BandRegisterProvider>
-        <CurrentUserProvider>
-          <LoginProvider>
-            <Router>
-              <App />
-            </Router>
-          </LoginProvider>
+          <CurrentUserProvider>
+            <LoginProvider>
+              <Router>
+                <App />
+              </Router>
+            </LoginProvider>
           </CurrentUserProvider>
         </BandRegisterProvider>
       </MusicianRegisterProvider>
     </RegisterProvider>
-  
+  </FunctionalityProvider>
 );

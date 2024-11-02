@@ -12,6 +12,9 @@ import MusicianDashboard from "./components/musician/playerDashboard/MusicianDas
 import BandProfile from "./components/band/bandProfile/BandProfile";
 import Navbar from "./components/navbar/Navbar";
 import '@mui/material'
+import PostAds from "./components/postAds/PostAds";
+import EditInfo from "./components/band/editInfo/EditInfo";
+import Applicants from "./components/applicants/Applicants";
 
 function App() {
   return (
@@ -21,12 +24,15 @@ function App() {
     <RegisterOptions />
     <BandRegister/>
     <MusicianRegister/>
+    <PostAds/>
+    <EditInfo/>
+    <Applicants/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/musician-dashboard" element={<MusicianDashboard />} />
-        <Route path="/band-profile" element={<BandProfile />} />
+        <Route path="/profile" element={<BandProfile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
