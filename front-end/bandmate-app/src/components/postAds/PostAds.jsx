@@ -1,19 +1,19 @@
 import React, { useContext, useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { FunctionalityContext } from "../../../context/functionalityContext/FunctionalityContext";
+import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
 
-const EditInfo = () => {
-  const { visibleEditInfo, setVisibleEditInfo } = useContext(FunctionalityContext);
+const PostAds = () => {
+  const { visiblePostAds, setVisiblePostAds } = useContext(FunctionalityContext);
 
   return (
     <Dialog
       header="Header"
-      visible={visibleEditInfo}
+      visible={visiblePostAds}
       style={{ width: "50vw" }}
       onHide={() => {
-        if (!visibleEditInfo) return;
-        setVisibleEditInfo(false);
+        if (!visiblePostAds) return;
+        setVisiblePostAds(false);
       }}
     >
       <p className="m-0">
@@ -26,7 +26,7 @@ const EditInfo = () => {
         mollit anim id est laborum.
       </p>
     </Dialog>
-  )
-}
+  );
+};
 
-export default EditInfo;
+export default PostAds;

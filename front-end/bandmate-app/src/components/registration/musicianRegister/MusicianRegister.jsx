@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from "react";
-import { BandRegisterContext } from "../../../context/bandRegisterContext/BandRegisterContext";
+import { MusicianRegisterContext } from "../../../context/musicianRegisterContext/MusicianRegisterContext";
 import { LoginContext } from "../../../context/loginContext/LoginContext";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
@@ -13,27 +13,31 @@ import {
   InputLabel,
   OutlinedInput,
   Typography,
+  MenuItem,
+  Select,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import PopupAlert from "../../alert/popupAlert/PopupAlert";
 
-const BandRegister = () => {
+const MusicianRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
   const [changeProfileLoading, setChangeProfileLoading] = useState(false);
   const profileInputRef = useRef(null);
-  const [profileImage, setProfileImage] = useState(""); 
+  const [profileImage, setProfileImage] = useState("");
   const [imageURL, setImageURL] = useState(""); // URL for previewing the image
 
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertInfo, setAlertInfo] = useState("");
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    type: "band",
+    type: "player",
     name: "",
     about: "",
     experience: "",
@@ -42,7 +46,9 @@ const BandRegister = () => {
     phone: "",
   });
 
-  const { visibleBandRegister, setVisibleBandRegister } = useContext(BandRegisterContext);
+  const { visibleMusicianRegister, setVisibleMusicianRegister } = useContext(
+    MusicianRegisterContext
+  );
   const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
 
   // Reset form fields
@@ -51,7 +57,7 @@ const BandRegister = () => {
     setFormData({
       email: "",
       password: "",
-      type: "band",
+      type: "player",
       name: "",
       about: "",
       experience: "",
@@ -76,12 +82,10 @@ const BandRegister = () => {
   };
 
   const uploadProfileImage = async () => {
-    
     try {
       if (!profileImage) {
         console.log("upload");
         return "./band.png"; // Default image path
-        
       }
 
       const formDataImage = new FormData();
@@ -93,12 +97,10 @@ const BandRegister = () => {
         formDataImage,
         {
           headers: {
-            'Content-Type': 'multipart/form-data'
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
-
-      
     } catch (error) {
       console.error("Error uploading image:", error);
       throw error; // Propagate error to handle it in the submission
@@ -113,20 +115,22 @@ const BandRegister = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsSubmitted(true);
     setLoading(true);
 
     try {
-
-      const result = await axios.post("http://localhost:3000/auth/register", formData);
+      const result = await axios.post(
+        "http://localhost:3000/auth/register",
+        formData
+      );
       setVisibleAlert(true);
       setAlertMessage("Registration successful!");
       setAlertInfo(true);
-      setVisibleBandRegister(false);
+      setVisibleMusicianRegister(false);
       if (result.status !== 201) {
         console.error("Registration failed:", result);
       }
-      
+
       await uploadProfileImage();
       setLoading(false);
       resetForm();
@@ -140,22 +144,23 @@ const BandRegister = () => {
       setLoading(false);
     } finally {
       setLoading(false);
+      setIsSubmitted(false);
     }
   };
 
   return (
     <div className="relative">
-      {visibleBandRegister && (
+      {visibleMusicianRegister && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
-          onClick={() => setVisibleBandRegister(false)}
+          onClick={() => setVisibleMusicianRegister(false)}
         ></div>
       )}
       <Dialog
         header=""
-        visible={visibleBandRegister}
+        visible={visibleMusicianRegister}
         onHide={() => {
-          setVisibleBandRegister(false);
+          setVisibleMusicianRegister(false);
           resetForm();
         }}
         className="w-full max-w-lg p-6 rounded-xl bg-cardBg scrollbar-thin scrollbar-webkit overflow-y-auto"
@@ -174,7 +179,7 @@ const BandRegister = () => {
             >
               <img
                 className="w-36 rounded-full bg-slate-200"
-                src={imageURL || "./band.png"}
+                src={imageURL || "./musician.png"}
                 alt="Profile"
               />
               <img
@@ -226,15 +231,14 @@ const BandRegister = () => {
                     setChangeProfileLoading(true);
                     setProfileDialogOpen(false);
                     setChangeProfileLoading(false);
-                  }
-                  }
+                  }}
                   className="bg-blue-600 w-20 md:w-24 text-white rounded-md px-3 md:px-4 py-2"
                 />
               </div>
             </Dialog>
 
             <TextField
-              label="Band Name"
+              label="Name"
               type="text"
               value={formData.name}
               className="text-lg"
@@ -289,6 +293,59 @@ const BandRegister = () => {
               helperText={
                 formData.phone.length > 0 && formData.phone.length !== 10
                   ? "Please enter a valid phone number."
+                  : ""
+              }
+              fullWidth
+              required
+            />
+
+            {/* <FormControl fullWidth required variant="outlined" sx={{ mt: 2 }}>
+              <InputLabel>Gender</InputLabel>
+              <Select
+                value={formData.gender}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, gender: e.target.value }))
+                }
+                label="Gender"
+                error={formData.gender === ""}
+              >
+                <MenuItem value="Male">Male</MenuItem>
+                <MenuItem value="Female">Female</MenuItem>
+                <MenuItem value="Other">Other</MenuItem>
+              </Select>
+            </FormControl> */}
+
+            <FormControl fullWidth required variant="outlined">
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={formData.category}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, category: e.target.value }))
+                }
+                label="Category"
+                error={!formData.category && isSubmitted}
+              >
+                <MenuItem value="Bass Guitarist">Bass Guitarist</MenuItem>
+                <MenuItem value="Rhythm Guitarist">Rhythm Guitarist</MenuItem>
+                <MenuItem value="Drummer">Drummer</MenuItem>
+                <MenuItem value="Percussionist">Percussionist</MenuItem>
+                <MenuItem value="Keyboardist">Keyboardist</MenuItem>
+                <MenuItem value="Vocalists">Vocalists</MenuItem>
+              </Select>
+            </FormControl>
+
+            <TextField
+              label="Experience"
+              type="text"
+              value={formData.experience}
+              className="text-lg"
+              onChange={(e) => {
+                setFormData((prev) => ({ ...prev, experience: e.target.value }));
+              }}
+              error={formData.experience.length > 50} // Set error if the name exceeds 50 characters
+              helperText={
+                formData.experience.length > 50
+                  ? "Experience cannot exceed 50 characters."
                   : ""
               }
               fullWidth
@@ -394,7 +451,7 @@ const BandRegister = () => {
           <span
             className="mt-10 text-blue-600  hover:text-blue-700 cursor-pointer"
             onClick={() => {
-              setVisibleBandRegister(false);
+              setVisibleMusicianRegister(false);
               setVisibleLogin(true);
             }}
           >
@@ -412,4 +469,4 @@ const BandRegister = () => {
   );
 };
 
-export default BandRegister;
+export default MusicianRegister;

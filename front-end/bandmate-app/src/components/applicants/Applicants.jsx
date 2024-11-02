@@ -1,19 +1,20 @@
 import React, { useContext, useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { FunctionalityContext } from "../../../context/functionalityContext/FunctionalityContext";
+import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
 
-const EditInfo = () => {
-  const { visibleEditInfo, setVisibleEditInfo } = useContext(FunctionalityContext);
+const Applicants = () => {
+
+    const { visibleApplicants, setVisibleApplicants } = useContext(FunctionalityContext);
 
   return (
     <Dialog
       header="Header"
-      visible={visibleEditInfo}
+      visible={visibleApplicants}
       style={{ width: "50vw" }}
       onHide={() => {
-        if (!visibleEditInfo) return;
-        setVisibleEditInfo(false);
+        if (!visibleApplicants) return;
+        setVisibleApplicants(false);
       }}
     >
       <p className="m-0">
@@ -29,4 +30,4 @@ const EditInfo = () => {
   )
 }
 
-export default EditInfo;
+export default Applicants;
