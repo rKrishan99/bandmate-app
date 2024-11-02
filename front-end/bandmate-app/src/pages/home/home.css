@@ -1,0 +1,13 @@
+.benefits{
+    width: -webkit-fill-available;
+}
+.round{
+    width: 126px;
+    height: 126px;
+}
+.top{
+    top: -41px;
+    right: 28px;
+    width: 120px;
+    height: 120px;
+}
