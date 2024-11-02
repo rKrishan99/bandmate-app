@@ -1,14 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { NavDropdown } from "../navDropdown/NavDropdown";
 import navItems from "./navItems";
+import { LoginContext } from "../../context/loginContext/LoginContext";
+import { RegisterContext } from "../../context/registerContext/RegisterContext";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isLog, setIsLog] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const avatarRef = useRef(null);
+  const islogged = false;
+  const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
+  const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
+
+  const handleSetVisibleLogin = () => {
+    setVisibleLogin(true);
+  };
+
+  const handleSetVisibleRegister = () => {
+    setVisibleRegister(true);
+  };
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -27,7 +40,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-gray-900 sticky top-0 shadow z-8">
+    <nav className="bg-gray-900 sticky top-0 shadow z-10">
       <div className="flex justify-between items-center md:px-24 md:py-4 px-8 py-2">
         <Link to="/">
           <img
@@ -54,7 +67,7 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:flex space-x-4">
-          {isLog ? (
+          {islogged ? (
             <div className="flex items-center justify-between gap-4 ">
               <img
                 ref={avatarRef}
@@ -74,16 +87,17 @@ const Navbar = () => {
             </div>
           ) : (
             <div>
-              <Link to="/login">
-                <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4">
-                  Signin
-                </button>
-              </Link>
-              <Link to="/register">
-                <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md">
-                  Signup
-                </button>
-              </Link>
+              <button
+                onClick={handleSetVisibleLogin}
+                className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4"
+              >
+                Signin
+              </button>
+
+              <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md"
+              onClick={handleSetVisibleRegister}>
+                Signup
+              </button>
             </div>
           )}
         </div>
@@ -113,7 +127,7 @@ const Navbar = () => {
               </li>
             ))}
             <div className="flex space-x-3">
-              {isLog ? (
+              {islogged ? (
                 <div className="flex items-center justify-between gap-4 ">
                   <img
                     ref={avatarRef}
@@ -126,7 +140,6 @@ const Navbar = () => {
                     <div
                       ref={dropdownRef}
                       className="absolute  top-28 right-0 mt-2 bg-white rounded-md shadow-lg z-10"
-                      
                     >
                       <NavDropdown />
                     </div>
@@ -134,16 +147,17 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div>
-                  <Link to="/login">
-                    <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
-                      Signin
-                    </button>
-                  </Link>
-                  <Link to="/register">
-                    <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
-                      Signup
-                    </button>
-                  </Link>
+                  <button
+                    onClick={handleSetVisibleLogin}
+                    className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out"
+                  >
+                    Signin
+                  </button>
+
+                  <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out"
+                  onClick={handleSetVisibleRegister}>
+                    Signup
+                  </button>
                 </div>
               )}
             </div>

@@ -1,23 +1,53 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Dialog } from "primereact/dialog";
+import { RegisterContext } from "../../../context/registerContext/RegisterContext";
+import { BandRegisterContext } from "../../../context/bandRegisterContext/BandRegisterContext";
 
 const RegisterOptions = () => {
+  const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
+  const { visibleBandRegister, setVisibleBandRegister } =
+    useContext(BandRegisterContext);
+
+  const handleSetVisibleBandRegister = () => {
+    setVisibleBandRegister(true);
+  };
+
   return (
-    <div className="flex items-center justify-center h-screen gap-9">
-      <div className="bg-slate-200 rounded-md p-2">
-        <Link to="/band-register">
-          <div className="w-[300px] h-[150px] flex items-center justify-center">
-            <h1>I'm a Band</h1>
+    <div className="relative w-auto">
+      {visibleRegister && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
+          onClick={() => setVisibleRegister(false)}
+        ></div>
+      )}
+      <Dialog
+        header=""
+        visible={visibleRegister}
+        onHide={() => setVisibleRegister(false)}
+        className=" bg-cardBg md:w-[650px] p-6 rounded-xl"
+        breakpoints={{ "960px": "75vw", "640px": "90vw" }}
+      >
+        <div className="flex justify-between items-center p-8 gap-4 md:gap-10">
+          <div
+            className="flex flex-col items-center p-4 cursor-pointer rounded-xl hover:bg-slate-100 hover:scale-105 transition-transform"
+            onClick={() => {
+              handleSetVisibleBandRegister(true);
+              setVisibleRegister(false);
+            }}
+          >
+            <img className="w-[100px] md:w-[200px]" src="./band.png" alt="" />
+            <h1 className="text-sm md:text-[30px] font-bold">I'm a Band</h1>
           </div>
-        </Link>
-      </div>
-      <div className="bg-slate-200 rounded-md p-2">
-        <Link to="/musician-register">
-          <div className="w-[300px] h-[150px] flex items-center justify-center">
-            <h1>I'm a Band</h1>
+          <div className="flex flex-col items-center  p-4 cursor-pointer rounded-xl hover:bg-slate-100 hover:scale-105 transition-transform">
+            <img
+              className="w-[100px] md:w-[200px]"
+              src="./musician.png"
+              alt=""
+            />
+            <h1 className="text-sm md:text-[30px] font-bold">I'm a Musician</h1>
           </div>
-        </Link>
-      </div>
+        </div>
+      </Dialog>
     </div>
   );
 };
