@@ -58,61 +58,65 @@ const addUser = async (userData) => {
 };
 
 const updateUser = async (userData) => {
-    try {
-        const query = `
+  try {
+    const query = `
             UPDATE users 
             SET name = ?, about = ?, experience = ?, category = ?, imgpath = ?, phone = ?
             WHERE email = ?`;
 
-        const values = [
-            userData.name,
-            userData.about,
-            userData.experience,
-            userData.category,
-            userData.imgpath,
-            userData.phone,
-            userData.email
-        ];
+    const values = [
+      userData.name,
+      userData.about,
+      userData.experience,
+      userData.category,
+      userData.imgpath,
+      userData.phone,
+      userData.email,
+    ];
 
-        const [result] = await pool.query(query, values);
-        return result.affectedRows > 0 
-            ? { message: "User updated successfully" } 
-            : { message: "User not found" };
-    } catch (error) {
-        console.error("Error updating user:", error.message);
-        throw error;
-    }
+    const [result] = await pool.query(query, values);
+    return result.affectedRows > 0
+      ? { message: "User updated successfully" }
+      : { message: "User not found" };
+  } catch (error) {
+    console.error("Error updating user:", error.message);
+    throw error;
+  }
 };
 
 const deleteUser = async (email) => {
-    try {
-      const query = `DELETE FROM users WHERE email = ?`;
-      const [result] = await pool.query(query, [email]);
-      if (result.affectedRows > 0) {
-        console.log(`User with email ${email} deleted successfully.`);
-        return { message: "User deleted successfully" };
-      } else {
-        console.log(`No user found with email ${email}.`);
-        return { message: "User not found" };
-      }
-    } catch (error) {
-      console.error("Failed to delete user:", error.message);
-      throw error;
+  try {
+    const query = `DELETE FROM users WHERE email = ?`;
+    const [result] = await pool.query(query, [email]);
+    if (result.affectedRows > 0) {
+      console.log(`User with email ${email} deleted successfully.`);
+      return { message: "User deleted successfully" };
+    } else {
+      console.log(`No user found with email ${email}.`);
+      return { message: "User not found" };
     }
-  };
+  } catch (error) {
+    console.error("Failed to delete user:", error.message);
+    throw error;
+  }
+};
 
-  const getUserByEmail = async (email) => {
-    try {
-      const query = `SELECT * FROM users WHERE email = ?`;
-      const [rows] = await pool.query(query, [email]);
-      return rows.length > 0 ? rows[0] : null;
-    } catch (error) {
-      console.error("Failed to retrieve user data:", error.message);
-      throw error;
-    }
-  };
+const getUserByEmail = async (email) => {
+  try {
+    const query = `SELECT * FROM users WHERE email = ?`;
+    const [rows] = await pool.query(query, [email]);
+    return rows.length > 0 ? rows[0] : null;
+  } catch (error) {
+    console.error("Failed to retrieve user data:", error.message);
+    throw error;
+  }
+};
 
-
-
-
-module.exports = { testDatabaseConnection, getEmailAndPassword, addUser, updateUser, deleteUser, getUserByEmail };
+module.exports = {
+  testDatabaseConnection,
+  getEmailAndPassword,
+  addUser,
+  updateUser,
+  deleteUser,
+  getUserByEmail,
+};

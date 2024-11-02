@@ -39,14 +39,15 @@ const deleteVacancyService = async (req, res) => {
   try {
     const vacancyID = req.body.vacancyID;
 
-    if (!getVacancyByID == []) {
+    const vacancy = await getVacancyByID(vacancyID);
+    if (vacancy) {
       await deleteVacancyById(vacancyID);
       res.status(200).json({ message: "Vacancy deleted!" });
     } else {
       res.status(404).json({ message: "Vacancy not found!" });
     }
   } catch (error) {
-    console.error("Error registering user:", error);
+    console.error("Error deleting vacancy:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 };

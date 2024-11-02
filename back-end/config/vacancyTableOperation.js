@@ -56,7 +56,7 @@ const updateVacancy = async (vacancyData) => {
       vacancyData.bandemail,
       vacancyData.priceMin,
       vacancyData.priceMax,
-      vacancyData.vacancyID
+      vacancyData.vacancyID,
     ];
 
     const [result] = await pool.query(query, values);
@@ -70,58 +70,60 @@ const updateVacancy = async (vacancyData) => {
 };
 
 const getAllVacancies = async () => {
-    try {
-      const query = 'SELECT * FROM vacancy';
-      const [results] = await pool.query(query); 
-      return results; 
+  try {
+    const query = "SELECT * FROM vacancy";
+    const [results] = await pool.query(query);
+    return results;
+  } catch (error) {
+    console.error("Error fetching vacancies:", error.message);
+    throw error;
+  }
+};
 
-    } catch (error) {
-      console.error("Error fetching vacancies:", error.message);
-      throw error;
+const getVacanciesByCategory = async (category) => {
+  try {
+    const query = "SELECT * FROM vacancy WHERE category = ?";
+    const [results] = await pool.query(query, [category]);
+    return results;
+  } catch (error) {
+    console.error("Error fetching vacancies by category:", error.message);
+    throw error;
+  }
+};
+
+const getVacancyByID = async (vacancyID) => {
+  try {
+    const query = "SELECT * FROM vacancy WHERE vacancyID = ?";
+    const [results] = await pool.query(query, [vacancyID]);
+    return results;
+  } catch (error) {
+    console.error("Error fetching vacancies by category:", error.message);
+    throw error;
+  }
+};
+
+const deleteVacancyById = async (vacancyID) => {
+  try {
+    const query = "DELETE FROM vacancy WHERE vacancyID = ?";
+    const [result] = await pool.query(query, [vacancyID]);
+
+    if (result.affectedRows === 0) {
+      return { message: "Vacancy not found", success: false };
     }
-  };
-  
-  const getVacanciesByCategory = async (category) => {
-    try {
-      const query = 'SELECT * FROM vacancy WHERE category = ?';
-      const [results] = await pool.query(query, [category]); 
-      return results; 
+    console.log("Vacancy deleted successfully.");
+    return { message: "Vacancy Deleted", success: true };
+  } catch (error) {
+    console.error("Error deleting vacancy:", error.message);
+    throw error;
+  }
+};
 
-    } catch (error) {
-      console.error("Error fetching vacancies by category:", error.message);
-      throw error;
-    }
-  };
-
-  const getVacancyByID = async (vacancyID) => {
-    try {
-      const query = 'SELECT * FROM vacancy WHERE vacancyID = ?';
-      const [results] = await pool.query(query, [vacancyID]); 
-      return results; 
-
-    } catch (error) {
-      console.error("Error fetching vacancies by category:", error.message);
-      throw error;
-    }
-  };
-
-  const deleteVacancyById = async (vacancyID) => {
-    try {
-      const query = 'DELETE FROM vacancy WHERE vacancyID = ?';
-      const [result] = await pool.query(query, [vacancyID]); 
-      
-      if (result.affectedRows === 0) {
-        return { message: "Vacancy not found", success: false };
-      }
-      console.log("Vacancy deleted successfully.");
-      return{message: "Vacancy Deleted", success: true}
-      
-    } catch (error) {
-      console.error("Error deleting vacancy:", error.message);
-      throw error;
-    }
-  };
-  
-  
-
-module.exports = { testDatabaseConnection, addVacancy, updateVacancy, getAllVacancies, getVacanciesByCategory,deleteVacancyById, getVacancyByID  };
+module.exports = {
+  testDatabaseConnection,
+  addVacancy,
+  updateVacancy,
+  getAllVacancies,
+  getVacanciesByCategory,
+  deleteVacancyById,
+  getVacancyByID,
+};

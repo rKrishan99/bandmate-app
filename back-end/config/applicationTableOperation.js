@@ -24,7 +24,7 @@ const addApplication = async (applicationData) => {
       applicationData.vacancyID,
       applicationData.userEmail,
       applicationData.bandEmail,
-      applicationData.price
+      applicationData.price,
     ];
 
     // Execute the query and get the result
@@ -51,7 +51,10 @@ const getApplicationsByBandEmail = async (bandEmail) => {
 
     return applications; // Return all applications for the given email
   } catch (error) {
-    console.error("Failed to retrieve applications by user email:", error.message);
+    console.error(
+      "Failed to retrieve applications by user email:",
+      error.message
+    );
     throw error;
   }
 };
@@ -66,11 +69,16 @@ const getApplicationsByUserEmail = async (userEmail) => {
 
     return applications; // Return all applications for the given email
   } catch (error) {
-    console.error("Failed to retrieve applications by user email:", error.message);
+    console.error(
+      "Failed to retrieve applications by user email:",
+      error.message
+    );
     throw error;
   }
 };
 
-
-
-module.exports = { addApplication,getApplicationsByBandEmail,getApplicationsByUserEmail };
+module.exports = {
+  addApplication,
+  getApplicationsByBandEmail,
+  getApplicationsByUserEmail,
+};
