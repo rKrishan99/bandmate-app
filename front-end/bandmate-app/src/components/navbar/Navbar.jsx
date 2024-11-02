@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { NavDropdown } from "../navDropdown/NavDropdown";
 import navItems from "./navItems";
+import Logo from "../../assests/Bandmate_logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ const Navbar = () => {
         <Link to="/">
           <img
             className="w-24 md:w-28"
-            src="./Bandmate_logo.png"
+            src={Logo}
             alt="Bandmate Logo"
           />
         </Link>

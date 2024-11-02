@@ -1,16 +1,17 @@
 import React from "react";
 import Navbar from "../../components/navbar/Navbar";
-import IconLocation from "../../../public/svg/location-pin-svgrepo-com.svg";
-import IconCall from "../../../public/svg/call-chat-svgrepo-com.svg";
-import IconTime from "../../../public/svg/time-twenty-four-svgrepo-com.svg";
+import IconLocation from "../../assests/svg/location-pin-svgrepo-com.svg";
+import IconCall from "../../assests/svg/call-chat-svgrepo-com.svg";
+import IconTime from "../../assests/svg/time-twenty-four-svgrepo-com.svg";
 import {} from "./contact.css";
+import  Footer  from "../../components/footer/Footer";
 
 const Contact = () => {
   return (
     <div>
       <Navbar />
       <div className="relative h-screen overflow-hidden bg-background px-cusPadding">
-        <div className="relative bg-white flex-row items-start  h-full m-6 p-7 rounded-xl shadow-md">
+        <div className="relative bg-white flex-row items-start  h-full m-6 p-7 rounded-xl shadow-md pb-4">
           <div className="flex flex-col justify-center text-center">
             <h1 className="text- text-4xl font-bold ">Get Touch In!</h1>
             <h4 className=" p-7 ">
@@ -22,7 +23,7 @@ const Contact = () => {
           </div>
 
           <div className="flex justify-between shadow-md bg-slate-50 m-5">
-            <div className="relative bg-slate-50 flex-row   h-full m-6 contact">
+            <div className="relative bg-slate-50 flex-row   h-full m-6 mt-0 contact">
               <div className="m-4 my-5">
                 <img src={IconLocation} alt="" className="h-7 w-7 my-1" />
                 <p className="text-sm font-bold">
@@ -54,8 +55,7 @@ const Contact = () => {
               >
                 <div>
                   <label
-                    for="name"
-                    htmlFor=""
+                    htmlFor="name"
                     className="block text-gray-700 text-sm font-bold mb-2 focus:outline-none "
                   ></label>
                   <input
@@ -68,8 +68,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <label
-                    for="email"
-                    htmlFor=""
+
+                    htmlFor="email"
                     className="block text-gray-700 text-sm font-bold mb-2"
                   ></label>
                   <input
@@ -83,8 +83,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label
-                    for="message"
-                    htmlFor=""
+                    htmlFor="message"
                     className="block text-gray-700 text-sm font-bold mb-2"
                   ></label>
                   <textarea
@@ -106,6 +105,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

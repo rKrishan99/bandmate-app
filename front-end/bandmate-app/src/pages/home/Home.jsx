@@ -3,16 +3,14 @@ import Navbar from "../../components/navbar/Navbar";
 import {} from "./home.css";
 import { Rating } from "primereact/rating";
 import "primeicons/primeicons.css";
+import Footer from "../../components/footer/Footer";
 
 const Home = () => {
   return (
     <div>
       <Navbar />
       <div className="relative h-screen overflow-hidden">
-        {/* Background layer with blur effect */}
-        <div className="absolute inset-0 bg-[url('./band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
-
-        {/* Content layer */}
+        <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
         <div className="relative flex-col items-center justify-center  h-full p-28">
           <h1 className="text-white text-6xl font-bold text-center">
             Welcome to Guitarist Connect
@@ -30,75 +28,51 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="relative overflow-hidden bg-background px-cusPadding">
-        <div className="relative bg-white flex flex-col items-center  h-full m-3 p-7 rounded-xl shadow-md">
-          <h1 className="text-4xl p-4">Why are you choose for us</h1>
+      <div className="relative overflow-hidden bg-background padding1">
+        <div className="relative bg-white flex flex-col items-center h-full m-3 p-7 rounded-xl shadow-md">
+          <h1 className="text-4xl p-4">Through Ours</h1>
 
-          <div class=" mx-1 p-2">
-            <div class="grid grid-cols-2 gap-2">
-              <div class="bg-slate-400 flex-col text-white p-2 rounded-lg flex items-center justify-center">
-                <div className="flex justify-center p-3">
+          <div className="mx-1 p-2">
+            <div className="grid grid-cols-2 gap-10">
+              <div className="bg-background text-white p-4 rounded-lg flex flex-col items-center justify-center ">
+                <div className="flex justify-center mb-3">
                   <img
-                    src="./jazz_band_team_generated.jpg"
+                    src="../../src/assests/jazz_band_team_generated.jpg"
                     alt=""
-                    className="size-52"
+                    className="size-full transform transition-transform duration-200 hover:scale-110"
                   />
                 </div>
-                <h4 className="text-2xl p-2"> Wide Range of Talents</h4>
-                <p className=""> Wide Range of Talents</p>
-              </div>
-              <div class="bg-slate-400 flex-col text-white p-2 rounded-lg flex">
-                <div className="flex justify-center p-3">
-                  <img
-                    src="./jazz_band_team_generated.jpg"
-                    alt=""
-                    className="size-52"
-                  />
-                </div>
-
-                <h4 className="text-2xl p-2"> Trusted Musicians</h4>
-                <p className=""> Wide Range of Talents</p>
+                <h4 className="text-2xl text-black mb-2">Hire Muscians</h4>
+                <p className="text-black p-2">Connect with skilled guitarists easily. Our platform brings top talent together, simplifying hiring for your music projects. Start now!</p>
               </div>
 
-              <div class="bg-slate-400 flex-col text-white p-1 rounded-lg flex items-center justify-center">
-                <div className="flex justify-center p-3">
+              <div className="bg-background text-white p-4 rounded-lg flex flex-col items-center justify-center">
+                <div className="flex justify-center mb-3">
                   <img
-                    src="./jazz_band_team_generated.jpg"
+                    src="../../src/assests/jazz_band_team_generated.jpg"
                     alt=""
-                    className="size-52"
+                    className="size-full transform transition-transform duration-200 hover:scale-110"
                   />
                 </div>
-                <h4 className="text-2xl p-2"> Quick and Easy Search</h4>
-                <p className=""> Wide Range of Talents</p>
+                <h4 className="text-2xl text-black mb-2">Trusted Partners</h4>
+                <p className="text-black p-2">Connect with skilled guitarists easily. Our platform brings top talent together, simplifying hiring for your music projects. Start now!</p>
               </div>
-              <div class="bg-slate-400 flex-col text-white p-6 rounded-lg flex items-center justify-center">
-                <div className="flex justify-center p-3">
-                  <img
-                    src="./jazz_band_team_generated.jpg"
-                    alt=""
-                    className="size-52"
-                  />
-                </div>
-                <h4 className="text-2xl p-2"> Quick and Easy Search </h4>
-                <p className=""> Wide Range of Talents</p>
-              </div>
-              <div className="size-full p-3 m-4 border-x-2">ads here</div>
+            </div>
+
+            <div className="w-full p-3 m-4 border-t-2 border-gray-300 text-center">
+              ads here
             </div>
           </div>
         </div>
       </div>
-      <div className="flex p-5 bg-background ">
-        <div className="size-2/4 p-6 shadow-md bg-slate-50">
-          <img src="./men-7484239_1280.jpg" alt="" />
+      <div className="flex pt-5 bg-background ">
+        <div className="size-2/4 shadow-md bg-slate-50">
+          <img src="../../src/assests/men-7484239_1280.jpg" alt="" />
         </div>
-        <div className="p-6 size-1/2">
+        <div className="p-6 padding size-1/2">
           <h1 className="text-4xl"> How It Works</h1>
-          <p className="py-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic,
-            nesciunt deserunt vel modi tempora nihil facere sit delectus
-            laudantium quo. Odit nam eveniet quasi quisquam suscipit quod
-            recusandae sint ducimus!
-          </p>
+          <p className="pt-3  pb-4">
+          With Guitarist Connect, finding the right guitarist is a breeze. Browse profiles, watch videos, and listen to audio samples to discover skilled musicians. Instantly connect through messaging, set up interviews, and schedule sessions all within our intuitive platform. Book confidently using verified reviews and streamlined booking tools to complete your project effortlessly.          </p>
           <div className="flex justify-center">
             <button className="bg-orange-400 rounded-md p-3">Hire Now</button>
           </div>
@@ -109,67 +83,67 @@ const Home = () => {
       </div>
       <div class="container mx-auto p-10 bg-background">
         <div class="grid grid-cols-4 gap-4">
-          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg">
+          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="bg-black p-4 rounded-full round"></div>
             <h1 className="p-1 text-3xl">Shen Max</h1>
             <p>Guitarist</p>
-            <Rating value={5} readOnly cancel={false} />
+            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
           </div>
-          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg">
+          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="bg-black p-4 rounded-full round"></div>
             <h1 className="p-1 text-3xl">Shen Max</h1>
             <p>Guitarist</p>
-            <Rating value={5} readOnly cancel={false} />
+            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
           </div>
 
-          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg">
+          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="bg-black p-4 rounded-full round"></div>
             <h1 className="p-1 text-3xl">Shen Max</h1>
             <p>Guitarist</p>
-            <Rating value={5} readOnly cancel={false} />
+            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
           </div>
-          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg">
+          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="bg-black p-4 rounded-full round"></div>
             <h1 className="p-1 text-3xl">Shen Max</h1>
             <p>Guitarist</p>
-            <Rating value={5} readOnly cancel={false} />
+            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
           </div>
         </div>
       </div>
       <div className="flex py-6 px-8">
         <div className="size-full py-4">
           <h1 className="text-3xl p-4">Why Hire Musicians Through US?</h1>
-          <div className="flex">
+          <div className="flex px-3 py-2">
             <i
-              className="pi pi-verified px-3 py-2"
-              style={{ fontSize: "1rem", color: "" }}
+              className="pi pi-verified "
+              style={{ fontSize: "1.25rem", color: "#ADD8E6" }}
             ></i>
-            <p className="py-1">
+            <p className="px-3">
               Over 20 Years experience in the events industry
             </p>
           </div>
-          <div className="flex">
+          <div className="flex py-2 px-3">
             <i
-              className="pi pi-verified px-3 py-4"
-              style={{ fontSize: "1rem" }}
+              className="pi pi-verified"
+              style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
             ></i>
-            <p className="py-3">All bands hand-picked by our team of experts</p>
+            <p className="px-3">All bands hand-picked by our team of experts</p>
           </div>
-          <div className="flex">
+          <div className="flex py-2 px-3">
             <i
-              className="pi pi-verified px-3 py-2"
-              style={{ fontSize: "1rem" }}
+              className="pi pi-verified"
+              style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
             ></i>
-            <p className="py-1">
+            <p className="px-3">
               Dedicated member of our team assigned to your event
             </p>
           </div>
-          <div className="flex">
+          <div className="flex py-2 px-3">
             <i
-              className="pi pi-verified px-3 py-4"
-              style={{ fontSize: "1rem" }}
+              className="pi pi-verified"
+              style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
             ></i>
-            <p className="py-3">
+            <p className="px-3">
               Professional contracts for your peace of mind
             </p>
           </div>
@@ -177,7 +151,7 @@ const Home = () => {
         <div className="relative size-full h-64 p-4 m-8 justify-center items-center bg-background rounded-xl shadow-lg">
           <div className="absolute top bg-black rounded-full"></div>
           <Rating
-            className="py-3 px-4 my-8"
+            className="py-3 px-4 my-8 text-yellow-300"
             value={5}
             readOnly
             cancel={false}
@@ -190,6 +164,7 @@ const Home = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
