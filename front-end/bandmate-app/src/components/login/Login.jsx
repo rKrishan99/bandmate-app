@@ -1,29 +1,87 @@
 import React, { useContext, useState } from "react";
+import axios from "axios";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { LoginContext } from "../../context/loginContext/LoginContext";
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
+import PopupAlert from "../alert/popupAlert/PopupAlert";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
-  const [loading, setLoding] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
 
-  const validateInputs = () => {
-    setEmailError(!email.includes("@")); // Simple validation for email
-    setPasswordError(password.length < 9); // Password should be at least 6 characters
+  const [visibleAlert, setVisibleAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertInfo, setAlertInfo] = useState("");
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    type: "",
+    name: "",
+    about: "",
+    experience: "",
+    category: "",
+    imgpath: "",
+    phone: "",
+  });
+
+  const resetForm = () => {
+    setLoading(false);
+    setFormData({
+      email: "",
+      password: "",
+      type: "",
+      name: "",
+      about: "",
+      experience: "",
+      category: "",
+      imgpath: "",
+      phone: "",
+    });
   };
 
+  // password visibility
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    console.log("Form data before submit:", formData);
+
+    // API call to login
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/auth/login",
+        formData,
+        {}
+      );
+      console.log("Login response:", response);
+      console.log("Login response status:", response.status);
+      console.log("Login response data:", response.data);
+      setVisibleAlert(true);
+      setAlertMessage("Login successful!");
+      setAlertInfo(true);
+      setVisibleLogin(false);
+      resetForm();
+    } catch (error) {
+      console.error("Error during login:", error);
+      setVisibleAlert(true);
+      setAlertMessage("Login failed. Please try again.");
+      setAlertInfo(false);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -44,47 +102,55 @@ const Login = () => {
         <div className="flex flex-col w-full p-4">
           <h1 className="text-2xl font-bold text-center mb-6">Signin</h1>
 
-          <form className=" h-auto flex flex-col gap-6 mt-6">
+          <form
+            onSubmit={handleSubmit}
+            className=" h-auto flex flex-col gap-6 mt-6"
+          >
             <TextField
-              id="outlined-password-input"
               label="Email"
               type="email"
-              value={email}
-              autoComplete="current-password"
+              value={formData.email}
               className="text-lg"
               onChange={(e) => {
-                setEmail(e.target.value);
-                setEmailError(false); // Reset error on input change
+                setFormData((prev) => ({ ...prev, email: e.target.value }));
               }}
-              error={emailError}
-              helperText={
-                emailError ? "Please enter a valid email address." : ""
+              error={
+                formData.email !== "" &&
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
               }
-              fullWidth
-            />
-
-            <TextField
-              id="outlined-password-input"
-              label="Password"
-              type={showPassword ? "text" : "password"}
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setPasswordError(false); // Reset error on input change
-              }}
-              error={passwordError}
               helperText={
-                passwordError
-                  ? "Password must be at least 6 characters long."
+                formData.email !== "" &&
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+                  ? "Please enter a valid email address."
                   : ""
               }
               fullWidth
+              required
+            />
+
+            <TextField
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              value={formData.password}
+              onChange={(e) => {
+                setFormData((prev) => ({ ...prev, password: e.target.value }));
+              }}
+              error={
+                formData.password !== "" &&
+                (formData.password.length < 8 || formData.password.length > 12)
+              }
+              helperText={
+                formData.password !== "" &&
+                (formData.password.length < 8 || formData.password.length > 12)
+                  ? "Password must be between 8 and 12 characters."
+                  : ""
+              }
+              fullWidth
+              required
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
-                      aria-label="toggle password visibility"
                       onClick={handleTogglePasswordVisibility}
                       edge="end"
                     >
@@ -99,13 +165,14 @@ const Login = () => {
               <Button
                 label="Signin"
                 icon="pi pi-check"
+                type="submit"
                 loading={loading}
-                className="bg-blue-600 w-20 md:w-24 text-white text-lg rounded-md px-3 md:px-4 py-2"
+                className="bg-blue-600 hover:bg-blue-700 w-20 md:w-full text-white text-lg rounded-md px-3 md:px-4 py-2"
               />
             </div>
           </form>
           <span
-            className="mt-10 text-blue-700 cursor-pointer"
+            className="mt-10 text-blue-600  hover:text-blue-700 cursor-pointer"
             onClick={() => {
               setVisibleRegister(true);
               setVisibleLogin(false);
@@ -115,6 +182,7 @@ const Login = () => {
           </span>
         </div>
       </Dialog>
+      <PopupAlert visible={visibleAlert} message={alertMessage} info={alertInfo} onClose={() => setVisibleAlert(false)}/>
     </div>
   );
 };
