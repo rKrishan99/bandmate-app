@@ -4,6 +4,7 @@ import { LoginContext } from "../../../context/loginContext/LoginContext";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import axios from "axios";
+
 import {
   TextField,
   IconButton,
@@ -24,6 +25,7 @@ const BandRegister = () => {
   const [changeProfileLoading, setChangeProfileLoading] = useState(false);
   const profileInputRef = useRef(null);
   const [profileImage, setProfileImage] = useState("");
+  const [imageURL, setImageURL] = useState(""); // URL for previewing the image
 
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -37,7 +39,7 @@ const BandRegister = () => {
     about: "",
     experience: "",
     category: "",
-    imgpath: "",
+    imgpath: "test",
     phone: "",
   });
 
@@ -59,6 +61,8 @@ const BandRegister = () => {
       imgpath: "",
       phone: "",
     });
+    setProfileImage(null); // Reset the profile image
+    setImageURL(""); // Reset the image URL
   };
 
   // For Image URL
@@ -66,7 +70,6 @@ const BandRegister = () => {
     const file = e.target.files[0];
     if (file && file.type.startsWith("image/")) {
       setProfileImage(file);
-      console.log("Selected file:", file.name); // Debugging line
       setImageURL(URL.createObjectURL(file)); // Set the image URL once
       setProfileDialogOpen(true); // Open the dialog
     } else {
@@ -75,27 +78,33 @@ const BandRegister = () => {
   };
 
   const uploadProfileImage = async () => {
-    // Upload profile image first
-    let imagePath = "";
+    
+    try {
+      if (!profileImage) {
+        console.log("upload");
+        return "./band.png"; // Default image path
+        
+      }
 
-    if (profileImage) {
       const formDataImage = new FormData();
-      formDataImage.append("profileImage", profileImage);
+      formDataImage.append("image", profileImage);
+      formDataImage.append("email", formData.email);
 
       const imageResponse = await axios.post(
-        "http://localhost:3000/auth/upload",
-        formDataImage
+        "http://localhost:3000/images/upload",
+        formDataImage,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
       );
-      imagePath = imageResponse.data.imagePath; // Assuming the server responds with the image path
-    } else {
-      imagePath = "./band.png"; // Use default image path if no image is uploaded
-    }
 
-    // Now prepare the form data with the image path
-    const completeFormData = {
-      ...formData,
-      imgpath: imagePath, // Include the image path in the form data
-    };
+      
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw error; // Propagate error to handle it in the submission
+    }
   };
 
   // password visibility
@@ -110,22 +119,25 @@ const BandRegister = () => {
     setLoading(true);
 
     try {
-      await axios.post("http://localhost:3000/auth/register", formData, {});
+
+      const result = await axios.post("http://localhost:3000/auth/register", formData);
       setVisibleAlert(true);
       setAlertMessage("Registration successful!");
       setAlertInfo(true);
       setVisibleBandRegister(false);
+      if (result.status !== 201) {
+        console.error("Registration failed:", result);
+      }
+      
       await uploadProfileImage();
       setLoading(false);
       resetForm();
+
       // Delay before showing the login form
       setTimeout(() => {
         setVisibleLogin(true);
       }, 2000); // 3 seconds delay
     } catch (error) {
-      console.error("Error during registration:", error);
-      setVisibleAlert(true);
-      setAlertMessage("Registration failed. Please try again.");
       setAlertInfo(false);
       setLoading(false);
     } finally {
@@ -164,8 +176,8 @@ const BandRegister = () => {
             >
               <img
                 className="w-36 rounded-full bg-slate-200"
-                src="./band.png"
-                alt=""
+                src={imageURL || "./band.png"}
+                alt="Profile"
               />
               <img
                 className="absolute w-6 bottom-[-6px]"
@@ -180,7 +192,6 @@ const BandRegister = () => {
               visible={profileDialogOpen}
               onHide={() => {
                 setProfileDialogOpen(false);
-                setProfileImage(null);
               }}
               className="border-2 border-slate-200 mx-10 w-[300px] sm:w-[400px] md:w-[500px] h-auto bg-slate-100 rounded-xl p-4 md:p-10"
             >
@@ -213,13 +224,16 @@ const BandRegister = () => {
                   label="Save"
                   icon="pi pi-check"
                   loading={changeProfileLoading}
+                  onClick={async () => {
+                    setChangeProfileLoading(true);
+                    setProfileDialogOpen(false);
+                    setChangeProfileLoading(false);
+                  }
+                  }
                   className="bg-blue-600 w-20 md:w-24 text-white rounded-md px-3 md:px-4 py-2"
                 />
               </div>
             </Dialog>
-
-            {/* ================================ */}
-            {/* setValues({...values, name: e.target.value}) */}
 
             <TextField
               label="Band Name"

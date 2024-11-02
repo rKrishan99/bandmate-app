@@ -3,6 +3,7 @@ const imageService = require('../services/imageService');
 const {updateImage} = require('../config/userTableOperation')
 // Handle image upload
 const uploadImage = (req, res) => {
+    console.log(req.body);
     const email = req.body.email; // Retrieve email from request body
 
     if (!req.file) {
