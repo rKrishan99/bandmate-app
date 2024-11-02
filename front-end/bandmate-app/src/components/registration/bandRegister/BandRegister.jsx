@@ -351,11 +351,11 @@ const BandRegister = () => {
               loading={loading}
               type="submit"
               fullWidth
-              className="bg-blue-600 md:w-full text-white text-lg rounded-md px-3 md:px-4 py-2"
+              className="bg-blue-600 hover:bg-blue-700 md:w-full text-white text-lg rounded-md px-3 md:px-4 py-2"
             />
           </form>
           <span
-            className="mt-10 text-blue-700 cursor-pointer"
+            className="mt-10 text-blue-600  hover:text-blue-700 cursor-pointer"
             onClick={() => {
               setVisibleBandRegister(false);
               setVisibleLogin(true);
