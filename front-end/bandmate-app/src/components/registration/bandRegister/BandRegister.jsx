@@ -15,6 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import PopupAlert from "../../alert/popupAlert/PopupAlert";
 
 const BandRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -23,6 +24,10 @@ const BandRegister = () => {
   const [changeProfileLoading, setChangeProfileLoading] = useState(false);
   const profileInputRef = useRef(null);
   const [profileImage, setProfileImage] = useState("");
+
+  const [visibleAlert, setVisibleAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertInfo, setAlertInfo] = useState("");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -54,9 +59,6 @@ const BandRegister = () => {
       imgpath: "",
       phone: "",
     });
-    // setProfileImage(null);
-    // setImageURL(null);
-    // setProfileDialogOpen(false);
   };
 
   // For Image URL
@@ -68,8 +70,32 @@ const BandRegister = () => {
       setImageURL(URL.createObjectURL(file)); // Set the image URL once
       setProfileDialogOpen(true); // Open the dialog
     } else {
-      alert("Please upload a valid image file.");
+      console.log("Please upload a valid image file.");
     }
+  };
+
+  const uploadProfileImage = async () => {
+    // Upload profile image first
+    let imagePath = "";
+
+    if (profileImage) {
+      const formDataImage = new FormData();
+      formDataImage.append("profileImage", profileImage);
+
+      const imageResponse = await axios.post(
+        "http://localhost:3000/auth/upload",
+        formDataImage
+      );
+      imagePath = imageResponse.data.imagePath; // Assuming the server responds with the image path
+    } else {
+      imagePath = "./band.png"; // Use default image path if no image is uploaded
+    }
+
+    // Now prepare the form data with the image path
+    const completeFormData = {
+      ...formData,
+      imgpath: imagePath, // Include the image path in the form data
+    };
   };
 
   // password visibility
@@ -83,25 +109,24 @@ const BandRegister = () => {
 
     setLoading(true);
 
-    console.log("Form data before submit:", formData);
-
-    // Check if profile image was uploaded; otherwise, use default image
-    // if (profileImage) {
-    //   formData.("profileImage", profileImage);
-    // } else {
-    //   formData.("profileImage", "./band.png"); // Use default image path
-    // }
-
     try {
       await axios.post("http://localhost:3000/auth/register", formData, {});
-      alert("Registration successful!");
+      setVisibleAlert(true);
+      setAlertMessage("Registration successful!");
+      setAlertInfo(true);
       setVisibleBandRegister(false);
-      setVisibleLogin(true);
-      resetForm();
+      await uploadProfileImage();
       setLoading(false);
+      resetForm();
+      // Delay before showing the login form
+      setTimeout(() => {
+        setVisibleLogin(true);
+      }, 2000); // 3 seconds delay
     } catch (error) {
       console.error("Error during registration:", error);
-      alert("Registration failed. Please try again.");
+      setVisibleAlert(true);
+      setAlertMessage("Registration failed. Please try again.");
+      setAlertInfo(false);
       setLoading(false);
     } finally {
       setLoading(false);
@@ -202,7 +227,7 @@ const BandRegister = () => {
               value={formData.name}
               className="text-lg"
               onChange={(e) => {
-                setFormData((prev) => ({ ...prev, name: e.target.value }))
+                setFormData((prev) => ({ ...prev, name: e.target.value }));
               }}
               error={formData.name.length > 50} // Set error if the name exceeds 50 characters
               helperText={
@@ -220,7 +245,7 @@ const BandRegister = () => {
               value={formData.email}
               className="text-lg"
               onChange={(e) => {
-                setFormData((prev) => ({ ...prev, email: e.target.value }))
+                setFormData((prev) => ({ ...prev, email: e.target.value }));
               }}
               error={
                 formData.email !== "" &&
@@ -263,7 +288,7 @@ const BandRegister = () => {
               type={showPassword ? "text" : "password"}
               value={formData.password}
               onChange={(e) => {
-                setFormData((prev) => ({ ...prev, password: e.target.value }))
+                setFormData((prev) => ({ ...prev, password: e.target.value }));
               }}
               error={
                 formData.password !== "" &&
@@ -298,7 +323,7 @@ const BandRegister = () => {
                   type="text"
                   value={formData.about}
                   onChange={(e) => {
-                    setFormData((prev) => ({ ...prev, about: e.target.value }))
+                    setFormData((prev) => ({ ...prev, about: e.target.value }));
                   }}
                   error={formData.about.length > 600} // Set error if the about text exceeds 150 characters
                   helperText={
@@ -365,6 +390,12 @@ const BandRegister = () => {
           </span>
         </div>
       </Dialog>
+      <PopupAlert
+        visible={visibleAlert}
+        message={alertMessage}
+        info={alertInfo}
+        onClose={() => setVisibleAlert(false)}
+      />
     </div>
   );
 };

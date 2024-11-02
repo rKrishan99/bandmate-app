@@ -6,6 +6,7 @@ import { LoginContext } from "../../context/loginContext/LoginContext";
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
+import PopupAlert from "../alert/popupAlert/PopupAlert";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,6 +14,10 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
+
+  const [visibleAlert, setVisibleAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertInfo, setAlertInfo] = useState("");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -55,23 +60,28 @@ const Login = () => {
 
     // API call to login
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", formData, {});
+      const response = await axios.post(
+        "http://localhost:3000/auth/login",
+        formData,
+        {}
+      );
       console.log("Login response:", response);
       console.log("Login response status:", response.status);
       console.log("Login response data:", response.data);
-      alert("Login successful!");
+      setVisibleAlert(true);
+      setAlertMessage("Login successful!");
+      setAlertInfo(true);
       setVisibleLogin(false);
       resetForm();
-      setLoading(false);
     } catch (error) {
       console.error("Error during login:", error);
-      alert("Login failed. Please try again.");
+      setVisibleAlert(true);
+      setAlertMessage("Login failed. Please try again.");
+      setAlertInfo(false);
       setLoading(false);
     } finally {
       setLoading(false);
     }
-
-
   };
 
   return (
@@ -172,6 +182,7 @@ const Login = () => {
           </span>
         </div>
       </Dialog>
+      <PopupAlert visible={visibleAlert} message={alertMessage} info={alertInfo} onClose={() => setVisibleAlert(false)}/>
     </div>
   );
 };
