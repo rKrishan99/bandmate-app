@@ -19,8 +19,6 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 const BandRegister = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState("");
@@ -28,24 +26,26 @@ const BandRegister = () => {
   const [changeProfileLoading, setChangeProfileLoading] = useState(false);
   const profileInputRef = useRef(null);
   const [profileImage, setProfileImage] = useState("");
-  const [bandName, setBandName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [about, setAbout] = useState('');
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [about, setAbout] = useState("");
 
   const { visibleBandRegister, setVisibleBandRegister } =
     useContext(BandRegisterContext);
   const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
 
-  const handleChange = (event) => {
-    if (event.target.value.length <= 600) {
-      setText(event.target.value);
-    }
+  // Reset form fields
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+    setName("");
+    setPhone("");
+    setAbout("");
+    setProfileImage("");
+    setShowPassword(false);
   };
 
-  {
-    /*For Img */
-  }
-
+  // For Image URL
   const handleProfileChange = (e) => {
     const file = e.target.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -57,11 +57,7 @@ const BandRegister = () => {
     }
   };
 
-  const validateInputs = () => {
-    setEmailError(!email.includes("@")); // Simple validation for email
-    setPasswordError(password.length < 9); // Password should be at least 6 characters
-  };
-
+  // password visibility
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
@@ -70,20 +66,23 @@ const BandRegister = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    validateInputs();
-
-    // Proceed only if there are no errors
-    if (emailError || passwordError) return;
+   // Assuming you have validations in place already, like state variables for inputs
+   if (name === "" || email === "" || password === "" || phone === "" || about === "") {
+    console.error("All fields are required.");
+    return; // Stop the submission
+}
 
     setLoading(true);
 
     const formData = new FormData();
-    formData.append("bandName", bandName);
+    formData.append("Name", name);
     formData.append("email", email);
     formData.append("phone", phone);
     formData.append("password", password);
     formData.append("about", about);
     formData.append("category", "band");
+
+    console.log("Form data before submit:", formData);
 
     // Check if profile image was uploaded; otherwise, use default image
     if (profileImage) {
@@ -93,12 +92,13 @@ const BandRegister = () => {
     }
 
     try {
-      await axios.post("/api/band/register", formData, {
+      await axios.post("/api/register", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Registration successful!");
       setVisibleBandRegister(false);
       setVisibleLogin(true);
+      resetForm();
     } catch (error) {
       console.error("Error during registration:", error);
       alert("Registration failed. Please try again.");
@@ -118,7 +118,10 @@ const BandRegister = () => {
       <Dialog
         header=""
         visible={visibleBandRegister}
-        onHide={() => setVisibleBandRegister(false)}
+        onHide={() => {
+          setVisibleBandRegister(false);
+          resetForm();
+        }}
         className="w-full max-w-lg p-6 rounded-xl bg-cardBg scrollbar-thin scrollbar-webkit overflow-y-auto"
         style={{ height: "650px", overflowY: "auto" }}
         breakpoints={{ "960px": "75vw", "640px": "90vw" }}
@@ -194,9 +197,16 @@ const BandRegister = () => {
             <TextField
               label="Band Name"
               type="text"
-              value={bandName}
+              value={name}
               className="text-lg"
-              onChange={(e) => setBandName(e.target.value)}
+              onChange={(e) => {
+                const nameValue = e.target.value;
+                setName(nameValue);
+              }}
+              error={name.length > 50} // Set error if the name exceeds 50 characters
+              helperText={
+                name.length > 50 ? "Name cannot exceed 50 characters." : ""
+              }
               fullWidth
               required
             />
@@ -208,11 +218,12 @@ const BandRegister = () => {
               className="text-lg"
               onChange={(e) => {
                 setEmail(e.target.value);
-                setEmailError(false);
               }}
-              error={emailError}
+              error={email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
               helperText={
-                emailError ? "Please enter a valid email address." : ""
+                email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+                  ? "Please enter a valid email address."
+                  : ""
               }
               fullWidth
               required
@@ -223,23 +234,37 @@ const BandRegister = () => {
               type="text"
               value={phone}
               className="text-lg"
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => {
+                const phoneValue = e.target.value;
+                if (/^\d{0,10}$/.test(phoneValue)) {
+                  // Allow only up to 10 digits
+                  setPhone(phoneValue);
+                }
+              }}
+              error={phone.length > 0 && phone.length !== 10}
+              helperText={
+                phone.length > 0 && phone.length !== 10
+                  ? "Please enter a valid phone number."
+                  : ""
+              }
               fullWidth
+              required
             />
 
             <TextField
               label="Password"
               type={showPassword ? "text" : "password"}
-              autoComplete="current-password"
               value={password}
               onChange={(e) => {
-                setPassword(e.target.value);
-                setPasswordError(false); // Reset error on input change
+                const pwdValue = e.target.value;
+                setPassword(pwdValue);
               }}
-              error={passwordError}
+              error={
+                password !== "" && (password.length < 9 || password.length > 12)
+              }
               helperText={
-                passwordError
-                  ? "Password must be at least 6 characters long."
+                password !== "" && (password.length < 9 || password.length > 12)
+                  ? "Password must be between 8 and 12 characters."
                   : ""
               }
               fullWidth
@@ -264,31 +289,51 @@ const BandRegister = () => {
                 <OutlinedInput
                   type="text"
                   value={about}
-                  onChange={(e) => setAbout(e.target.value)}
+                  onChange={(e) => {
+                    const aboutValue = e.target.value;
+                    setAbout(aboutValue);
+                  }}
+                  error={about.length > 600} // Set error if the about text exceeds 150 characters
+                  helperText={
+                    about.length > 600
+                      ? "About section cannot exceed 600 characters."
+                      : ""
+                  }
                   label="Tell About You"
+                  required
                   placeholder="Type here..."
                   multiline
-                  rows={4} // Adjust rows as needed
+                  rows={4}
                   sx={{
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
-                        borderColor: "gray", // Default border color
+                        borderColor: about.length > 600 ? "red" : "gray", // Red border on error
                       },
                       "&:hover fieldset": {
-                        borderColor: "blue", // Hover color
+                        borderColor: about.length > 600 ? "red" : "blue",
                       },
                       "&.Mui-focused fieldset": {
-                        borderColor: "blue", // Focused color
-                        borderWidth: "2px", // Focused border width
+                        borderColor: about.length > 600 ? "red" : "blue",
+                        borderWidth: "2px",
                       },
                     },
                   }}
                 />
+                <Typography
+                  variant="body2"
+                  sx={{
+                    ml: "auto",
+                    color: about.length > 600 ? "red" : "inherit",
+                  }}
+                >
+                  {about.length} / 600
+                </Typography>
+                {about.length > 600 && (
+                  <Typography variant="body2" color="error">
+                    About section cannot exceed 600 characters.
+                  </Typography>
+                )}
               </FormControl>
-
-              <Typography variant="body2" sx={{ ml: "auto" }}>
-                {text.length} / 600
-              </Typography>
             </Box>
             <Button
               label="Signup"
