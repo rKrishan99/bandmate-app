@@ -57,9 +57,9 @@ const Home = () => {
               <div className="bg-background text-white p-4 rounded-lg flex flex-col items-center justify-center">
                 <div className="flex justify-center mb-3">
                   <img
-                    src="../../src/assests/jazz_band_team_generated.jpg"
+                    src="../../src/assests/14_Cartoon_Character.jpg"
                     alt=""
-                    className="size-full transform transition-transform duration-200 hover:scale-110"
+                    className="photo size-full transform transition-transform duration-200 hover:scale-110"
                   />
                 </div>
                 <h4 className="text-2xl text-gray-700 font-semibold mb-2">Trusted Partners</h4>
@@ -92,28 +92,39 @@ const Home = () => {
       <div class="container mx-auto p-10 bg-background">
         <div class="grid grid-cols-4 gap-4">
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
-            <div className="bg-black p-4 rounded-full round"></div>
+            <div className="rounded-full round">
+              <img className="object-cover w-full h-full rounded-full" src="../../src/assests/colours-7402147_1280.jpg" alt="" />
+            </div>
             <h1 className="p-1 text-2xl text-gray-700 font-semibold">Shen Max</h1>
             <p className="text-lg text-gray-700">Guitarist</p>
             <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
           </div>
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
-            <div className="bg-black p-4 rounded-full round"></div>
-            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Shen Max</h1>
-            <p className="text-lg text-gray-700">Guitarist</p>
+            <div className="bg-black p-4 rounded-full round">
+            <img className="object-cover w-full h-full rounded-full" src="../../src/assests/saxophone-4473023_1280.jpg" alt="" />
+
+            </div>
+            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Guwen Charu</h1>
+            <p className="text-lg text-gray-700"> saxophonist</p>
             <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
           </div>
 
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
-            <div className="bg-black p-4 rounded-full round"></div>
-            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Shen Max</h1>
-            <p className="text-lg text-gray-700">Guitarist</p>
+            <div className="rounded-full round">
+            <img className="object-cover w-full h-full rounded-full" src="../../src/assests/man-5979081_1280.jpg" alt="" />
+
+            </div>
+            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Mark David</h1>
+            <p className="text-lg text-gray-700">Drummer</p>
             <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
           </div>
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
-            <div className="bg-black p-4 rounded-full round"></div>
-            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Shen Max</h1>
-            <p className="text-lg text-gray-700">Guitarist</p>
+            <div className=" rounded-full round">
+            <img className="object-cover w-full h-full rounded-full" src="../../src/assests/people-2591943_1280.jpg" alt="" />
+
+            </div>
+            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Rubi Shey</h1>
+            <p className="text-lg text-gray-700">Violinist</p>
             <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
           </div>
         </div>
@@ -157,7 +168,10 @@ const Home = () => {
           </div>
         </div>
         <div className="relative size-full h-64 p-4 m-8 mt-14 justify-center items-center bg-background rounded-xl shadow-lg">
-          <div className="absolute top bg-black rounded-full"></div>
+          <div className="absolute top rounded-full">
+          <img className="object-cover w-full h-full rounded-full" src="../../src/assests/girls-1741925_1280.jpg" alt="" />
+
+          </div>
           <Rating
             className=" px-4 my-8 text-yellow-300"
             value={5}
