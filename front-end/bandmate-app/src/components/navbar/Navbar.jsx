@@ -1,15 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useRef, useState, useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { NavDropdown } from "../navDropdown/NavDropdown";
 import navItems from "./navItems";
 import Logo from "../../assests/Bandmate_logo.png";
+import { LoginContext } from "../../context/loginContext/LoginContext";
+import { RegisterContext } from "../../context/registerContext/RegisterContext";
+import axios from "axios";
+import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
+
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [isLog, setIsLog] = useState(true);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const avatarRef = useRef(null);
+  const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
+  const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
+  const { isLog, currentUser } = useContext(CurrentUserContext);
+
+  const handleSetVisibleLogin = () => {
+    setVisibleLogin(true);
+  };
+
+  const handleSetVisibleRegister = () => {
+    setVisibleRegister(true);
+  };
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -27,8 +43,13 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+
   return (
-    <nav className="bg-gray-900 sticky top-0 shadow z-10 ">
+
+    
+
+    <nav className="bg-gray-900 sticky top-0 shadow z-10">
+
       <div className="flex justify-between items-center md:px-24 md:py-4 px-8 py-2">
         <Link to="/">
           <img
@@ -60,7 +81,7 @@ const Navbar = () => {
               <img
                 ref={avatarRef}
                 className="bg-slate-50 rounded-full w-14 cursor-pointer"
-                src="./avatar.png"
+                src={`http://localhost:3000/images/${currentUser.imgpath}`}
                 alt=""
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               />
@@ -75,16 +96,19 @@ const Navbar = () => {
             </div>
           ) : (
             <div>
-              <Link to="/login">
-                <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4">
-                  Signin
-                </button>
-              </Link>
-              <Link to="/register">
-                <button className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md">
-                  Signup
-                </button>
-              </Link>
+              <button
+                onClick={handleSetVisibleLogin}
+                className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4"
+              >
+                Signin
+              </button>
+
+              <button
+                className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md"
+                onClick={handleSetVisibleRegister}
+              >
+                Signup
+              </button>
             </div>
           )}
         </div>
@@ -127,7 +151,6 @@ const Navbar = () => {
                     <div
                       ref={dropdownRef}
                       className="absolute  top-28 right-0 mt-2 bg-white rounded-md shadow-lg z-10"
-                      
                     >
                       <NavDropdown />
                     </div>
@@ -135,16 +158,19 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div>
-                  <Link to="/login">
-                    <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
-                      Signin
-                    </button>
-                  </Link>
-                  <Link to="/register">
-                    <button className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out">
-                      Signup
-                    </button>
-                  </Link>
+                  <button
+                    onClick={handleSetVisibleLogin}
+                    className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out"
+                  >
+                    Signin
+                  </button>
+
+                  <button
+                    className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out"
+                    onClick={handleSetVisibleRegister}
+                  >
+                    Signup
+                  </button>
                 </div>
               )}
             </div>

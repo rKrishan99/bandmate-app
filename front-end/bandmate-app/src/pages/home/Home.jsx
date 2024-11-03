@@ -16,6 +16,7 @@ const Home = () => {
   
   return (
     <div>
+
       <Navbar />
       <div className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
@@ -187,6 +188,9 @@ const Home = () => {
         </div>
       </div>
       <Footer />
+
+     
+
     </div>
   );
 };
