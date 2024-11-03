@@ -19,7 +19,7 @@ const testDatabaseConnection = async () => {
 
 const addVacancy = async (vacancyData) => {
   try {
-    const query = `INSERT INTO vacancy (category, title, description, bandemail, priceMin, priceMax, createdAt) VALUES (?, ?, ?, ?, ?, ?,?)`;
+    const query = `INSERT INTO vacancy (category, title, description, bandemail, priceMin, priceMax, createdAt, name, imgpath, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const values = [
       vacancyData.category,
       vacancyData.title,
@@ -28,6 +28,9 @@ const addVacancy = async (vacancyData) => {
       vacancyData.priceMin,
       vacancyData.priceMax,
       vacancyData.createdAt,
+      vacancyData.name,
+      vacancyData.imgpath,
+      vacancyData.type
     ];
 
     await pool.query(query, values, (error, results) => {
