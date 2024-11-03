@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
-import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext"
+import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
 import {
   TextField,
   Box,
@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import PopupAlert from "../alert/popupAlert/PopupAlert";
+import { ApplyDataContext } from "../../context/applyDataContext/ApplyDataContext";
 
 const PostAds = () => {
   const {
@@ -44,6 +45,9 @@ const PostAds = () => {
     priceMin: "",
     priceMax: "",
     createdAt: "",
+    imgpath: "",
+    name: "",
+    type: "",
   });
 
   const resetForm = () => {
@@ -56,6 +60,9 @@ const PostAds = () => {
       priceMin: "",
       priceMax: "",
       createdAt: "",
+      imgpath: "",
+      name: "",
+      type: "",
     });
   };
 
@@ -63,7 +70,7 @@ const PostAds = () => {
     const currentTime = new Date().toISOString(); // Get the current time in ISO format
     setFormData((prev) => ({
       ...prev,
-      createdAt: currentTime, // Set the createdAt field in formData
+      createdAt: currentTime,
     }));
   };
   const handlePaymentGetwayVisibility = () => {
@@ -74,24 +81,24 @@ const PostAds = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Prepare updated form data with current user info and timestamp
+    const updatedFormData = {
+      ...formData,
+      bandemail: currentUser.email,
+      name: currentUser.name,
+      type: currentUser.type,
+      imgpath: currentUser.imgpath,
+      createdAt: new Date().toISOString(),
+    };
 
-    console.log("current user rmail: ", currentUser.email);
-
-    // Combine setting the email and timestamp at once
-  setFormData((prev) => ({
-    ...prev,
-    bandemail: currentUser.email,
-    createdAt: new Date().toISOString(),
-  }));
-
-    
+    console.log("Updated Form data: ", updatedFormData); // Log updated data
     setIsSubmitted(true);
     handleTime(); // Capture the time before submitting
-    console.log("Date time check",formData);
+    console.log("Date time check", formData);
     try {
       const result = await axios.post(
         "http://localhost:3000/vacancy",
-        formData
+        updatedFormData
       );
       setVisibleAlert(true);
       setAlertMessage("Ad Published successful!");
@@ -130,7 +137,6 @@ const PostAds = () => {
           <form
             onSubmit={handleSubmit}
             className="h-auto scrollbar-thin scrollbar-webkit overflow-y-auto flex justify-center flex-col gap-6 mt-12 pt-4"
-            
           >
             <TextField
               label="Title"
