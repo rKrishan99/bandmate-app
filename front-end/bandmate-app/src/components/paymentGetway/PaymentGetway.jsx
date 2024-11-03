@@ -24,7 +24,7 @@ const PaymentGetway = () => {
   const [termsAccepted, setTermsAccepted] = useState(false);
 
   const [loading, setLoading] = useState(false);
-  const { visiblePaymentGetway, setVisiblePaymentGetway, paid, setPaid } =
+  const { visiblePaymentGetway, setVisiblePaymentGetway, setPaid } =
     useContext(FunctionalityContext);
 
   const [formData, setFormData] = useState({
@@ -124,7 +124,6 @@ const PaymentGetway = () => {
           </div>
 
           <form
-            onSubmit={handleSubmit}
             className="h-auto scrollbar-thin scrollbar-webkit overflow-y-auto flex justify-center flex-col gap-6 pt-6"
           >
             <TextField
@@ -250,7 +249,7 @@ const PaymentGetway = () => {
               label="Confirm Payment"
               icon="pi pi-check"
               loading={loading}
-              type="submit"
+              onClick={handleSubmit}
               fullWidth
               className="bg-green-600 hover:bg-green-700 md:w-60 cursor-pointer text-white text-lg rounded-md px-3 md:px-4 py-2"
               disabled={!termsAccepted}
