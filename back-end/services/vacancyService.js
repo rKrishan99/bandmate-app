@@ -6,7 +6,8 @@ const {
   getVacanciesByCategory,
   deleteVacancyById,
   getVacancyByID,
-  getVacanciesByBandEmail
+  getVacanciesByBandEmail,
+  getBandDetailsById
 } = require("../config/vacancyTableOperation");
 
 const addVacancyService = async (req, res) => {
@@ -85,11 +86,23 @@ const getVacancyByBandEmailService = async (req, res) => {
   }
 };
 
+const getBandDetailsService = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const users = await getBandDetailsById(email);
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error registering user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   addVacancyService,
   getAllVacanciesService,
   getVacancyByCategoryService,
   updateVacancyService,
   deleteVacancyService,
-  getVacancyByBandEmailService
+  getVacancyByBandEmailService,
+  getBandDetailsService
 };
