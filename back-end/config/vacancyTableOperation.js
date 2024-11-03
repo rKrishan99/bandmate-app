@@ -130,6 +130,17 @@ const deleteVacancyById = async (vacancyID) => {
   }
 };
 
+const getBandDetailsById = async (bandEmail) => {
+  try {
+    const query = "SELECT * FROM users WHERE email = ?";
+    const [results] = await pool.query(query, [bandEmail]);
+    return results;
+  } catch (error) {
+    console.error("Error fetching vacancies by category:", error.message);
+    throw error;
+  }
+};
+
 module.exports = {
   testDatabaseConnection,
   addVacancy,
@@ -138,5 +149,6 @@ module.exports = {
   getVacanciesByCategory,
   deleteVacancyById,
   getVacancyByID,
-  getVacanciesByBandEmail
+  getVacanciesByBandEmail,
+  getBandDetailsById
 };
