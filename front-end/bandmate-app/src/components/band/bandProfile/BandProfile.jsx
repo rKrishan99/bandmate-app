@@ -15,7 +15,7 @@ const BandProfile = () => {
   const coverInputRef = useRef(null);
   const [coverImage, setCoverImage] = useState("");
 
-  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
+  const {currentUser} = useContext(CurrentUserContext);
 
   {
     /* Profile Image */

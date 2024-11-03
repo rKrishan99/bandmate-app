@@ -21,6 +21,8 @@ const PostAds = () => {
     setVisiblePostAds,
     visiblePaymentGetway,
     setVisiblePaymentGetway,
+    paid,
+    setPaid,
   } = useContext(FunctionalityContext);
 
   const [visibleAlert, setVisibleAlert] = useState(false);
@@ -35,9 +37,10 @@ const PostAds = () => {
     category: "",
     title: "",
     description: "",
-    bandemail: "",
+    bandemail: currentUser.email,
     priceMin: "",
     priceMax: "",
+    createdAt: "",
   });
 
   const resetForm = () => {
@@ -49,9 +52,17 @@ const PostAds = () => {
       bandemail: "",
       priceMin: "",
       priceMax: "",
+      createdAt: "",
     });
   };
 
+  const handleTime = () => {
+    const currentTime = new Date().toISOString(); // Get the current time in ISO format
+    setFormData((prev) => ({
+      ...prev,
+      createdAt: currentTime, // Set the createdAt field in formData
+    }));
+  };
   const handlePaymentGetwayVisibility = () => {
     setVisiblePaymentGetway(true);
     console.log("Payment Getway", visiblePaymentGetway);
@@ -60,7 +71,8 @@ const PostAds = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitted(true);
-
+    handleTime(); // Capture the time before submitting
+    console.log("Date time check",formData);
     try {
       const result = await axios.post(
         "http://localhost:3000/auth/register",
@@ -69,6 +81,7 @@ const PostAds = () => {
       setVisibleAlert(true);
       setAlertMessage("Ad Published successful!");
       setAlertInfo(true);
+      setPaid(false);
       if (result.status !== 201) {
         console.error("Ad Published failed:", result);
       }
@@ -97,12 +110,12 @@ const PostAds = () => {
         }}
         className="w-[1000px] rounded-xl bg-cardBg p-6"
       >
-        <div className="m-6 flex flex-col">
+        <div className="m-8 flex flex-col">
           <h1 className="text-center text-3xl font-bold">Create Ad</h1>
           <form
             onSubmit={handleSubmit}
-            className="h-auto scrollbar-thin scrollbar-webkit overflow-y-auto flex justify-center flex-col gap-6 mt-12"
-            style={{ maxHeight: "" }}
+            className="h-auto scrollbar-thin scrollbar-webkit overflow-y-auto flex justify-center flex-col gap-6 mt-12 pt-4"
+            
           >
             <TextField
               label="Title"
@@ -236,19 +249,20 @@ const PostAds = () => {
               fullWidth
               required
             />
-
-            <span className="text-slate-700 mt-6">
-              If you want to post this ad, please pay before submitting!
-            </span>
-            <Button
-              label="Pay"
-              icon="pi pi-check"
-              loading={loading}
-              type="submit"
-              fullWidth
-              className="bg-green-600 hover:bg-green-700 md:w-28 text-white text-lg rounded-md px-3 md:px-4 py-2"
-              onClick={handlePaymentGetwayVisibility}
-            />
+            <div className={paid ? "hidden" : "flex flex-col gap-4"}>
+              <span className="text-slate-700 mt-6">
+                If you want to post this ad, please pay before submitting!
+              </span>
+              <Button
+                label="Pay"
+                icon="pi pi-check"
+                loading={loading}
+                type="submit"
+                fullWidth
+                className="bg-green-600 hover:bg-green-700 md:w-28 text-white text-lg rounded-md px-3 md:px-4 py-2"
+                onClick={handlePaymentGetwayVisibility}
+              />
+            </div>
 
             <Button
               label="Publish Ad"
@@ -257,6 +271,7 @@ const PostAds = () => {
               type="submit"
               fullWidth
               className="bg-blue-600 hover:bg-blue-700 md:w-44 text-white text-lg mt-6 rounded-md px-3 md:px-4 py-2"
+              disabled={!paid}
             />
           </form>
         </div>
