@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { NavDropdown } from "../navDropdown/NavDropdown";
 import navItems from "./navItems";
+import Logo from "../../assests/Bandmate_logo.png";
 import { LoginContext } from "../../context/loginContext/LoginContext";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
 import axios from "axios";
 import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -43,12 +45,16 @@ const Navbar = () => {
 
 
   return (
+
+    
+
     <nav className="bg-gray-900 sticky top-0 shadow z-10">
+
       <div className="flex justify-between items-center md:px-24 md:py-4 px-8 py-2">
         <Link to="/">
           <img
             className="w-24 md:w-28"
-            src="./Bandmate_logo.png"
+            src={Logo}
             alt="Bandmate Logo"
           />
         </Link>
