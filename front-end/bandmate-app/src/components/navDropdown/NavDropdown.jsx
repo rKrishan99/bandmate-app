@@ -51,7 +51,7 @@ export const NavDropdown = () => {
       <div
         className="flex items-center rounded-lg text-gray-800 hover:bg-gray-100 pl-4"
         onClick={() => {
-          setVisibleApplicants(true);
+          setVisiblePostAds(true);
         }}
       >
         <img className="w-5 h-5" src="./create.png" alt="" />

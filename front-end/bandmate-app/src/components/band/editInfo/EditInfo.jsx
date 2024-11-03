@@ -8,7 +8,7 @@ const EditInfo = () => {
 
   return (
     <Dialog
-      header="Header"
+      header="Edit"
       visible={visibleEditInfo}
       style={{ width: "50vw" }}
       onHide={() => {

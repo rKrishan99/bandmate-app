@@ -9,7 +9,7 @@ const Applicants = () => {
 
   return (
     <Dialog
-      header="Header"
+      header="Applicant"
       visible={visibleApplicants}
       style={{ width: "50vw" }}
       onHide={() => {

@@ -6,6 +6,7 @@ export const FunctionalityProvider = ({ children }) => {
   const [visiblePostAds, setVisiblePostAds] = useState(false);
   const [visibleEditInfo, setVisibleEditInfo] = useState(false);
   const [visibleApplicants, setVisibleApplicants] = useState(false);
+  const [visiblePaymentGetway, setVisiblePaymentGetway] = useState(false);
 
   return (
     <FunctionalityContext.Provider
@@ -16,6 +17,8 @@ export const FunctionalityProvider = ({ children }) => {
         setVisibleEditInfo,
         visibleApplicants,
         setVisibleApplicants,
+        visiblePaymentGetway,
+        setVisiblePaymentGetway,
       }}
     >
       {children}
