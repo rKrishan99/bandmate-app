@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import PopupAlert from "../alert/popupAlert/PopupAlert";
+import { ApplyDataContext } from "../../context/applyDataContext/ApplyDataContext";
 
 const PostAds = () => {
   const {
@@ -70,9 +71,6 @@ const PostAds = () => {
     setFormData((prev) => ({
       ...prev,
       createdAt: currentTime,
-      name: currentUser.name,
-      type: currentUser.type,
-      imgpath: currentUser.imgpath,
     }));
   };
   const handlePaymentGetwayVisibility = () => {
@@ -83,22 +81,24 @@ const PostAds = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("current user rmail: ", currentUser.email);
-
-    // Combine setting the email and timestamp at once
-    setFormData((prev) => ({
-      ...prev,
+    // Prepare updated form data with current user info and timestamp
+    const updatedFormData = {
+      ...formData,
       bandemail: currentUser.email,
+      name: currentUser.name,
+      type: currentUser.type,
+      imgpath: currentUser.imgpath,
       createdAt: new Date().toISOString(),
-    }));
+    };
 
+    console.log("Updated Form data: ", updatedFormData); // Log updated data
     setIsSubmitted(true);
     handleTime(); // Capture the time before submitting
     console.log("Date time check", formData);
     try {
       const result = await axios.post(
         "http://localhost:3000/vacancy",
-        formData
+        updatedFormData
       );
       setVisibleAlert(true);
       setAlertMessage("Ad Published successful!");

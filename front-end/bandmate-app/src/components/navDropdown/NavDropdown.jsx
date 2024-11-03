@@ -66,6 +66,7 @@ export const NavDropdown = () => {
           onClick={() => {
             setCurrentUser(null);
             setIsLog(false);
+            localStorage.removeItem("currentUser");
             navigate("/");
           }}
         >
