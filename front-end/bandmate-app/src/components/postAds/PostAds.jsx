@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
-import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext"
+import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
 import {
   TextField,
   Box,
@@ -44,6 +44,9 @@ const PostAds = () => {
     priceMin: "",
     priceMax: "",
     createdAt: "",
+    imgpath: "",
+    name: "",
+    type: "",
   });
 
   const resetForm = () => {
@@ -56,6 +59,9 @@ const PostAds = () => {
       priceMin: "",
       priceMax: "",
       createdAt: "",
+      imgpath: "",
+      name: "",
+      type: "",
     });
   };
 
@@ -63,7 +69,10 @@ const PostAds = () => {
     const currentTime = new Date().toISOString(); // Get the current time in ISO format
     setFormData((prev) => ({
       ...prev,
-      createdAt: currentTime, // Set the createdAt field in formData
+      createdAt: currentTime,
+      name: currentUser.name,
+      type: currentUser.type,
+      imgpath: currentUser.imgpath,
     }));
   };
   const handlePaymentGetwayVisibility = () => {
@@ -74,20 +83,18 @@ const PostAds = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     console.log("current user rmail: ", currentUser.email);
 
     // Combine setting the email and timestamp at once
-  setFormData((prev) => ({
-    ...prev,
-    bandemail: currentUser.email,
-    createdAt: new Date().toISOString(),
-  }));
+    setFormData((prev) => ({
+      ...prev,
+      bandemail: currentUser.email,
+      createdAt: new Date().toISOString(),
+    }));
 
-    
     setIsSubmitted(true);
     handleTime(); // Capture the time before submitting
-    console.log("Date time check",formData);
+    console.log("Date time check", formData);
     try {
       const result = await axios.post(
         "http://localhost:3000/vacancy",
@@ -130,7 +137,6 @@ const PostAds = () => {
           <form
             onSubmit={handleSubmit}
             className="h-auto scrollbar-thin scrollbar-webkit overflow-y-auto flex justify-center flex-col gap-6 mt-12 pt-4"
-            
           >
             <TextField
               label="Title"
