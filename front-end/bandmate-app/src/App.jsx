@@ -15,6 +15,7 @@ import '@mui/material'
 import PostAds from "./components/postAds/PostAds";
 import EditInfo from "./components/band/editInfo/EditInfo";
 import Applicants from "./components/applicants/Applicants";
+import Feed from "./pages/feed/Feed";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/musician-dashboard" element={<MusicianDashboard />} />
         <Route path="/profile" element={<BandProfile />} />
+        <Route path="/feed" element={<Feed/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

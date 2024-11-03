@@ -23,12 +23,16 @@ const BandRegister = () => {
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
   const [changeProfileLoading, setChangeProfileLoading] = useState(false);
   const profileInputRef = useRef(null);
-  const [profileImage, setProfileImage] = useState(""); 
+  const [profileImage, setProfileImage] = useState("");
   const [imageURL, setImageURL] = useState(""); // URL for previewing the image
 
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertInfo, setAlertInfo] = useState("");
+
+  const { visibleBandRegister, setVisibleBandRegister } =
+    useContext(BandRegisterContext);
+  const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -38,12 +42,9 @@ const BandRegister = () => {
     about: "",
     experience: "",
     category: "",
-    imgpath: "test",
+    imgpath: "band",
     phone: "",
   });
-
-  const { visibleBandRegister, setVisibleBandRegister } = useContext(BandRegisterContext);
-  const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
 
   // Reset form fields
   const resetForm = () => {
@@ -76,12 +77,10 @@ const BandRegister = () => {
   };
 
   const uploadProfileImage = async () => {
-    
     try {
       if (!profileImage) {
         console.log("upload");
         return "./band.png"; // Default image path
-        
       }
 
       const formDataImage = new FormData();
@@ -93,12 +92,10 @@ const BandRegister = () => {
         formDataImage,
         {
           headers: {
-            'Content-Type': 'multipart/form-data'
-          }
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
-
-      
     } catch (error) {
       console.error("Error uploading image:", error);
       throw error; // Propagate error to handle it in the submission
@@ -117,8 +114,10 @@ const BandRegister = () => {
     setLoading(true);
 
     try {
-
-      const result = await axios.post("http://localhost:3000/auth/register", formData);
+      const result = await axios.post(
+        "http://localhost:3000/auth/register",
+        formData
+      );
       setVisibleAlert(true);
       setAlertMessage("Registration successful!");
       setAlertInfo(true);
@@ -126,7 +125,7 @@ const BandRegister = () => {
       if (result.status !== 201) {
         console.error("Registration failed:", result);
       }
-      
+
       await uploadProfileImage();
       setLoading(false);
       resetForm();
@@ -226,8 +225,7 @@ const BandRegister = () => {
                     setChangeProfileLoading(true);
                     setProfileDialogOpen(false);
                     setChangeProfileLoading(false);
-                  }
-                  }
+                  }}
                   className="bg-blue-600 w-20 md:w-24 text-white rounded-md px-3 md:px-4 py-2"
                 />
               </div>
