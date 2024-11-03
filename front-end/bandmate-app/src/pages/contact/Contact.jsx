@@ -31,30 +31,30 @@ const Contact = () => {
         <div className="relative bg-white flex-row items-start  h-full  p-7 rounded-xl shadow-md pb-4">
           <div className="flex flex-col justify-center text-center">
             <h1 className="text-5xl text-gray-700 font-bold ">Get Touch In!</h1>
-            <h4 className=" p-7 text-lg text-gray-700  ">
+            <h4 className=" p-7 lg:text-lg sm:text-base text-gray-700  ">
               Have questions or need help? We’re here to support you! Our app is
               designed to bring guitarists together in one place, making it easy
               for you to find the perfect musician for any project. Reach out if
               you’d like to know more or need assistance with the platform.
             </h4>
           </div>
-          <div className="flex justify-center gap-8 p-10  h-96 ">
+          <div className="flex justify-center gap-6 p-10  h-96  ">
           <img
-            className="image"
-            src="../../src/assests/saxophone-4473023_1280.jpg"
+            className="image size-1/4"
+            src="../../src/assests/guitar-4042253_1280.jpg"
             alt=""
           /><img
-          className="image"
-          src="../../src/assests/saxophone-4473023_1280.jpg"
+          className="image size-1/4"
+          src="../../src/assests/saxophone-player-870106_1280.jpg"
           alt=""
         /><img
-        className="image"
-        src="../../src/assests/saxophone-4473023_1280.jpg"
+        className="image size-1/4"
+        src="../../src/assests/marching-band-7329987_1280.jpg"
         alt=""
       />
         </div>
 
-          <div className="flex justify-between shadow-md bg-slate-50 m-5 mt-3">
+          <div className="lg:flex justify-between shadow-md bg-slate-50 m-5 mt-3">
             <div className="relative bg-slate-50 flex-row   h-full m-6 mt-0  contact">
               <div className="m-4 mt-5">
                 <img src={IconLocation} alt="" className="h-7 w-7 my-1 mb-0" />

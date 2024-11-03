@@ -58,9 +58,9 @@ const Home = () => {
               <div className="bg-background text-white p-4 rounded-lg flex flex-col items-center justify-center">
                 <div className="flex justify-center mb-3">
                   <img
-                    src="../../src/assests/14_Cartoon_Character.jpg"
+                    src="../../src/assests/7685557.jpg"
                     alt=""
-                    className="photo size-full transform transition-transform duration-200 hover:scale-110"
+                    className="size-full transform transition-transform duration-200 hover:scale-110"
                   />
                 </div>
                 <h4 className="text-2xl text-gray-700 font-semibold mb-2">Trusted Partners</h4>
@@ -75,14 +75,14 @@ const Home = () => {
         </div>
       </div>
       <div className="flex pt-5 bg-background ">
-        <div className="size-2/4 shadow-md bg-slate-50">
-          <img src="../../src/assests/men-7484239_1280.jpg" alt="" />
+        <div className="size-2/4 shadow-md  bg-slate-50">
+          <img className="" src="../../src/assests/men-7484239_1280.jpg" alt="" />
         </div>
-        <div className="p-6 padding size-1/2">
-          <h1 className="text-5xl text-gray-700 font-bold"> How It Works</h1>
-          <p className="pt-3 text-lg text-gray-700  pb-4">
+        <div className="lg:p-6 sm:p-0 padding size-1/2">
+          <h1 className="lg:text-5xl sm:text-3xl text-gray-700 font-bold"> How It Works</h1>
+          <p className="lg:pt-3 sm:pt-1 lg:text-lg sm:text-xs text-gray-700  pb-4">
           With Guitarist Connect, finding the right guitarist is a breeze. Browse profiles, watch videos, and listen to audio samples to discover skilled musicians. Instantly connect through messaging, set up interviews, and schedule sessions all within our intuitive platform. Book confidently using verified reviews and streamlined booking tools to complete your project effortlessly.          </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center sm:pb-2">
             <button onClick={handleClick} className="bg-orange-400 text-gray-700 font-semibold text-lg rounded-md p-3">Hire Now</button>
           </div>
         </div>
@@ -138,7 +138,7 @@ const Home = () => {
               className="pi pi-verified "
               style={{ fontSize: "1.25rem", color: "#ADD8E6" }}
             ></i>
-            <p className="px-3 text-xl text-gray-700">
+            <p className="px-3 lg:text-xl sm:text-base text-gray-700">
               Over 20 Years experience in the events industry
             </p>
           </div>
@@ -147,14 +147,14 @@ const Home = () => {
               className="pi pi-verified"
               style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
             ></i>
-            <p className="px-3 text-xl text-gray-700">All bands hand-picked by our team of experts</p>
+            <p className="px-3 lg:text-xl sm:text-base text-gray-700">All bands hand-picked by our team of experts</p>
           </div>
           <div className="flex py-2 px-3">
             <i
               className="pi pi-verified"
               style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
             ></i>
-            <p className="px-3 text-xl text-gray-700">
+            <p className="px-3 lg:text-xl sm:text-base text-gray-700">
               Dedicated member of our team assigned to your event
             </p>
           </div>
@@ -163,7 +163,7 @@ const Home = () => {
               className="pi pi-verified"
               style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
             ></i>
-            <p className="px-3 text-xl text-gray-700">
+            <p className="px-3 lg:text-xl sm:text-base text-gray-700">
               Professional contracts for your peace of mind
             </p>
           </div>
