@@ -3,7 +3,7 @@ const mysql = require("mysql2/promise"); // Use mysql2 with promise support
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "1234",
+  password: "",
   database: "bandmate",
   connectionLimit: 10,
 });
@@ -19,7 +19,7 @@ const testDatabaseConnection = async () => {
 
 const addVacancy = async (vacancyData) => {
   try {
-    const query = `INSERT INTO vacancy (category, title, description, bandemail, priceMin, priceMax) VALUES (?, ?, ?, ?, ?, ?)`;
+    const query = `INSERT INTO vacancy (category, title, description, bandemail, priceMin, priceMax, createdAt) VALUES (?, ?, ?, ?, ?, ?,?)`;
     const values = [
       vacancyData.category,
       vacancyData.title,
@@ -27,6 +27,7 @@ const addVacancy = async (vacancyData) => {
       vacancyData.bandemail,
       vacancyData.priceMin,
       vacancyData.priceMax,
+      vacancyData.createdAt,
     ];
 
     await pool.query(query, values, (error, results) => {
@@ -91,6 +92,17 @@ const getVacanciesByCategory = async (category) => {
   }
 };
 
+const getVacanciesByBandEmail = async (email) => {
+  try {
+    const query = "SELECT * FROM vacancy WHERE bandemail = ?";
+    const [results] = await pool.query(query, [email]);
+    return results;
+  } catch (error) {
+    console.error("Error fetching vacancies by category:", error.message);
+    throw error;
+  }
+};
+
 const getVacancyByID = async (vacancyID) => {
   try {
     const query = "SELECT * FROM vacancy WHERE vacancyID = ?";
@@ -126,4 +138,5 @@ module.exports = {
   getVacanciesByCategory,
   deleteVacancyById,
   getVacancyByID,
+  getVacanciesByBandEmail
 };
