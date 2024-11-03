@@ -26,7 +26,6 @@ const Contact = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="relative h-screen overflow-hidden bg-background px-cusPadding">
         <div className="relative bg-white flex-row items-start  h-full m-6 p-7 rounded-xl shadow-md pb-4">
           <div className="flex flex-col justify-center text-center">

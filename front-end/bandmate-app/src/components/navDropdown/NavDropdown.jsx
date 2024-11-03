@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import navDropdownItems from "./navDropdownItems";
 import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
 import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
 
@@ -17,11 +16,25 @@ export const NavDropdown = () => {
       <div className="absolute top-0 left-8 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-b-8 border-b-white -translate-y-2"></div>
       <Link to="/profile">
         <div className="flex gap-4 cursor-pointer text-gray-800 hover:bg-gray-100 p-4 rounded-lg">
-          <img
-            className="bg-slate-50 rounded-full border-2 w-14 h-14"
-            src={`http://localhost:3000/images/${currentUser.imgpath}`}
-            alt=""
-          />
+          {currentUser.type === "band" && currentUser.imgpath === "band" ? (
+            <img
+              className="bg-slate-50 rounded-full border-2 w-14 h-14"
+              src="./band.png"
+              alt=""
+            />
+          ) : currentUser.type === "player" &&
+            currentUser.imgpath === "player" ? (
+            <img
+              className="bg-slate-50 rounded-full border-2 w-14 h-14"
+              src="./musician.png"
+              alt=""
+            />
+          ) : (
+            <img
+              className="bg-slate-50 rounded-full border-2 w-14 h-14"
+              src={`http://localhost:3000/images/${currentUser.imgpath}`}
+            />
+          )}
           <div className="flex flex-col">
             <span className="text-black font-bold text-xl">
               {currentUser.name}
@@ -38,7 +51,7 @@ export const NavDropdown = () => {
       <div
         className="flex items-center rounded-lg text-gray-800 hover:bg-gray-100 pl-4"
         onClick={() => {
-          setVisibleApplicants(true);
+          setVisiblePostAds(true);
         }}
       >
         <img className="w-5 h-5" src="./create.png" alt="" />
