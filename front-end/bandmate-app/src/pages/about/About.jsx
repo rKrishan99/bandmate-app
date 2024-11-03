@@ -7,7 +7,7 @@ import Footer from "../../components/footer/Footer";
 const About = () => {
   return (
     <div>
-      <Navbar />
+    
       <div className="flex justify-center p-4">
         <h1 className="text-5xl text-gray-700 font-bold font-sans">About Us</h1>
       </div>
@@ -76,7 +76,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="bg-background p-5 mt-5">
+      <div className="bg-background p-5 ">
         <div className="shadow-lg text-white p-4">
         <div className="flex justify-center p-10 ">
           <h1 className="text-4xl  text-gray-700 font-bold">What We Are Do</h1>

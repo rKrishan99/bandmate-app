@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div>
 
-      <Navbar />
+      
       <div className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
         <div className="relative flex-col items-center justify-center  h-full p-28">
@@ -107,7 +107,7 @@ const Home = () => {
             </div>
             <h1 className="p-1 text-2xl text-gray-700 font-semibold">Guwen Charu</h1>
             <p className="text-lg text-gray-700"> saxophonist</p>
-            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
+            <Rating className=" text-yellow-300" value={4} readOnly cancel={false} />
           </div>
 
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
@@ -117,7 +117,7 @@ const Home = () => {
             </div>
             <h1 className="p-1 text-2xl text-gray-700 font-semibold">Mark David</h1>
             <p className="text-lg text-gray-700">Drummer</p>
-            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
+            <Rating className=" text-yellow-300" value={4} readOnly cancel={false} />
           </div>
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className=" rounded-full round">

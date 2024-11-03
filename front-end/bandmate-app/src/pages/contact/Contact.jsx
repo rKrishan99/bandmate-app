@@ -26,9 +26,9 @@ const Contact = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="relative h-screen overflow-hidden bg-background px-cusPadding">
-        <div className="relative bg-white flex-row items-start  h-full m-6 p-7 rounded-xl shadow-md pb-4">
+      
+      <div className=" bg-background px-cusPadding">
+        <div className="relative bg-white flex-row items-start  h-full  p-7 rounded-xl shadow-md pb-4">
           <div className="flex flex-col justify-center text-center">
             <h1 className="text-5xl text-gray-700 font-bold ">Get Touch In!</h1>
             <h4 className=" p-7 text-lg text-gray-700  ">
@@ -38,6 +38,21 @@ const Contact = () => {
               you’d like to know more or need assistance with the platform.
             </h4>
           </div>
+          <div className="flex justify-center gap-8 p-10  h-96 ">
+          <img
+            className="image"
+            src="../../src/assests/saxophone-4473023_1280.jpg"
+            alt=""
+          /><img
+          className="image"
+          src="../../src/assests/saxophone-4473023_1280.jpg"
+          alt=""
+        /><img
+        className="image"
+        src="../../src/assests/saxophone-4473023_1280.jpg"
+        alt=""
+      />
+        </div>
 
           <div className="flex justify-between shadow-md bg-slate-50 m-5 mt-3">
             <div className="relative bg-slate-50 flex-row   h-full m-6 mt-0  contact">
@@ -107,7 +122,7 @@ const Contact = () => {
                     />
                     <button
                       type="submit"
-                      className="bg-red-500 text-gray-700 font-semibold text-lg rounded-md p-1 hover:bg-red-600 form-button mt-2"
+                      className="bg-blue-600 text-white font-semibold text-lg rounded-md p-1 hover:bg-blue-700 form-button mt-2"
                       disabled={isLoading}
                     >
                       
