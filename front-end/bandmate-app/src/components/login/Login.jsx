@@ -8,19 +8,22 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
 import PopupAlert from "../alert/popupAlert/PopupAlert";
 import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
   const [loading, setLoading] = useState(false);
 
-  const { currentUser, setCurrentUser, isLog, setIsLog } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser, setIsLog } = useContext(CurrentUserContext);
 
-  const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
+  const { setVisibleRegister } = useContext(RegisterContext);
 
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertInfo, setAlertInfo] = useState("");
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -78,6 +81,11 @@ const Login = () => {
       setAlertInfo(true);
       setVisibleLogin(false);
       resetForm();
+      setTimeout(() => {
+        navigate("/feed");
+      }, 2000);
+      
+      
     } catch (error) {
       console.error("Error during login:", error);
       setVisibleAlert(true);

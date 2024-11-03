@@ -1,23 +1,21 @@
-import React from "react";
-import Navbar from "../../components/navbar/Navbar";
+import React, { useContext } from "react";
 import {} from "./home.css";
 import { Rating } from "primereact/rating";
 import "primeicons/primeicons.css";
 import Footer from "../../components/footer/Footer";
-import { useNavigate } from "react-router-dom";
+import { RegisterContext } from "../../context/registerContext/RegisterContext";
+import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
 
 const Home = () => {
+  const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
+  const { isLog } = useContext(CurrentUserContext);
 
-  const navigate= useNavigate();
+  const handleSetVisibleRegister = () => {
+    setVisibleRegister(true);
+  };
 
-  const handleClick =() =>{
-    navigate('/register');
-  }
-  
   return (
     <div>
-
-      <Navbar />
       <div className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
         <div className="relative flex-col items-center justify-center  h-full p-28">
@@ -31,9 +29,14 @@ const Home = () => {
             Discover the Perfect Guitarist for Every Occasion
           </h1>
           <div className="flex justify-center">
-            <button onClick={handleClick} className="text-gray-700 font-semibold text-lg text-center flex bg-navItem-active rounded-lg p-3">
-              Get Started
-            </button>
+            {!isLog && (
+              <button
+                onClick={handleSetVisibleRegister}
+                className="text-white font-semibold text-lg text-center flex bg-primaryButton hover:bg-primaryButton-hover rounded-lg p-3"
+              >
+                Get Started
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -51,8 +54,14 @@ const Home = () => {
                     className="size-full transform transition-transform duration-200 hover:scale-110"
                   />
                 </div>
-                <h4 className="text-2xl text-gray-700 font-semibold mb-2">Hire Muscians</h4>
-                <p className="text-gray-700 text-lg p-2">Connect with skilled guitarists easily. Our platform brings top talent together, simplifying hiring for your music projects. Start now!</p>
+                <h4 className="text-2xl text-gray-700 font-semibold mb-2">
+                  Hire Muscians
+                </h4>
+                <p className="text-gray-700 text-lg p-2">
+                  Connect with skilled guitarists easily. Our platform brings
+                  top talent together, simplifying hiring for your music
+                  projects. Start now!
+                </p>
               </div>
 
               <div className="bg-background text-white p-4 rounded-lg flex flex-col items-center justify-center">
@@ -63,8 +72,14 @@ const Home = () => {
                     className="photo size-full transform transition-transform duration-200 hover:scale-110"
                   />
                 </div>
-                <h4 className="text-2xl text-gray-700 font-semibold mb-2">Trusted Partners</h4>
-                <p className="text-gray-700 text-lg p-2">Connect with skilled guitarists easily. Our platform brings top talent together, simplifying hiring for your music projects. Start now!</p>
+                <h4 className="text-2xl text-gray-700 font-semibold mb-2">
+                  Trusted Partners
+                </h4>
+                <p className="text-gray-700 text-lg p-2">
+                  Connect with skilled guitarists easily. Our platform brings
+                  top talent together, simplifying hiring for your music
+                  projects. Start now!
+                </p>
               </div>
             </div>
 
@@ -81,58 +96,111 @@ const Home = () => {
         <div className="p-6 padding size-1/2">
           <h1 className="text-5xl text-gray-700 font-bold"> How It Works</h1>
           <p className="pt-3 text-lg text-gray-700  pb-4">
-          With Guitarist Connect, finding the right guitarist is a breeze. Browse profiles, watch videos, and listen to audio samples to discover skilled musicians. Instantly connect through messaging, set up interviews, and schedule sessions all within our intuitive platform. Book confidently using verified reviews and streamlined booking tools to complete your project effortlessly.          </p>
+            With Guitarist Connect, finding the right guitarist is a breeze.
+            Browse profiles, watch videos, and listen to audio samples to
+            discover skilled musicians. Instantly connect through messaging, set
+            up interviews, and schedule sessions all within our intuitive
+            platform. Book confidently using verified reviews and streamlined
+            booking tools to complete your project effortlessly.{" "}
+          </p>
           <div className="flex justify-center">
-            <button onClick={handleClick} className="bg-orange-400 text-gray-700 font-semibold text-lg rounded-md p-3">Hire Now</button>
+            <button className="bg-orange-400 text-gray-700 font-semibold text-lg rounded-md p-3">
+              Hire Now
+            </button>
           </div>
         </div>
       </div>
       <div className="p-3 m-4  flex justify-center">
-        <h1 className="text-5xl text-gray-700 font-bold mt-6">Experts Of Sounds</h1>
+        <h1 className="text-5xl text-gray-700 font-bold mt-6">
+          Experts Of Sounds
+        </h1>
       </div>
       <div class="container mx-auto p-10 bg-background">
         <div class="grid grid-cols-4 gap-4">
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="rounded-full round">
-              <img className="object-cover w-full h-full rounded-full" src="../../src/assests/colours-7402147_1280.jpg" alt="" />
+              <img
+                className="object-cover w-full h-full rounded-full"
+                src="../../src/assests/colours-7402147_1280.jpg"
+                alt=""
+              />
             </div>
-            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Shen Max</h1>
+            <h1 className="p-1 text-2xl text-gray-700 font-semibold">
+              Shen Max
+            </h1>
             <p className="text-lg text-gray-700">Guitarist</p>
-            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
+            <Rating
+              className=" text-yellow-300"
+              value={5}
+              readOnly
+              cancel={false}
+            />
           </div>
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="bg-black p-4 rounded-full round">
-            <img className="object-cover w-full h-full rounded-full" src="../../src/assests/saxophone-4473023_1280.jpg" alt="" />
-
+              <img
+                className="object-cover w-full h-full rounded-full"
+                src="../../src/assests/saxophone-4473023_1280.jpg"
+                alt=""
+              />
             </div>
-            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Guwen Charu</h1>
+            <h1 className="p-1 text-2xl text-gray-700 font-semibold">
+              Guwen Charu
+            </h1>
             <p className="text-lg text-gray-700"> saxophonist</p>
-            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
+            <Rating
+              className=" text-yellow-300"
+              value={5}
+              readOnly
+              cancel={false}
+            />
           </div>
 
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="rounded-full round">
-            <img className="object-cover w-full h-full rounded-full" src="../../src/assests/man-5979081_1280.jpg" alt="" />
-
+              <img
+                className="object-cover w-full h-full rounded-full"
+                src="../../src/assests/man-5979081_1280.jpg"
+                alt=""
+              />
             </div>
-            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Mark David</h1>
+            <h1 className="p-1 text-2xl text-gray-700 font-semibold">
+              Mark David
+            </h1>
             <p className="text-lg text-gray-700">Drummer</p>
-            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
+            <Rating
+              className=" text-yellow-300"
+              value={5}
+              readOnly
+              cancel={false}
+            />
           </div>
           <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className=" rounded-full round">
-            <img className="object-cover w-full h-full rounded-full" src="../../src/assests/people-2591943_1280.jpg" alt="" />
-
+              <img
+                className="object-cover w-full h-full rounded-full"
+                src="../../src/assests/people-2591943_1280.jpg"
+                alt=""
+              />
             </div>
-            <h1 className="p-1 text-2xl text-gray-700 font-semibold">Rubi Shey</h1>
+            <h1 className="p-1 text-2xl text-gray-700 font-semibold">
+              Rubi Shey
+            </h1>
             <p className="text-lg text-gray-700">Violinist</p>
-            <Rating className=" text-yellow-300" value={5} readOnly cancel={false} />
+            <Rating
+              className=" text-yellow-300"
+              value={5}
+              readOnly
+              cancel={false}
+            />
           </div>
         </div>
       </div>
       <div className="flex py-6 px-8">
         <div className="size-full py-4">
-          <h1 className="text-3xl text-gray-700 font-bold p-4">Why Hire Musicians Through US?</h1>
+          <h1 className="text-3xl text-gray-700 font-bold p-4">
+            Why Hire Musicians Through US?
+          </h1>
           <div className="flex px-3 py-2">
             <i
               className="pi pi-verified "
@@ -145,14 +213,16 @@ const Home = () => {
           <div className="flex py-2 px-3">
             <i
               className="pi pi-verified"
-              style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
+              style={{ fontSize: "1.25rem", color: "#ADD8E6" }}
             ></i>
-            <p className="px-3 text-xl text-gray-700">All bands hand-picked by our team of experts</p>
+            <p className="px-3 text-xl text-gray-700">
+              All bands hand-picked by our team of experts
+            </p>
           </div>
           <div className="flex py-2 px-3">
             <i
               className="pi pi-verified"
-              style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
+              style={{ fontSize: "1.25rem", color: "#ADD8E6" }}
             ></i>
             <p className="px-3 text-xl text-gray-700">
               Dedicated member of our team assigned to your event
@@ -161,7 +231,7 @@ const Home = () => {
           <div className="flex py-2 px-3">
             <i
               className="pi pi-verified"
-              style={{ fontSize: "1.25rem",color: "#ADD8E6" }}
+              style={{ fontSize: "1.25rem", color: "#ADD8E6" }}
             ></i>
             <p className="px-3 text-xl text-gray-700">
               Professional contracts for your peace of mind
@@ -170,8 +240,11 @@ const Home = () => {
         </div>
         <div className="relative size-full h-64 p-4 m-8 mt-14 justify-center items-center bg-background rounded-xl shadow-lg">
           <div className="absolute top rounded-full">
-          <img className="object-cover w-full h-full rounded-full" src="../../src/assests/girls-1741925_1280.jpg" alt="" />
-
+            <img
+              className="object-cover w-full h-full rounded-full"
+              src="../../src/assests/girls-1741925_1280.jpg"
+              alt=""
+            />
           </div>
           <Rating
             className=" px-4 my-8 text-yellow-300"
@@ -188,9 +261,6 @@ const Home = () => {
         </div>
       </div>
       <Footer />
-
-     
-
     </div>
   );
 };

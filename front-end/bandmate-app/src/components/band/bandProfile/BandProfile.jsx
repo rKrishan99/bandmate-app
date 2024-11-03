@@ -188,12 +188,30 @@ const BandProfile = () => {
             </Dialog>
             <div className="bg-white flex flex-col px-6 md:px-8 py-6 rounded-b-xl relative">
               {/* Avatar Image */}
-              <img
-                className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer border-white absolute -top-16 md:-top-32 left-6 md:left-8"
-                src={`http://localhost:3000/images/${currentUser.imgpath}`}
-                alt="Band Profile"
-                onClick={() => setProfileDialogOpen(true)}
-              />
+              {currentUser.type === "band" && currentUser.imgpath === "band" ? (
+                <img
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  src="./band.png"
+                  alt=""
+                  onClick={() => setProfileDialogOpen(true)}
+                />
+              ) : currentUser.type === "player" &&
+                currentUser.imgpath === "player" ? (
+                <img
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  src="./musician.png"
+                  alt=""
+                  onClick={() => setProfileDialogOpen(true)}
+                />
+              ) : (
+                <img
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  src={`http://localhost:3000/images/${currentUser.imgpath}`}
+                  alt=""
+                  onClick={() => setProfileDialogOpen(true)}
+                />
+              )}
+              
               {/* Edit Avatar */}
               <Dialog
                 header=""
