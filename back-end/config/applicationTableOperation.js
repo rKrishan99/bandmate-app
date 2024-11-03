@@ -3,7 +3,7 @@ const mysql = require("mysql2/promise"); // Use mysql2 with promise support
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "1234",
+  password: "",
   database: "bandmate",
   connectionLimit: 10,
 });
@@ -19,10 +19,21 @@ const testDatabaseConnection = async () => {
 
 const addApplication = async (applicationData) => {
   try {
-    const query = `INSERT INTO application (vacancyID, userEmail, bandEmail, price) VALUES (?, ?, ?, ?)`;
+    const query = `INSERT INTO application (vacancyID,title, description, priceMin, priceMax, createdAt, userEmail,name, about, experience, category, imgpath, phone, bandEmail, price) VALUES (?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     const values = [
       applicationData.vacancyID,
+      applicationData.title,
+      applicationData.description,
+      applicationData.priceMin,
+      applicationData.priceMax,
+      applicationData.createdAt,
       applicationData.userEmail,
+      applicationData.name,
+      applicationData.about,
+      applicationData.experience,
+      applicationData.category,
+      applicationData.imgpath,
+      applicationData.phone,
       applicationData.bandEmail,
       applicationData.price,
     ];
@@ -47,7 +58,6 @@ const getApplicationsByBandEmail = async (bandEmail) => {
     const [applications] = await pool.query(query, [bandEmail]);
 
     // Log the retrieved applications
-    console.log(`Applications for user ${bandEmail}:`, applications);
 
     return applications; // Return all applications for the given email
   } catch (error) {
