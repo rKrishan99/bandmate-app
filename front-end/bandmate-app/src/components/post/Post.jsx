@@ -17,19 +17,43 @@ const Post = () => {
 
   useEffect(() => {
     console.log("applyData updated:", applyData);
+    
   }, [applyData]);
 
+  const formatDateForMySQL = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.toISOString().slice(0, 19).replace('T', ' '); // "YYYY-MM-DD HH:MM:SS"
+  };
+  
+  // Use this function before sending the date to the backend
+  // const formattedDate = 
+
   const handleApplyClick = (vacancy) => {
+    console.log("See vacancy:", vacancy);
     setApplyData({
       vacancyID: vacancy.vacancyID,
       title: vacancy.title,
       description: vacancy.description,
       priceMin: vacancy.priceMin,
       priceMax: vacancy.priceMax,
+      bandemail: vacancy.bandemail,
+      createdAt: formatDateForMySQL(vacancy.createdAt),
+      
     });
 
     setOpenApply(true);
     console.log("Apply data set for:", applyData);
+
+    // / Move the log statement here to ensure it shows the latest data
+    console.log("Apply data set for:", {
+      vacancyID: vacancy.vacancyID,
+      title: vacancy.title,
+      description: vacancy.description,
+      priceMin: vacancy.priceMin,
+      priceMax: vacancy.priceMax,
+      bandemail: vacancy.bandemail,
+      createdAt: vacancy.createdAt,
+    });
   };
 
   useEffect(() => {
@@ -149,8 +173,8 @@ const Post = () => {
                       ? "bg-blue-600 hover:bg-blue-500 text-white cursor-pointer px-6 sm:px-8 py-2 rounded-md"
                       : "hidden"
                   }
-                  onClick={() =>{ handleApplyClick(vacancy);
-                    
+                  onClick={() => {
+                    handleApplyClick(vacancy);
                   }}
                 >
                   Apply
