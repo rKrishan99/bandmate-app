@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
+import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext"
 import {
   TextField,
   Box,
@@ -32,12 +33,14 @@ const PostAds = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const { currentUser } = useContext(CurrentUserContext);
+
   const [formData, setFormData] = useState({
     vacancyID: "",
     category: "",
     title: "",
     description: "",
-    bandemail: currentUser.email,
+    bandemail: "",
     priceMin: "",
     priceMax: "",
     createdAt: "",
@@ -70,12 +73,24 @@ const PostAds = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
+    console.log("current user rmail: ", currentUser.email);
+
+    // Combine setting the email and timestamp at once
+  setFormData((prev) => ({
+    ...prev,
+    bandemail: currentUser.email,
+    createdAt: new Date().toISOString(),
+  }));
+
+    
     setIsSubmitted(true);
     handleTime(); // Capture the time before submitting
     console.log("Date time check",formData);
     try {
       const result = await axios.post(
-        "http://localhost:3000/auth/register",
+        "http://localhost:3000/vacancy",
         formData
       );
       setVisibleAlert(true);
@@ -256,8 +271,7 @@ const PostAds = () => {
               <Button
                 label="Pay"
                 icon="pi pi-check"
-                loading={loading}
-                type="submit"
+                type="button"
                 fullWidth
                 className="bg-green-600 hover:bg-green-700 md:w-28 text-white text-lg rounded-md px-3 md:px-4 py-2"
                 onClick={handlePaymentGetwayVisibility}
