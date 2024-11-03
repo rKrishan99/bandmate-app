@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import OptionMenu from "../optionMenu/OptionMenu";
+import { CurrentUserContext } from "../../../context/currentUserContext/CurrentUserContext";
 
 const BandProfile = () => {
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
@@ -13,6 +14,8 @@ const BandProfile = () => {
   const [changeCoverLoading, setChangeCoverLoading] = useState(false);
   const coverInputRef = useRef(null);
   const [coverImage, setCoverImage] = useState("");
+
+  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
 
   {
     /* Profile Image */
@@ -187,7 +190,7 @@ const BandProfile = () => {
               {/* Avatar Image */}
               <img
                 className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer border-white absolute -top-16 md:-top-32 left-6 md:left-8"
-                src="./band-avatar.jpg"
+                src={`http://localhost:3000/images/${currentUser.imgpath}`}
                 alt="Band Profile"
                 onClick={() => setProfileDialogOpen(true)}
               />
@@ -239,13 +242,10 @@ const BandProfile = () => {
               <div className="mt-4 lg:mt-10">
                 {/* Band Name and Description */}
                 <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
-                  Band Name
+                  {currentUser.name}
                 </h1>
                 <p className="text-gray-600 mt-2 text-sm md:text-base">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Nulla consectetur aut itaque tempora praesentium, sit pariatur
-                  in odit, et necessitatibus non molestias reprehenderit labore
-                  sunt possimus rem! Quae, veritatis iusto.
+                  {currentUser.about}
                 </p>
               </div>
             </div>
@@ -255,6 +255,7 @@ const BandProfile = () => {
           <div className="lg:hidden p-6 md:p-8 mt-6">
             <OptionMenu />
           </div>
+          
           {/* Band posts */}
           <div>
             <div className="bg-cardBg p-6 md:p-8 rounded-xl mt-6"></div>

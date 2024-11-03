@@ -5,15 +5,24 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { LoginProvider } from "./context/loginContext/LoginContext.jsx";
 import { RegisterProvider } from "./context/registerContext/RegisterContext.jsx";
 import { BandRegisterProvider } from "./context/bandRegisterContext/BandRegisterContext.jsx";
+import { MusicianRegisterProvider } from "./context/musicianRegisterContext/MusicianRegisterContext.jsx";
+import { CurrentUserProvider } from "./context/currentUserContext/CurrentUserContext.jsx";
+import { FunctionalityProvider } from "./context/functionalityContext/FunctionalityContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <BandRegisterProvider>
+  <FunctionalityProvider>
     <RegisterProvider>
-      <LoginProvider>
-        <Router>
-          <App />
-        </Router>
-      </LoginProvider>
+      <MusicianRegisterProvider>
+        <BandRegisterProvider>
+          <CurrentUserProvider>
+            <LoginProvider>
+              <Router>
+                <App />
+              </Router>
+            </LoginProvider>
+          </CurrentUserProvider>
+        </BandRegisterProvider>
+      </MusicianRegisterProvider>
     </RegisterProvider>
-  </BandRegisterProvider>
+  </FunctionalityProvider>
 );

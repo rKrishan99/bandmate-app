@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Dialog } from "primereact/dialog";
-
 const PopupAlert = ({ visible, message, info, onClose }) => {
 
   // Automatically close the dialog after 3 seconds

@@ -7,11 +7,14 @@ import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
 import PopupAlert from "../alert/popupAlert/PopupAlert";
+import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
   const [loading, setLoading] = useState(false);
+
+  const { currentUser, setCurrentUser, isLog, setIsLog } = useContext(CurrentUserContext);
 
   const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
 
@@ -56,18 +59,20 @@ const Login = () => {
 
     setLoading(true);
 
-    console.log("Form data before submit:", formData);
-
     // API call to login
     try {
       const response = await axios.post(
         "http://localhost:3000/auth/login",
-        formData,
-        {}
+        formData
       );
       console.log("Login response:", response);
-      console.log("Login response status:", response.status);
-      console.log("Login response data:", response.data);
+
+      setCurrentUser(response.data);
+      setIsLog(true);
+
+      console.log("Current User:", currentUser);
+      console.log("login data:", response.data);
+
       setVisibleAlert(true);
       setAlertMessage("Login successful!");
       setAlertInfo(true);
@@ -182,7 +187,12 @@ const Login = () => {
           </span>
         </div>
       </Dialog>
-      <PopupAlert visible={visibleAlert} message={alertMessage} info={alertInfo} onClose={() => setVisibleAlert(false)}/>
+      <PopupAlert
+        visible={visibleAlert}
+        message={alertMessage}
+        info={alertInfo}
+        onClose={() => setVisibleAlert(false)}
+      />
     </div>
   );
 };
