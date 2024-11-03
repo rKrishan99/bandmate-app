@@ -5,6 +5,8 @@ const {
   deleteVacancyController,
   getAllVacancyController,
   getVacancyByCategoryController,
+  getVacanciesByBandEmailController
+  
 } = require("../controllers/vacancyController");
 const { route } = require("./authenticationRoute");
 
@@ -12,6 +14,7 @@ const router = express.Router();
 
 router.get("/", getAllVacancyController);
 router.get("/:category", getVacancyByCategoryController);
+router.get("/band/:email",getVacanciesByBandEmailController);
 router.post("/", addVacancyController);
 router.put("/", updateVacancyController);
 router.delete("/", deleteVacancyController);

@@ -4,6 +4,7 @@ const {
   getVacancyByCategoryService,
   deleteVacancyService,
   updateVacancyService,
+  getVacancyByBandEmailService
 } = require("../services/vacancyService");
 
 const addVacancyController = async (req, res) => {
@@ -26,10 +27,15 @@ const deleteVacancyController = async (req, res) => {
   deleteVacancyService(req, res);
 };
 
+const getVacanciesByBandEmailController = async (req,res) => {
+   getVacancyByBandEmailService(req,res);
+}
+
 module.exports = {
   addVacancyController,
   getAllVacancyController,
   getVacancyByCategoryController,
   updateVacancyController,
   deleteVacancyController,
+  getVacanciesByBandEmailController
 };
