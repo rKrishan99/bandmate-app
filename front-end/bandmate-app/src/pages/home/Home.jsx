@@ -19,7 +19,7 @@ const Home = () => {
       <div className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
         <div className="relative flex-col items-center justify-center  h-full p-28">
-          <h1 className="text-white text-6xl font-bold text-center">
+          <h1 className="text-white text-6xl md:mt-20 font-bold text-center">
             Welcome to BandMate Connect
           </h1>
           <h1 className="text-white text-6xl font-bold text-center">
