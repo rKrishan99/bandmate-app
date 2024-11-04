@@ -2,32 +2,34 @@ import React, { useContext, useState } from "react";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
+import NotifyCard from "./notifiCard/NotifyCard";
 
 const Applicants = () => {
-
-    const { visibleApplicants, setVisibleApplicants } = useContext(FunctionalityContext);
+  const { visibleApplicants, setVisibleApplicants } =
+    useContext(FunctionalityContext);
 
   return (
     <Dialog
-      header="Applicant"
+      header=""
       visible={visibleApplicants}
       style={{ width: "50vw" }}
       onHide={() => {
         if (!visibleApplicants) return;
         setVisibleApplicants(false);
       }}
+      className="flex flex-col px-3 h-[600px] w-[300px] bg-cardBg pb-6 rounded-xl"
     >
-      <p className="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
+      <div className="">
+        <h1 className="text-2xl font-bold text-gray-800 text-center mb-3">
+          Applications
+        </h1>
+        <hr className="mb-4 mt-2 border-none bg-gray-300 h-[1px]" />
+        <div className="">
+          <NotifyCard />
+        </div>
+      </div>
     </Dialog>
-  )
-}
+  );
+};
 
 export default Applicants;

@@ -32,7 +32,7 @@ export const NavDropdown = () => {
           ) : (
             <img
               className="bg-slate-50 rounded-full border-2 w-14 h-14"
-              src={`http://localhost:3000/images/${currentUser.imgpath}`}
+              src={`http://192.168.43.30:3000/images/${currentUser.imgpath}`}
             />
           )}
           <div className="flex flex-col">
