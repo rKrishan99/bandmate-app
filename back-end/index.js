@@ -4,6 +4,7 @@ const authRoute = require("./routes/authenticationRoute");
 const vacancyRoute = require("./routes/vacancyRoute");
 const applicationRoute = require("./routes/applicationRoute");
 const imageRouter = require("./routes/imageRouter");
+const userRouter = require("./routes/userRoute")
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -19,6 +20,7 @@ app.use("/auth", authRoute);
 app.use("/vacancy", vacancyRoute);
 app.use("/application", applicationRoute);
 app.use('/images', imageRouter);
+app.use('/user', userRouter);
 app.use('/uploads', express.static(require('./services/imageService').uploadsDir));
 
 // Centralized error handling middleware

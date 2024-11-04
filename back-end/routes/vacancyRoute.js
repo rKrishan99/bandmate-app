@@ -19,6 +19,6 @@ router.get("/:category", getVacancyByCategoryController);
 router.get("/band/:email",getVacanciesByBandEmailController);
 router.post("/", addVacancyController);
 router.put("/", updateVacancyController);
-router.delete("/", deleteVacancyController);
+router.delete("/:vacancyID", deleteVacancyController);
 
 module.exports = router;
