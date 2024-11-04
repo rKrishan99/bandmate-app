@@ -7,25 +7,42 @@ import NotFound from "./pages/notFound/NotFound";
 import Login from "./components/login/Login";
 import RegisterOptions from "./components/registration/registerOptions/RegisterOptions"
 import BandRegister from "./components/registration/bandRegister/BandRegister";
-import MusicianRegister from "./components/registration/musicianRegister/PlayerRegister";
+import MusicianRegister from "./components/registration/musicianRegister/MusicianRegister";
 import MusicianDashboard from "./components/musician/playerDashboard/MusicianDashboard";
-import BandDashboard from "./components/band/bandDashboard/BandDashboard";
 import BandProfile from "./components/band/bandProfile/BandProfile";
+import Navbar from "./components/navbar/Navbar";
+import '@mui/material'
+import PostAds from "./components/postAds/PostAds";
+import EditInfo from "./components/band/editInfo/EditInfo";
+import Applicants from "./components/applicants/Applicants";
+import Feed from "./pages/feed/Feed";
+import PaymentGetway from "./components/paymentGetway/PaymentGetway";
+import ApplyDialog from "./components/applyDialog/ApplyDialog";
+import "primereact/resources/themes/lara-light-indigo/theme.css";  // Theme (choose any available theme)
+import "primereact/resources/primereact.min.css";                  // Core PrimeReact styles
+import "primeicons/primeicons.css";                                // Icons (if used by any components)
+
 
 function App() {
   return (
     <>
+    <Navbar />
+    <Login />
+    <RegisterOptions />
+    <BandRegister/>
+    <MusicianRegister/>
+    <PostAds/>
+    <EditInfo/>
+    <Applicants/>
+    <PaymentGetway/>
+    <ApplyDialog/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<RegisterOptions />} />
-        <Route path="/band-register" element={<BandRegister />} />
-        <Route path="/musician-register" element={<MusicianRegister />} />
         <Route path="/musician-dashboard" element={<MusicianDashboard />} />
-        <Route path="/band-dashboard" element={<BandDashboard />} />
-        <Route path="/band-profile" element={<BandProfile />} />
+        <Route path="/profile" element={<BandProfile />} />
+        <Route path="/feed" element={<Feed/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
