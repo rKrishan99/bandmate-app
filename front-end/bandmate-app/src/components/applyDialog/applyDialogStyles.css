@@ -1,0 +1,11 @@
+/* Custom styles for the PrimeReact Slider grabber */
+.custom-slider .p-slider-handle {
+    background-color: #4a90e2; /* Change to your desired color */
+    border: none; /* Optional: Remove border */
+    box-shadow: 0 0 0 2px #fff; /* Optional: Add a shadow for better visibility */
+  }
+  
+  .custom-slider .p-slider {
+    background-color: #ddd; /* Adjust the track background if needed */
+  }
+  

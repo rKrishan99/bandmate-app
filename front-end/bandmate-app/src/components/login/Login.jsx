@@ -109,11 +109,11 @@ const Login = () => {
         header=""
         visible={visibleLogin}
         onHide={() => setVisibleLogin(false)}
-        className="w-full h-auto bg-cardBg max-w-md p-6 rounded-xl"
+        className="w-full h-auto bg-cardBg max-w-md py-3 rounded-xl"
         breakpoints={{ "960px": "75vw", "640px": "90vw" }}
       >
-        <div className="flex flex-col w-full p-4">
-          <h1 className="text-2xl font-bold text-center mb-6">Signin</h1>
+        <div className="flex flex-col w-full">
+          <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">Signin</h1>
 
           <form
             onSubmit={handleSubmit}

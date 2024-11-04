@@ -1,44 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
-import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
+import { FunctionalityContext } from "../../../context/functionalityContext/FunctionalityContext";
 import axios from "axios";
-import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
-import { ApplyDataContext } from "../../context/applyDataContext/ApplyDataContext";
+import { CurrentUserContext } from "../../../context/currentUserContext/CurrentUserContext";
+import { ApplyDataContext } from "../../../context/applyDataContext/ApplyDataContext";
 
-const Post = ({ vacancies }) => {
-  const { openApply, setOpenApply } = useContext(FunctionalityContext);
+const MyPost = () => {
+  const { openApply, setOpenApply, DeleteVacancyID, setDeleteVacancyID } = useContext(FunctionalityContext);
   const [openMenuId, setOpenMenuId] = useState(null); // Track which vacancy menu is open
-  const [fetchedVacancies, setFetchedVacancies] = useState([]); // State to store fetched vacancies
+  const [vacancies, setVacancies] = useState([]); // State to store fetched vacancies
   const { isLog, currentUser } = useContext(CurrentUserContext);
   const { applyData, setApplyData } = useContext(ApplyDataContext);
+  const { visiblePostDelete, setVisiblePostDelete } =
+    useContext(FunctionalityContext);
 
-  const toggleMenu = (id) => {
-    setOpenMenuId(openMenuId === id ? null : id); // Toggle the menu for each vacancy item
+  useEffect(() => {
+    console.log("applyData updated:", applyData);
+  }, [applyData]);
+
+
+  const handleRemove = (vacancyID) => {
+   
+    console.log("vacancyID:", vacancyID);
+    setDeleteVacancyID(vacancyID); 
+    setVisiblePostDelete(true);// Set the ID for deletion
   };
 
-  const handleApplyClick = (vacancy) => {
-    console.log("See vacancy:", vacancy);
-    setApplyData({
-      vacancyID: vacancy.vacancyID,
-      title: vacancy.title,
-      description: vacancy.description,
-      priceMin: vacancy.priceMin,
-      priceMax: vacancy.priceMax,
-      bandemail: vacancy.bandemail,
-      createdAt: formatDateForMySQL(vacancy.createdAt),
-    });
-
-    setOpenApply(true);
-    console.log("Apply data set for:", applyData);
-    console.log("Apply data set for:", {
-      vacancyID: vacancy.vacancyID,
-      title: vacancy.title,
-      description: vacancy.description,
-      priceMin: vacancy.priceMin,
-      priceMax: vacancy.priceMax,
-      bandemail: vacancy.bandemail,
-      createdAt: vacancy.createdAt,
-    });
-  };
+  
 
   useEffect(() => {
     console.log("isLog:", isLog, "currentUser:", currentUser);
@@ -46,8 +33,10 @@ const Post = ({ vacancies }) => {
     // Fetch vacancies data
     const fetchVacancies = async () => {
       try {
-        const response = await axios.get("http://192.168.43.30:3000/vacancy");
-        setFetchedVacancies(response.data); // Set the vacancies data
+        const response = await axios.get(
+          `http://192.168.43.30:3000/vacancy/band/${currentUser.email}`
+        );
+        setVacancies(response.data); // Set the vacancies data
       } catch (error) {
         console.error("Error fetching vacancies:", error);
       }
@@ -57,14 +46,14 @@ const Post = ({ vacancies }) => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center px-4 sm:px-6 lg:px-8">
-      {(vacancies || fetchedVacancies)
+    <div className="flex flex-col lg:w-[1000px] items-center">
+      {vacancies
         .slice()
         .reverse()
         .map((vacancy) => (
           <div
             key={vacancy.vacancyID}
-            className="vacancy-item md:w-[800px] lg:w-[1000px] flex p-4 flex-col h-auto pb-10 bg-cardBg mt-4 rounded-xl shadow-md relative"
+            className="vacancy-item w-full max-w-4xl flex p-4 flex-col h-auto pb-10 bg-cardBg mt-4 rounded-xl shadow-md relative"
           >
             <div className="pl-5 mt-2 flex flex-col sm:flex-row gap-6">
               {vacancy.type === "band" && vacancy.imgpath === "band" ? (
@@ -91,18 +80,8 @@ const Post = ({ vacancies }) => {
                   {vacancy.name}
                 </span>
                 <span className="text-xs sm:text-sm text-slate-600">
-                  {/* Add any additional information here */}
+                  4 hours ago
                 </span>
-              </div>
-              <div
-                className={
-                  isLog && currentUser?.type !== "player"
-                    ? "flex w-full justify-end cursor-pointer relative"
-                    : "hidden"
-                }
-                onClick={() => toggleMenu(vacancy.vacancyID)}
-              >
-                {/* Additional controls can be placed here */}
               </div>
             </div>
 
@@ -125,13 +104,13 @@ const Post = ({ vacancies }) => {
               <div className="mt-6 flex justify-end">
                 <button
                   className={
-                    isLog && currentUser?.type !== "band"
-                      ? "bg-blue-600 hover:bg-blue-500 text-white cursor-pointer px-6 sm:px-8 py-2 rounded-md"
+                    isLog && currentUser?.type === "band"
+                      ? "bg-red-600 hover:bg-red-500 text-white cursor-pointer px-6 sm:px-8 py-2 rounded-md"
                       : "hidden"
                   }
-                  onClick={() => handleApplyClick(vacancy)}
+                  onClick={() => handleRemove(vacancy.vacancyID)} // Corrected function call
                 >
-                  Apply
+                  Remove
                 </button>
               </div>
             </div>
@@ -141,4 +120,4 @@ const Post = ({ vacancies }) => {
   );
 };
 
-export default Post;
+export default MyPost;

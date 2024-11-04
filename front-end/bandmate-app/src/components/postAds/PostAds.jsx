@@ -15,7 +15,8 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import PopupAlert from "../alert/popupAlert/PopupAlert";
-import { ApplyDataContext } from "../../context/applyDataContext/ApplyDataContext";
+import { useNavigate } from "react-router-dom";
+
 
 const PostAds = () => {
   const {
@@ -104,9 +105,14 @@ const PostAds = () => {
       setAlertMessage("Ad Published successful!");
       setAlertInfo(true);
       setPaid(false);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      
       if (result.status !== 201) {
         console.error("Ad Published failed:", result);
       }
+      setVisiblePostAds(false);
       // setLoading(false);
       resetForm();
     } catch (error) {
@@ -124,16 +130,18 @@ const PostAds = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
       )}
       <Dialog
-        header=""
+        header={
+          <h1 className="text-center text-gray-900 text-3xl font-bold">Create Ad</h1>
+        }
         visible={visiblePostAds}
         onHide={() => {
           if (!visiblePostAds) return;
           setVisiblePostAds(false);
         }}
-        className="w-[1000px] rounded-xl bg-cardBg p-6"
+        className="w-[1000px] rounded-xl bg-cardBg pb-8 pt-1"
       >
         <div className="m-8 flex flex-col">
-          <h1 className="text-center text-3xl font-bold">Create Ad</h1>
+          
           <form
             onSubmit={handleSubmit}
             className="h-auto scrollbar-thin scrollbar-webkit overflow-y-auto flex justify-center flex-col gap-6 mt-12 pt-4"
@@ -234,9 +242,9 @@ const PostAds = () => {
               </FormControl>
             </Box>
 
-            <span className="text-slate-700">Enter the salary (Rs)</span>
+            <span className="text-slate-700">Enter the salary range (Rs)</span>
             <TextField
-              label="priceMin"
+              label="Minimum salary"
               type="number"
               value={formData.priceMin}
               className="text-lg"
@@ -254,7 +262,7 @@ const PostAds = () => {
             />
 
             <TextField
-              label="priceMax"
+              label="Maximum salary"
               type="number"
               value={formData.priceMax}
               className="text-lg"

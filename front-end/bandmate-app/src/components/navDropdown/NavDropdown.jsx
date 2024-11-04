@@ -46,17 +46,6 @@ export const NavDropdown = () => {
           </div>
         </div>
       </Link>
-      <hr className="bg-slate-600 mb-4 mt-4" />
-
-      <div
-        className="flex items-center rounded-lg text-gray-800 hover:bg-gray-100 pl-4"
-        onClick={() => {
-          setVisiblePostAds(true);
-        }}
-      >
-        <img className="w-5 h-5" src="./create.png" alt="" />
-        <span className="block px-4 py-2">Post Ads</span>
-      </div>
 
       <hr className="bg-slate-600 mt-4 mb-4" />
       <div className="pl-4 flex items-center rounded-lg text-gray-800 hover:bg-gray-100">
