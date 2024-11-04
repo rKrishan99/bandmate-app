@@ -2,6 +2,7 @@ const {
   addApplicationService,
   getApplicationByBand,
   getApplicationByPlayer,
+  deleteApplicationByID
 } = require("../services/applicationService");
 
 const addApplicationController = async (req, res) => {
@@ -18,4 +19,8 @@ const getApplicationController = async (req, res) => {
   }
 };
 
-module.exports = { addApplicationController, getApplicationController };
+const deleteApplicationController = async (req, res) => {
+  deleteApplicationByID(req,res);
+};
+
+module.exports = { addApplicationController, getApplicationController, deleteApplicationByID };

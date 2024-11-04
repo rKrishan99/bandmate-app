@@ -3,7 +3,7 @@ const mysql = require("mysql2/promise"); // Use mysql2 with promise support
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "1234",
+  password: "",
   database: "bandmate",
   connectionLimit: 10,
 });
@@ -144,6 +144,22 @@ const getBandDetailsById = async (bandEmail) => {
   }
 };
 
+const deleteVacanciesByBandEmail = async (bandEmail) => {
+  try {
+    const query = "DELETE FROM vacancy WHERE bandemail = ?";
+    const [result] = await pool.query(query, [bandEmail]);
+
+    if (result.affectedRows === 0) {
+      return { message: "No vacancies found for the specified band email", success: false };
+    }
+    console.log(`All vacancies for band email ${bandEmail} deleted successfully.`);
+    return { message: "All vacancies deleted successfully", success: true };
+  } catch (error) {
+    console.error("Error deleting vacancies by band email:", error.message);
+    throw error;
+  }
+};
+
 module.exports = {
   testDatabaseConnection,
   addVacancy,
@@ -153,5 +169,6 @@ module.exports = {
   deleteVacancyById,
   getVacancyByID,
   getVacanciesByBandEmail,
-  getBandDetailsById
+  getBandDetailsById,
+  deleteVacanciesByBandEmail
 };

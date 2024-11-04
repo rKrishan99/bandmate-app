@@ -2,6 +2,8 @@ const {
   addApplication,
   getApplicationsByBandEmail,
   getApplicationsByUserEmail,
+  deleteApplication,
+  getApplicationsByID
 } = require("../config/applicationTableOperation");
 
 const addApplicationService = async (req, res) => {
@@ -39,8 +41,28 @@ const getApplicationByPlayer = async (req, res) => {
   }
 };
 
+const deleteApplicationByID = async (req, res) => {
+  try {
+    const applicationID = req.params.applicationID;
+
+    const application = await getApplicationsByID(applicationID);
+    if (application) {
+      await deleteApplication(applicationID);
+      res.status(200).json({ message: "Application deleted!" });
+    } else {
+      res.status(404).json({ message: "Application not found!" });
+    }
+  } catch (error) {
+    console.error("Error deleting application:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+
 module.exports = {
   addApplicationService,
   getApplicationByBand,
   getApplicationByPlayer,
+  deleteApplicationByID,
 };
