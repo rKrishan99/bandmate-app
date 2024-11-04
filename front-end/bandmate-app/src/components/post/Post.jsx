@@ -17,19 +17,43 @@ const Post = () => {
 
   useEffect(() => {
     console.log("applyData updated:", applyData);
+    
   }, [applyData]);
 
+  const formatDateForMySQL = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.toISOString().slice(0, 19).replace('T', ' '); // "YYYY-MM-DD HH:MM:SS"
+  };
+  
+  // Use this function before sending the date to the backend
+  // const formattedDate = 
+
   const handleApplyClick = (vacancy) => {
+    console.log("See vacancy:", vacancy);
     setApplyData({
       vacancyID: vacancy.vacancyID,
       title: vacancy.title,
       description: vacancy.description,
       priceMin: vacancy.priceMin,
       priceMax: vacancy.priceMax,
+      bandemail: vacancy.bandemail,
+      createdAt: formatDateForMySQL(vacancy.createdAt),
+      
     });
 
     setOpenApply(true);
     console.log("Apply data set for:", applyData);
+
+    // / Move the log statement here to ensure it shows the latest data
+    console.log("Apply data set for:", {
+      vacancyID: vacancy.vacancyID,
+      title: vacancy.title,
+      description: vacancy.description,
+      priceMin: vacancy.priceMin,
+      priceMax: vacancy.priceMax,
+      bandemail: vacancy.bandemail,
+      createdAt: vacancy.createdAt,
+    });
   };
 
   useEffect(() => {
@@ -38,7 +62,7 @@ const Post = () => {
     // Fetch vacancies data
     const fetchVacancies = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/vacancy");
+        const response = await axios.get("http://192.168.43.30:3000/vacancy");
         setVacancies(response.data); // Set the vacancies data
       } catch (error) {
         console.error("Error fetching vacancies:", error);
@@ -74,7 +98,7 @@ const Post = () => {
               ) : (
                 <img
                   className="bg-slate-50 rounded-full w-20 h-20 border-2 border-gray-300 cursor-pointer"
-                  src={`http://localhost:3000/images/${vacancy.imgpath}`}
+                  src={`http://192.168.43.30:3000/images/${vacancy.imgpath}`}
                   alt=""
                 />
               )}
@@ -149,8 +173,8 @@ const Post = () => {
                       ? "bg-blue-600 hover:bg-blue-500 text-white cursor-pointer px-6 sm:px-8 py-2 rounded-md"
                       : "hidden"
                   }
-                  onClick={() =>{ handleApplyClick(vacancy);
-                    
+                  onClick={() => {
+                    handleApplyClick(vacancy);
                   }}
                 >
                   Apply

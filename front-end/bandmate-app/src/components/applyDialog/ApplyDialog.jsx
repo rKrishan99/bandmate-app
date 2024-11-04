@@ -33,22 +33,26 @@ const ApplyDialog = () => {
     priceMin: minPayment,
     priceMax: maxPayment,
     createdAt: applyData?.createdAt,
-    userEmail: currentUser.email,
-    name: currentUser.name,
-    about: currentUser.about,
-    experience: currentUser.experience,
-    category: currentUser.category,
-    imgpath: currentUser.imgpath,
-    phone: currentUser.phone,
-    bandEmail: applyData?.bandEmail,
+    userEmail: currentUser?.email,
+    name: currentUser?.name,
+    about: currentUser?.about,
+    experience: currentUser?.experience,
+    category: currentUser?.category,
+    imgpath: currentUser?.imgpath,
+    phone: currentUser?.phone,
+    bandEmail: applyData?.bandemail,
     price: payment,
 
   };
 
+  
+
   const handleSubmit = async () => {
+
+    console.log("formData:", formData);
     try {
       // Replace with your API endpoint
-      const response = await axios.post('https://localhost:3000/application', formData);
+      const response = await axios.post('http://192.168.43.30:3000/application', formData);
       console.log("Response from server:", response.data);
       // Optionally close the dialog after successful submission
       setOpenApply(false);
