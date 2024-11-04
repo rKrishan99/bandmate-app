@@ -20,13 +20,13 @@ const Home = () => {
         <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
         <div className="relative flex-col items-center justify-center  h-full p-28">
           <h1 className="text-white text-6xl font-bold text-center">
-            Welcome to Guitarist Connect
+            Welcome to BandMate Connect
           </h1>
           <h1 className="text-white text-6xl font-bold text-center">
             Find Your Sound!
           </h1>
           <h1 className="text-white text-2xl font-bold text-center p-5">
-            Discover the Perfect Guitarist for Every Occasion
+            Discover the Perfect Musician for Every Occasion
           </h1>
           <div className="flex justify-center">
             {!isLog && (
@@ -58,7 +58,7 @@ const Home = () => {
                   Hire Muscians
                 </h4>
                 <p className="text-gray-700 text-lg p-2">
-                  Connect with skilled guitarists easily. Our platform brings
+                  Connect with skilled musicians easily. Our platform brings
                   top talent together, simplifying hiring for your music
                   projects. Start now!
                 </p>
@@ -76,9 +76,10 @@ const Home = () => {
                   Trusted Partners
                 </h4>
                 <p className="text-gray-700 text-lg p-2">
-                  Connect with skilled guitarists easily. Our platform brings
-                  top talent together, simplifying hiring for your music
-                  projects. Start now!
+                Collaborate with reliable experts effortlessly.
+                Our platform connects you with trusted professionals,
+                ensuring quality and confidence in every partnership.
+                Join us today!
                 </p>
               </div>
             </div>
@@ -96,7 +97,7 @@ const Home = () => {
         <div className="p-6 padding size-1/2">
           <h1 className="text-5xl text-gray-700 font-bold"> How It Works</h1>
           <p className="pt-3 text-lg text-gray-700  pb-4">
-            With Guitarist Connect, finding the right guitarist is a breeze.
+            With BandMate, finding the right musician is a breeze.
             Browse profiles, watch videos, and listen to audio samples to
             discover skilled musicians. Instantly connect through messaging, set
             up interviews, and schedule sessions all within our intuitive
@@ -253,10 +254,9 @@ const Home = () => {
             cancel={false}
           />
           <p className="px-4 text-xl text-gray-700">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt
-            molestias consectetur a, magnam hic voluptas quos numquam iure esse
-            odit, libero est natus mollitia provident non voluptate in ratione
-            unde.
+          Bandmate saved us so much time! We found
+          a talented singer for our party within minutes.
+          Definitely using this service again!
           </p>
         </div>
       </div>

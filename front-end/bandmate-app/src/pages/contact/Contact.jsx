@@ -43,9 +43,9 @@ const Contact = () => {
               <div className="m-4 mt-5">
                 <img src={IconLocation} alt="" className="h-7 w-7 my-1 mb-0" />
                 <p className="text-sm font-bold  text-gray-700">
-                  No.87,Rit Rit Park,Weherahena Road,
+                  No.87, Kandy Road ,Kiribathgoda,
                 </p>
-                <p className="text-sm font-bold ">Kekanadura,Matara.</p>
+                <p className="text-sm font-bold ">Gampaha.</p>
               </div>
               <div className="m-4 my-2 p-0">
                 <img src={IconCall} alt="" className="h-7 w-7 my-1 " />
