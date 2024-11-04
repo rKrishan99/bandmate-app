@@ -3,7 +3,7 @@ const mysql = require("mysql2/promise"); // Use mysql2 with promise support
 const pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "1234",
+  password: "",
   database: "bandmate",
   connectionLimit: 10,
 });
@@ -61,11 +61,12 @@ const updateUser = async (userData) => {
   try {
     const query = `
             UPDATE users 
-            SET name = ?, about = ?, experience = ?, category = ?, imgpath = ?, phone = ?
+            SET name = ?,password = ?, about = ?, experience = ?, category = ?, imgpath = ?, phone = ?
             WHERE email = ?`;
 
     const values = [
       userData.name,
+      userData.password,
       userData.about,
       userData.experience,
       userData.category,
@@ -75,6 +76,7 @@ const updateUser = async (userData) => {
     ];
 
     const [result] = await pool.query(query, values);
+    console.log(result);
     return result.affectedRows > 0
       ? { message: "User updated successfully" }
       : { message: "User not found" };

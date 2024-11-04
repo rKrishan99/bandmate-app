@@ -10,6 +10,8 @@ const {
   getBandDetailsById
 } = require("../config/vacancyTableOperation");
 
+const{deleteApplicationsByVacancyID} = require("../config/applicationTableOperation")
+
 const addVacancyService = async (req, res) => {
   try {
     const vacancyData = req.body;
@@ -39,12 +41,15 @@ const updateVacancyService = async (req, res) => {
 
 const deleteVacancyService = async (req, res) => {
   try {
-    const vacancyID = req.body.vacancyID;
-
+    const vacancyID = req.params.vacancyID;
+    console.log(vacancyID);
     const vacancy = await getVacancyByID(vacancyID);
     if (vacancy) {
+      
       await deleteVacancyById(vacancyID);
+      await deleteApplicationsByVacancyID(vacancyID);
       res.status(200).json({ message: "Vacancy deleted!" });
+
     } else {
       res.status(404).json({ message: "Vacancy not found!" });
     }
