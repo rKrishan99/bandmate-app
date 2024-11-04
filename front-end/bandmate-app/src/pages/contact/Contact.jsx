@@ -26,18 +26,27 @@ const Contact = () => {
 
   return (
     <div>
+
       
       <div className=" bg-background px-cusPadding">
         <div className="relative bg-white flex-row items-start  h-full  p-7 rounded-xl shadow-md pb-4">
           <div className="flex flex-col justify-center text-center">
             <h1 className="text-5xl text-gray-700 font-bold ">Get Touch In!</h1>
             <h4 className=" p-7 lg:text-lg sm:text-base text-gray-700  ">
+
+      <div className="relative h-screen overflow-hidden bg-background px-cusPadding">
+        <div className="relative bg-white flex-row items-start  h-full m-6 p-7 rounded-xl shadow-md pb-4">
+          <div className="flex flex-col justify-center text-center">
+            <h1 className="text-5xl text-gray-700 font-bold ">Get Touch In!</h1>
+            <h4 className=" p-7 text-lg text-gray-700  ">
+
               Have questions or need help? We’re here to support you! Our app is
               designed to bring guitarists together in one place, making it easy
               for you to find the perfect musician for any project. Reach out if
               you’d like to know more or need assistance with the platform.
             </h4>
           </div>
+
           <div className="flex justify-center gap-6 p-10  h-96  ">
           <img
             className="image size-1/4"
@@ -55,13 +64,23 @@ const Contact = () => {
         </div>
 
           <div className="lg:flex justify-between shadow-md bg-slate-50 m-5 mt-3">
+
+
+          <div className="flex justify-between shadow-md bg-slate-50 m-5 mt-3">
+
             <div className="relative bg-slate-50 flex-row   h-full m-6 mt-0  contact">
               <div className="m-4 mt-5">
                 <img src={IconLocation} alt="" className="h-7 w-7 my-1 mb-0" />
                 <p className="text-sm font-bold  text-gray-700">
+
                   No.87,Rit Rit Park,Weherahena Road,
                 </p>
                 <p className="text-sm font-bold ">Kekanadura,Matara.</p>
+
+                  No.87, Kandy Road ,Kiribathgoda,
+                </p>
+                <p className="text-sm font-bold ">Gampaha.</p>
+
               </div>
               <div className="m-4 my-2 p-0">
                 <img src={IconCall} alt="" className="h-7 w-7 my-1 " />
@@ -122,7 +141,11 @@ const Contact = () => {
                     />
                     <button
                       type="submit"
+
                       className="bg-blue-600 text-white font-semibold text-lg rounded-md p-1 hover:bg-blue-700 form-button mt-2"
+
+                      className="bg-red-500 text-gray-700 font-semibold text-lg rounded-md p-1 hover:bg-red-600 form-button mt-2"
+
                       disabled={isLoading}
                     >
                       

@@ -1,33 +1,43 @@
 import React, { useContext, useState } from "react";
-import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { FunctionalityContext } from "../../context/functionalityContext/FunctionalityContext";
+import NotifyCard from "./notifiCard/NotifyCard";
 
 const Applicants = () => {
-
-    const { visibleApplicants, setVisibleApplicants } = useContext(FunctionalityContext);
+  const { visibleApplicants, setVisibleApplicants } =
+    useContext(FunctionalityContext);
 
   return (
-    <Dialog
-      header="Header"
-      visible={visibleApplicants}
-      style={{ width: "50vw" }}
-      onHide={() => {
-        if (!visibleApplicants) return;
-        setVisibleApplicants(false);
-      }}
-    >
-      <p className="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
-      </p>
-    </Dialog>
-  )
-}
+    <div className="relative">
+      {visibleApplicants && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
+          onClick={() => setVisibleApplicants(false)}
+        ></div>
+      )}
+      <Dialog
+        header={
+          <h1 className="text-3xl font-bold text-gray-800 text-center mt-4 mb-3">
+            Applications
+          </h1>
+        }
+        visible={visibleApplicants}
+        style={{ width: "40vw" }}
+        onHide={() => {
+          if (!visibleApplicants) return;
+          setVisibleApplicants(false);
+        }}
+        className="flex flex-col px-3 h-[600px] w-[300px] bg-cardBg pb-6 rounded-xl"
+      >
+        <div className="">
+          <hr className="mb-4 mt-2 border-none bg-gray-300 h-[1px]" />
+          <div className="">
+            <NotifyCard />
+          </div>
+        </div>
+      </Dialog>
+    </div>
+  );
+};
 
 export default Applicants;

@@ -8,19 +8,22 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
 import PopupAlert from "../alert/popupAlert/PopupAlert";
 import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { visibleLogin, setVisibleLogin } = useContext(LoginContext);
   const [loading, setLoading] = useState(false);
 
-  const { currentUser, setCurrentUser, isLog, setIsLog } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser, setIsLog } = useContext(CurrentUserContext);
 
-  const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
+  const { setVisibleRegister } = useContext(RegisterContext);
 
   const [visibleAlert, setVisibleAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertInfo, setAlertInfo] = useState("");
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -62,7 +65,7 @@ const Login = () => {
     // API call to login
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/login",
+        "http://192.168.43.30:3000/auth/login",
         formData
       );
       console.log("Login response:", response);
@@ -78,6 +81,11 @@ const Login = () => {
       setAlertInfo(true);
       setVisibleLogin(false);
       resetForm();
+      setTimeout(() => {
+        navigate("/feed");
+      }, 2000);
+      
+      
     } catch (error) {
       console.error("Error during login:", error);
       setVisibleAlert(true);
@@ -101,11 +109,11 @@ const Login = () => {
         header=""
         visible={visibleLogin}
         onHide={() => setVisibleLogin(false)}
-        className="w-full h-auto bg-cardBg max-w-md p-6 rounded-xl"
+        className="w-full h-auto bg-cardBg max-w-md py-3 rounded-xl"
         breakpoints={{ "960px": "75vw", "640px": "90vw" }}
       >
-        <div className="flex flex-col w-full p-4">
-          <h1 className="text-2xl font-bold text-center mb-6">Signin</h1>
+        <div className="flex flex-col w-full">
+          <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">Signin</h1>
 
           <form
             onSubmit={handleSubmit}

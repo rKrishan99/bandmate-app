@@ -1,9 +1,13 @@
+const { getBandDetailsById } = require("../config/vacancyTableOperation");
 const {
   addVacancyService,
   getAllVacanciesService,
   getVacancyByCategoryService,
   deleteVacancyService,
   updateVacancyService,
+  getVacancyByBandEmailService,
+  getBandDetailsService
+
 } = require("../services/vacancyService");
 
 const addVacancyController = async (req, res) => {
@@ -26,10 +30,20 @@ const deleteVacancyController = async (req, res) => {
   deleteVacancyService(req, res);
 };
 
+const getVacanciesByBandEmailController = async (req,res) => {
+   getVacancyByBandEmailService(req,res);
+}
+
+const getBandDataControler = async (req,res) => {
+  getBandDetailsService(req,res);
+}
+
 module.exports = {
   addVacancyController,
   getAllVacancyController,
   getVacancyByCategoryController,
   updateVacancyController,
   deleteVacancyController,
+  getVacanciesByBandEmailController,
+  getBandDataControler
 };

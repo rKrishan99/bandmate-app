@@ -3,6 +3,7 @@ import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import OptionMenu from "../optionMenu/OptionMenu";
 import { CurrentUserContext } from "../../../context/currentUserContext/CurrentUserContext";
+import MyPost from "../myPost/MyPost";
 
 const BandProfile = () => {
   const [profileDialogOpen, setProfileDialogOpen] = useState(false);
@@ -15,7 +16,7 @@ const BandProfile = () => {
   const coverInputRef = useRef(null);
   const [coverImage, setCoverImage] = useState("");
 
-  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   {
     /* Profile Image */
@@ -120,7 +121,7 @@ const BandProfile = () => {
   };
 
   return (
-    <div>
+    <div className="px-cusPadding pt-8 bg-slate-100 min-h-screen">
       {/* Overlay for Darken or Blur Background */}
       {profileDialogOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
@@ -128,18 +129,17 @@ const BandProfile = () => {
       {coverDialogOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
       )}
-      <div className="flex flex-col pb-10 lg:flex-row px-4 md:px-8 lg:px-cusPadding bg-background min-h-screen">
-        {/* left part */}
-        <div className="lg:w-[70%] mt-6 mx-auto max-w-full">
+      <div>
+        <div className="flex md:flex-col lg:flex-row">
           {/* Profile details */}
-          <div className="">
-            <div className="relative">
+          <div className=" w-full rounded-xl shadow-lg mb-6">
+            <div className="">
               {/* Cover Image */}
               <img
-                className="w-full h-[200px] cursor-pointer md:h-[300px] object-cover rounded-t-xl"
+                className="w-full h-[200px] md:h-[300px] object-cover rounded-t-xl"
                 src="./band-cover.jpg"
                 alt="Band Cover"
-                onClick={() => setCoverDialogOpen(true)}
+                onClick={() => setCoverDialogOpen(false)}
               />
             </div>
             {/* Edit Cover Image */}
@@ -188,12 +188,30 @@ const BandProfile = () => {
             </Dialog>
             <div className="bg-white flex flex-col px-6 md:px-8 py-6 rounded-b-xl relative">
               {/* Avatar Image */}
-              <img
-                className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer border-white absolute -top-16 md:-top-32 left-6 md:left-8"
-                src={`http://localhost:3000/images/${currentUser.imgpath}`}
-                alt="Band Profile"
-                onClick={() => setProfileDialogOpen(true)}
-              />
+              {currentUser.type === "band" && currentUser.imgpath === "band" ? (
+                <img
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  src="./band.png"
+                  alt=""
+                  onClick={() => setProfileDialogOpen(true)}
+                />
+              ) : currentUser.type === "player" &&
+                currentUser.imgpath === "player" ? (
+                <img
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  src="./musician.png"
+                  alt=""
+                  onClick={() => setProfileDialogOpen(true)}
+                />
+              ) : (
+                <img
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  src={`http://192.168.43.30:3000/images/${currentUser.imgpath}`}
+                  alt=""
+                  onClick={() => setProfileDialogOpen(false)}
+                />
+              )}
+
               {/* Edit Avatar */}
               <Dialog
                 header=""
@@ -241,10 +259,10 @@ const BandProfile = () => {
 
               <div className="mt-4 lg:mt-10">
                 {/* Band Name and Description */}
-                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
+                <h1 className="text-xl md:text-2xl lg:text-3xl mt-6 font-bold">
                   {currentUser.name}
                 </h1>
-                <p className="text-gray-600 mt-2 text-sm md:text-base">
+                <p className="text-gray-600 mt-4 text-sm md:text-base">
                   {currentUser.about}
                 </p>
               </div>
@@ -252,18 +270,12 @@ const BandProfile = () => {
           </div>
           {/* Option Menu */}
           {/* Why my width is reduce than others  */}
-          <div className="lg:hidden p-6 md:p-8 mt-6">
+          <div className="lg:w-[30%] lg:ml-6 lg:block">
             <OptionMenu />
           </div>
-          
-          {/* Band posts */}
-          <div>
-            <div className="bg-cardBg p-6 md:p-8 rounded-xl mt-6"></div>
-          </div>
         </div>
-        {/* right part */}
-        <div className="lg:w-[30%] mt-6 lg:ml-6 hidden lg:block">
-          <OptionMenu />
+        <div className="mt-6 flex justify-start">
+          <MyPost />
         </div>
       </div>
     </div>

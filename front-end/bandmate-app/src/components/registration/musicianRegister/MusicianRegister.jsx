@@ -42,7 +42,7 @@ const MusicianRegister = () => {
     about: "",
     experience: "",
     category: "",
-    imgpath: "test",
+    imgpath: "player",
     phone: "",
   });
 
@@ -93,7 +93,7 @@ const MusicianRegister = () => {
       formDataImage.append("email", formData.email);
 
       const imageResponse = await axios.post(
-        "http://localhost:3000/images/upload",
+        "http://192.168.43.30:3000/images/upload",
         formDataImage,
         {
           headers: {
@@ -120,7 +120,7 @@ const MusicianRegister = () => {
 
     try {
       const result = await axios.post(
-        "http://localhost:3000/auth/register",
+        "http://192.168.43.30:3000/auth/register",
         formData
       );
       setVisibleAlert(true);

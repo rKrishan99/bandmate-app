@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Dialog } from "primereact/dialog";
+
+
 const PopupAlert = ({ visible, message, info, onClose }) => {
 
   // Automatically close the dialog after 3 seconds
@@ -7,7 +9,7 @@ const PopupAlert = ({ visible, message, info, onClose }) => {
     if (visible) {
       const timer = setTimeout(() => {
         onClose(); // Call the provided close function
-      }, 2000); // Adjust the time as needed (3000ms = 3 seconds)
+      }, 1000); // Adjust the time as needed (3000ms = 3 seconds)
 
       return () => clearTimeout(timer); // Cleanup the timer on unmount
     }

@@ -8,21 +8,24 @@ import { BandRegisterProvider } from "./context/bandRegisterContext/BandRegister
 import { MusicianRegisterProvider } from "./context/musicianRegisterContext/MusicianRegisterContext.jsx";
 import { CurrentUserProvider } from "./context/currentUserContext/CurrentUserContext.jsx";
 import { FunctionalityProvider } from "./context/functionalityContext/FunctionalityContext.jsx";
+import { ApplyDataProvider } from "./context/applyDataContext/ApplyDataContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <FunctionalityProvider>
-    <RegisterProvider>
-      <MusicianRegisterProvider>
-        <BandRegisterProvider>
-          <CurrentUserProvider>
-            <LoginProvider>
-              <Router>
-                <App />
-              </Router>
-            </LoginProvider>
-          </CurrentUserProvider>
-        </BandRegisterProvider>
-      </MusicianRegisterProvider>
-    </RegisterProvider>
-  </FunctionalityProvider>
+  <ApplyDataProvider>
+    <FunctionalityProvider>
+      <RegisterProvider>
+        <MusicianRegisterProvider>
+          <BandRegisterProvider>
+            <CurrentUserProvider>
+              <LoginProvider>
+                <Router>
+                  <App />
+                </Router>
+              </LoginProvider>
+            </CurrentUserProvider>
+          </BandRegisterProvider>
+        </MusicianRegisterProvider>
+      </RegisterProvider>
+    </FunctionalityProvider>
+  </ApplyDataProvider>
 );
