@@ -14,13 +14,13 @@ export default function Footer() {
         </div>
 
         {/* Copyright Section centered */}
-        <div className="flex-grow text-center p-4 text-white dark:bg-white dark:text-neutral-200">
-          © 2023 Copyright:
+        <div className="flex-grow text-center p-4 text-white dark:bg-neutral-600 dark:text-neutral-200">
+          © 2024 BandMate. All rights reserved.
           <a
             className="text-white "
             href="https://tw-elements.com/"
           >
-            TW Elements
+            
           </a>
         </div>
 
