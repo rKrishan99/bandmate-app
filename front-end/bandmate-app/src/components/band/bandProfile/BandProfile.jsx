@@ -136,10 +136,10 @@ const BandProfile = () => {
             <div className="">
               {/* Cover Image */}
               <img
-                className="w-full h-[200px] cursor-pointer md:h-[300px] object-cover rounded-t-xl"
+                className="w-full h-[200px] md:h-[300px] object-cover rounded-t-xl"
                 src="./band-cover.jpg"
                 alt="Band Cover"
-                onClick={() => setCoverDialogOpen(true)}
+                onClick={() => setCoverDialogOpen(false)}
               />
             </div>
             {/* Edit Cover Image */}
@@ -198,17 +198,17 @@ const BandProfile = () => {
               ) : currentUser.type === "player" &&
                 currentUser.imgpath === "player" ? (
                 <img
-                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
                   src="./musician.png"
                   alt=""
                   onClick={() => setProfileDialogOpen(true)}
                 />
               ) : (
                 <img
-                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
                   src={`http://192.168.43.30:3000/images/${currentUser.imgpath}`}
                   alt=""
-                  onClick={() => setProfileDialogOpen(true)}
+                  onClick={() => setProfileDialogOpen(false)}
                 />
               )}
 
