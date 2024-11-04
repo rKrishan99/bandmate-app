@@ -107,13 +107,13 @@ const Navbar = () => {
             <div>
               <button
                 onClick={handleSetVisibleLogin}
-                className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4"
+                className="bg-primaryButton font-medium text-lg hover:bg-primaryButton-hover text-white px-8 py-[9px] rounded-md mr-4"
               >
                 Signin
               </button>
 
               <button
-                className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md"
+                className="bg-primaryButton font-medium text-lg hover:bg-primaryButton-hover text-white px-8 py-[9px] rounded-md"
                 onClick={handleSetVisibleRegister}
               >
                 Signup
@@ -166,7 +166,7 @@ const Navbar = () => {
                   )}
                 </div>
               ) : (
-                <div>
+                <div className="flex flex-col gap-3">
                   <button
                     onClick={handleSetVisibleLogin}
                     className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out"

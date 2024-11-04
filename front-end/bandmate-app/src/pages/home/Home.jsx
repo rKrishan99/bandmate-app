@@ -18,8 +18,8 @@ const Home = () => {
     <div>
       <div className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
-        <div className="relative flex-col items-center justify-center  h-full p-28">
-          <h1 className="text-white text-6xl md:mt-20 font-bold text-center">
+        <div className="relative flex-col items-center mt-10 justify-center  h-full p-28">
+          <h1 className="text-white text-6xl font-bold text-center">
             Welcome to BandMate Connect
           </h1>
           <h1 className="text-white text-6xl font-bold text-center">
@@ -40,18 +40,18 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="relative overflow-hidden bg-background padding1">
+      <div className="relative overflow-hidden bg-background px-cusPadding pt-10">
         <div className="relative bg-white flex flex-col items-center h-full m-3 p-7 rounded-xl shadow-md">
-          <h1 className="text-5xl p-4 text-gray-700 font-bold">Through Ours</h1>
+          <h1 className="text-5xl p-4 text-gray-800 font-bold">Through Ours</h1>
 
-          <div className="mx-1 p-2">
+          <div className="mx-1 p-2 flex flex-col justify-center items-center">
             <div className="grid grid-cols-2 gap-10">
-              <div className="bg-background text-white p-4 rounded-lg flex flex-col items-center justify-center ">
+              <div className="bg-slate-200 shadow-md text-white p-4 rounded-xl  flex flex-col items-center justify-center">
                 <div className="flex justify-center mb-3">
                   <img
-                    src="../../src/assests/jazz_band_team_generated.jpg"
+                    src="./hr1.png"
                     alt=""
-                    className="size-full transform transition-transform duration-200 hover:scale-110"
+                    className="lg:w-[450px]  size-full transform transition-transform duration-200 hover:scale-110"
                   />
                 </div>
                 <h4 className="text-2xl text-gray-700 font-semibold mb-2">
@@ -64,12 +64,12 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="bg-background text-white p-4 rounded-lg flex flex-col items-center justify-center">
+              <div className="bg-slate-200 shadow-md text-white p-4 rounded-xl  flex flex-col items-center justify-center">
                 <div className="flex justify-center mb-3">
                   <img
-                    src="../../src/assests/14_Cartoon_Character.jpg"
+                    src="./hr2.png"
                     alt=""
-                    className="photo size-full transform transition-transform duration-200 hover:scale-110"
+                    className="lg:w-[450px]  size-full transform transition-transform duration-200 hover:scale-110"
                   />
                 </div>
                 <h4 className="text-2xl text-gray-700 font-semibold mb-2">
@@ -84,8 +84,8 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="w-full p-3 m-4 border-t-2 border-gray-300 text-center">
-              ads here
+            <div className="w-full p-3 m-4 border-t-2 border-gray-300 mt-10 text-center">
+             
             </div>
           </div>
         </div>
@@ -116,9 +116,9 @@ const Home = () => {
           Experts Of Sounds
         </h1>
       </div>
-      <div class="container mx-auto p-10 bg-background">
+      <div class="container mx-auto p-10 ">
         <div class="grid grid-cols-4 gap-4">
-          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
+          <div class="bg-gray-200 text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="rounded-full round">
               <img
                 className="object-cover w-full h-full rounded-full"
@@ -137,7 +137,7 @@ const Home = () => {
               cancel={false}
             />
           </div>
-          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
+          <div class="bg-gray-200 text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="bg-black p-4 rounded-full round">
               <img
                 className="object-cover w-full h-full rounded-full"
@@ -157,7 +157,7 @@ const Home = () => {
             />
           </div>
 
-          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
+          <div class="bg-gray-200 text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className="rounded-full round">
               <img
                 className="object-cover w-full h-full rounded-full"
@@ -176,7 +176,7 @@ const Home = () => {
               cancel={false}
             />
           </div>
-          <div class="bg-white text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
+          <div class="bg-gray-200 text-black p-6 rounded-lg flex items-center justify-center flex-col shadow-lg transform transition-transform duration-200 hover:scale-110">
             <div className=" rounded-full round">
               <img
                 className="object-cover w-full h-full rounded-full"
@@ -197,7 +197,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="flex py-6 px-8">
+      <div className="flex py-6 px-cusPadding">
         <div className="size-full py-4">
           <h1 className="text-3xl text-gray-700 font-bold p-4">
             Why Hire Musicians Through US?
@@ -260,7 +260,6 @@ const Home = () => {
           </p>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

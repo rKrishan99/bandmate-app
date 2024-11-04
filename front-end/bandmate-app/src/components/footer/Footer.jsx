@@ -6,15 +6,15 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-center text-white dark:bg-neutral-600 padding sticky">
+    <footer className="bg-black text-center text-white padding sticky">
       <div className="container pt-4 flex justify-between items-center">
         {/* Band Logo on the left */}
         <div className="flex-shrink-0 pb-4">
-          <img className="w-24 md:w-28" src={Logo} alt="Bandmate Logo" />
+          <img className="w-24 md:w-28 cursor-pointer" src={Logo} alt="Bandmate Logo" />
         </div>
 
         {/* Copyright Section centered */}
-        <div className="flex-grow text-center p-4 text-white dark:bg-neutral-600 dark:text-neutral-200">
+        <div className="flex-grow text-center p-4 text-white dark:text-neutral-200">
           © 2024 BandMate. All rights reserved.
           <a
             className="text-white "
@@ -32,7 +32,7 @@ export default function Footer() {
             {/* Facebook Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-4 w-4 cursor-pointer"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -43,7 +43,7 @@ export default function Footer() {
             {/* Twitter Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-4 w-4 cursor-pointer"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -54,7 +54,7 @@ export default function Footer() {
             {/* Instagram Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 cursor-pointer"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -69,7 +69,7 @@ export default function Footer() {
             {/* LinkedIn Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-4 w-4 cursor-pointer"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -80,7 +80,7 @@ export default function Footer() {
             {/* GitHub Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-4 w-4 cursor-pointer"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
