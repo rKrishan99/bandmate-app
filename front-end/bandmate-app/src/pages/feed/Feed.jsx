@@ -20,7 +20,7 @@ const Feed = () => {
 
   const fetchVacancies = async () => {
     try {
-      const response = await axios.get(`http://192.168.43.30:3000/vacancy`);
+      const response = await axios.get(`http://localhost:3000/vacancy`);
       setVacancies(response.data);
       setFilteredVacancies(response.data); // Set all vacancies by default
     } catch (error) {

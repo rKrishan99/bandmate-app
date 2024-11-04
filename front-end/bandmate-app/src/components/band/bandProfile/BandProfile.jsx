@@ -206,7 +206,7 @@ const BandProfile = () => {
               ) : (
                 <img
                   className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
-                  src={`http://192.168.43.30:3000/images/${currentUser.imgpath}`}
+                  src={`http://localhost:3000/images/${currentUser.imgpath}`}
                   alt=""
                   onClick={() => setProfileDialogOpen(false)}
                 />

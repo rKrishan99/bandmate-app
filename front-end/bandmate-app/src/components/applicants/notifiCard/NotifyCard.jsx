@@ -13,7 +13,7 @@ const NotifyCard = () => {
     const fetchNotification = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.43.30:3000/application/band/${currentUser.email}`
+          `http://localhost:3000/application/band/${currentUser.email}`
         );
         setNotification(response.data); // Set the vacancies data
         console.log("Notification data:", response.data);
@@ -46,7 +46,7 @@ const NotifyCard = () => {
             {notify.imgpath !== "player" ? (
               <img
                 className="bg-slate-50 rounded-full w-20 h-20"
-                src={`http://192.168.43.30:3000/images/${notify.imgpath}`}
+                src={`http://localhost:3000/images/${notify.imgpath}`}
                 alt=""
               />
             ) : (

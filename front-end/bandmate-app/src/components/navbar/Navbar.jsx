@@ -88,7 +88,7 @@ const Navbar = () => {
                 <img
                   ref={avatarRef}
                   className="bg-slate-50 rounded-full w-14 cursor-pointer"
-                  src={`http://192.168.43.30:3000/images/${currentUser.imgpath}`}
+                  src={`http://localhost:3000/images/${currentUser.imgpath}`}
                   alt=""
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                 />

@@ -88,7 +88,7 @@ const BandRegister = () => {
       formDataImage.append("email", formData.email);
 
       const imageResponse = await axios.post(
-        "http://192.168.43.30:3000/images/upload",
+        "http://localhost:3000/images/upload",
         formDataImage,
         {
           headers: {
@@ -115,7 +115,7 @@ const BandRegister = () => {
 
     try {
       const result = await axios.post(
-        "http://192.168.43.30:3000/auth/register",
+        "http://localhost:3000/auth/register",
         formData
       );
       setVisibleAlert(true);

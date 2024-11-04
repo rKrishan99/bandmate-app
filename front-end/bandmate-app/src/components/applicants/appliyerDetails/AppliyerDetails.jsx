@@ -23,7 +23,7 @@ const AppliyerDetails = () => {
 
     try {
       const result = await axios.delete(
-        `http://192.168.43.30:3000/application/${appliyerDetails.applicationID}`
+        `http://localhost:3000/application/${appliyerDetails.applicationID}`
       );
 
       console.log("Ignore result:", result);
@@ -68,7 +68,7 @@ const AppliyerDetails = () => {
             {appliyerDetails.imgpath !== "player" ? (
               <img
                 className="bg-slate-50 rounded-full w-28 h-28 "
-                src={`http://192.168.43.30:3000/images/${appliyerDetails.imgpath}`}
+                src={`http://localhost:3000/images/${appliyerDetails.imgpath}`}
                 alt=""
               />
             ) : (

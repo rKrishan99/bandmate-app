@@ -46,7 +46,7 @@ const Post = ({ vacancies }) => {
     // Fetch vacancies data
     const fetchVacancies = async () => {
       try {
-        const response = await axios.get("http://192.168.43.30:3000/vacancy");
+        const response = await axios.get("http://localhost:3000/vacancy");
         setFetchedVacancies(response.data); // Set the vacancies data
       } catch (error) {
         console.error("Error fetching vacancies:", error);
@@ -82,7 +82,7 @@ const Post = ({ vacancies }) => {
               ) : (
                 <img
                   className="bg-slate-50 rounded-full w-20 h-20 border-2 border-gray-300 cursor-pointer"
-                  src={`http://192.168.43.30:3000/images/${vacancy.imgpath}`}
+                  src={`http://localhost:3000/images/${vacancy.imgpath}`}
                   alt=""
                 />
               )}
