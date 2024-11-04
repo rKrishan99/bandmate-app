@@ -42,7 +42,7 @@ const MusicianRegister = () => {
     about: "",
     experience: "",
     category: "",
-    imgpath: "test",
+    imgpath: "player",
     phone: "",
   });
 

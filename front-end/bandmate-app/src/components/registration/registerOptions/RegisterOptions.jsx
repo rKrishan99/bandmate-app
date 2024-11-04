@@ -31,7 +31,7 @@ const RegisterOptions = () => {
         header=""
         visible={visibleRegister}
         onHide={() => setVisibleRegister(false)}
-        className=" bg-cardBg md:w-[650px] p-6 rounded-xl"
+        className=" bg-cardBg md:w-auto p-6 rounded-xl"
         breakpoints={{ "960px": "75vw", "640px": "90vw" }}
       >
         <div className="flex justify-between items-center p-8 gap-4 md:gap-10">

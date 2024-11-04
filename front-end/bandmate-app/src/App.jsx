@@ -21,6 +21,9 @@ import ApplyDialog from "./components/applyDialog/ApplyDialog";
 import "primereact/resources/themes/lara-light-indigo/theme.css";  // Theme (choose any available theme)
 import "primereact/resources/primereact.min.css";                  // Core PrimeReact styles
 import "primeicons/primeicons.css";                                // Icons (if used by any components)
+import AppliyerDetails from "./components/applicants/appliyerDetails/AppliyerDetails";
+import ConfirmDelete from "./components/band/confirmDelete/ConfirmDelete";
+import DeleteMyPost from "./components/band/myPost/deleteMyPost/DeleteMyPost";
 
 
 function App() {
@@ -36,6 +39,9 @@ function App() {
     <Applicants/>
     <PaymentGetway/>
     <ApplyDialog/>
+    <AppliyerDetails/>
+    <ConfirmDelete/>
+    <DeleteMyPost/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

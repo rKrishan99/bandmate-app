@@ -9,6 +9,12 @@ export const FunctionalityProvider = ({ children }) => {
   const [visiblePaymentGetway, setVisiblePaymentGetway] = useState(false);
   const [paid, setPaid] = useState(false);
   const [openApply, setOpenApply] = useState(false);
+  const [visibleAppliyerDetails, setVisibleAppliyerDetails] = useState(false);
+  const [appliyerDetails, setAppliyerDetails] = useState(false);
+  const [visibleDeleteUser, setVisibleDeleteUser] = useState(false);
+  const [visibleConfirmDelete, setVisibleConfirmDelete] = useState(false);
+  const [visiblePostDelete, setVisiblePostDelete] = useState(false);
+  const [DeleteVacancyID, setDeleteVacancyID] = useState(null);
 
   return (
     <FunctionalityContext.Provider
@@ -25,6 +31,18 @@ export const FunctionalityProvider = ({ children }) => {
         setPaid,
         openApply,
         setOpenApply,
+        visibleAppliyerDetails,
+        setVisibleAppliyerDetails,
+        appliyerDetails,
+        setAppliyerDetails,
+        visibleDeleteUser,
+        setVisibleDeleteUser,
+        visibleConfirmDelete,
+        setVisibleConfirmDelete,
+        visiblePostDelete,
+        setVisiblePostDelete,
+        DeleteVacancyID,
+        setDeleteVacancyID,
       }}
     >
       {children}

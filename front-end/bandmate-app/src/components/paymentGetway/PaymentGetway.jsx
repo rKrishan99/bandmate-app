@@ -84,16 +84,18 @@ const PaymentGetway = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50"></div>
       )}
       <Dialog
-        header=""
+        header={
+          <h1 className="text-3xl font-bold ml-6">Payment</h1>
+        }
         visible={visiblePaymentGetway}
         onHide={() => {
           if (!visiblePaymentGetway) return;
           setVisiblePaymentGetway(false);
         }}
-        className="w-[500px] h-[600px] rounded-xl bg-slate-100 border-2 border-slate-300 p-6"
+        className="w-[500px] h-[600px] rounded-xl bg-cardBg border-2 py-4 border-slate-300"
       >
         <div className="m-6 flex flex-col">
-          <h1 className="text-3xl font-bold mb-12">Payment</h1>
+          
           <div className="flex flex-row gap-4">
             <div
               onClick={() => {
