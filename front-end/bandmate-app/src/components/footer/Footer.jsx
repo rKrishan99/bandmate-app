@@ -20,7 +20,9 @@ export default function Footer() {
             className="text-white "
             href="https://tw-elements.com/"
           >
-            
+
+            BandMate
+
           </a>
         </div>
 

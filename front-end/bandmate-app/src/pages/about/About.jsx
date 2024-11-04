@@ -7,6 +7,7 @@ import Footer from "../../components/footer/Footer";
 const About = () => {
   return (
     <div>
+
       <div className="flex justify-center p-4">
         <h1 className="text-5xl text-gray-700 font-bold font-sans">About Us</h1>
       </div>
@@ -18,8 +19,8 @@ const About = () => {
             alt=""
           />
         </div>
-        <div className="p-10 size-2/4 ">
-          <p className="text-gray-700 text-lg pt-6 pl-3">
+        <div className="lg:pl-10 sm:pl-3 sm:pt-5 size-2/4 ">
+          <p className="text-gray-700 lg:text-lg sm:text-base pt-6 pl-3">
             We’re more than just a team; we're a passionate group of individuals
             driven by the mission to deliver exceptional services. Our story
             began with the simple idea of hire talented players, and since then,
@@ -31,7 +32,7 @@ const About = () => {
               Our Mission
             </h3>
           </div>
-          <p className="pl-10 text-gray-700 text-lg">
+          <p className="lg:pl-10 sm:pl-3 text-gray-700 lg:text-lg sm:text-base">
             Our mission is to give you to best service with trusterd and quality
             players hiring. We believe in quality, innovation, customer service,
             sustainability, etc., and this belief guides everything we do.
@@ -75,7 +76,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="bg-background p-5 mt-5">
+      <div className="bg-background p-5 ">
         <div className="shadow-lg text-white p-4">
         <div className="flex justify-center p-10 ">
           <h1 className="text-4xl  text-gray-700 font-bold">What We Are Do</h1>
