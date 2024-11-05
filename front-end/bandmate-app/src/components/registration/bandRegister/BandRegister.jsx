@@ -55,7 +55,7 @@ const BandRegister = () => {
       type: "band",
       name: "",
       about: "",
-      experience: "",
+      experience: 0,
       category: "",
       imgpath: "",
       phone: "",

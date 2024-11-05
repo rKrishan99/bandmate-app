@@ -1,16 +1,21 @@
-import React from "react";
-import Navbar from "../../components/navbar/Navbar";
+import React, { useEffect } from "react";
 import IconLocation from "../../assests/svg/location-pin-svgrepo-com.svg";
 import IconCall from "../../assests/svg/call-chat-svgrepo-com.svg";
 import IconTime from "../../assests/svg/time-twenty-four-svgrepo-com.svg";
 import {} from "./contact.css";
-import Footer from "../../components/footer/Footer";
 import { useState } from "react";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [isSubmitted, setIsSubmitted] = useState(false); // Success state
   const [isFormVisible, setIsFormVisible] = useState(true); // Form visibility
+
+  // Initialize AOS when the component mounts
+  useEffect(() => {
+    AOS.init({});
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -26,10 +31,12 @@ const Contact = () => {
 
   return (
     <div>
-      <div className="relative h-screen overflow-hidden bg-background py-10 px-cusPadding">
-        <div className="relative bg-white flex-row items-start  h-full m-6 p-7 rounded-xl shadow-md pb-4">
+      <div data-aos="fade-up" data-aos-duration="2000" className="relative h-auto overflow-hidden bg-background md:px-cusPadding py-10 pb-10 ">
+        <div className="relative bg-white flex-row items-start h-auto m-6 p-7 rounded-xl shadow-md pb-4">
           <div className="flex flex-col justify-center text-center">
-            <h1 className="text-5xl text-gray-700 font-bold mt-4 ">Get Touch In!</h1>
+            <h1 className="text-5xl text-gray-700 font-bold mt-4 ">
+              Get Touch In!
+            </h1>
             <h4 className=" p-7 text-lg text-gray-700  ">
               Have questions or need help? We’re here to support you! Our app is
               designed to bring guitarists together in one place, making it easy
@@ -38,32 +45,32 @@ const Contact = () => {
             </h4>
           </div>
 
-          <div className="flex justify-between m-5 mt-3">
-            <div className="relative flex-row   h-full m-6 mt-0  contact">
-              <div className="m-4 mt-5">
+          <div className="flex flex-col md:flex-row mt-10 h-auto justify-between ">
+            <div className="relative flex flex-col gap-6  h-full mt-0  contact">
+              <div className="md:pl-6 ">
                 <img src={IconLocation} alt="" className="h-7 w-7 my-1 mb-0" />
                 <p className="text-sm font-bold  text-gray-700">
                   No.87, Kandy Road ,Kiribathgoda,
                 </p>
                 <p className="text-sm font-bold ">Gampaha.</p>
               </div>
-              <div className="m-4 my-2 p-0">
+              <div className="md:pl-6 ">
                 <img src={IconCall} alt="" className="h-7 w-7 my-1 " />
                 <p className="text-sm font-bold">041-22 65 345</p>
                 <p className="text-sm font-bold">077-60 45 700</p>
                 <p className="text-sm font-bold">070-80 90 900</p>
               </div>
-              <div className="m-4 my-7">
+              <div className="md:pl-6 ">
                 <img src={IconTime} alt="" className="h-7 w-7 my-1" />
                 <p className="text-sm font-bold">open in 24 hours</p>
               </div>
             </div>
-            <div className="flex-row ">
+            <div className="flex-row">
               {isFormVisible ? (
                 <form
                   action=""
                   onSubmit={handleSubmit}
-                  className="w-full max-w-md  bg-opacity-90 p-6 rounded-lg form-padding "
+                  className="w-full max-w-md bg-opacity-90 p-6 rounded-lg form-padding "
                 >
                   <div>
                     <label
@@ -109,7 +116,6 @@ const Contact = () => {
                       className="bg-blue-600 font-medium text-lg text-white px-4 py-2 rounded-md hover:bg-blue-700 form-button mt-2"
                       disabled={isLoading}
                     >
-                      
                       {isLoading ? "Submitting..." : "Submit"}
                     </button>
                   </div>

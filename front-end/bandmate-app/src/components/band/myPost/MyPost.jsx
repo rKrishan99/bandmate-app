@@ -3,6 +3,8 @@ import { FunctionalityContext } from "../../../context/functionalityContext/Func
 import axios from "axios";
 import { CurrentUserContext } from "../../../context/currentUserContext/CurrentUserContext";
 import { ApplyDataContext } from "../../../context/applyDataContext/ApplyDataContext";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 
 const MyPost = () => {
   const { openApply, setOpenApply, DeleteVacancyID, setDeleteVacancyID } = useContext(FunctionalityContext);
@@ -17,6 +19,11 @@ const MyPost = () => {
     console.log("applyData updated:", applyData);
   }, [applyData]);
 
+  useEffect(() => {
+    AOS.init({
+      // Only animate once
+    });
+  }, []);
 
   const handleRemove = (vacancyID) => {
    
@@ -53,7 +60,8 @@ const MyPost = () => {
         .map((vacancy) => (
           <div
             key={vacancy.vacancyID}
-            className="vacancy-item w-full max-w-4xl flex p-4 flex-col h-auto pb-10 bg-cardBg mt-4 rounded-xl shadow-md relative"
+            data-aos="fade-up" data-aos-duration="1000"
+            className="vacancy-item  w-full max-w-4xl flex p-4 flex-col h-auto pb-10 bg-cardBg mt-4 rounded-xl shadow-md relative"
           >
             <div className="pl-5 mt-2 flex flex-col sm:flex-row gap-6">
               {vacancy.type === "band" && vacancy.imgpath === "band" ? (

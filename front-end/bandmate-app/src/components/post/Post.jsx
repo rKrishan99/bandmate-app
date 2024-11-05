@@ -64,6 +64,7 @@ const Post = ({ vacancies }) => {
         .map((vacancy) => (
           <div
             key={vacancy.vacancyID}
+             data-aos="fade-up" data-aos-duration="1000"
             className="vacancy-item md:w-[800px] lg:w-[1000px] flex p-4 flex-col h-auto pb-10 bg-cardBg mt-4 rounded-xl shadow-md relative"
           >
             <div className="pl-5 mt-2 flex flex-col sm:flex-row gap-6">
@@ -92,6 +93,7 @@ const Post = ({ vacancies }) => {
                 </span>
                 <span className="text-xs sm:text-sm text-slate-600">
                   {/* Add any additional information here */}
+                  4 hours ago
                 </span>
               </div>
               <div

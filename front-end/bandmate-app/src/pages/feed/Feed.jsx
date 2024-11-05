@@ -46,7 +46,7 @@ const Feed = () => {
   }, [selectedOption, vacancies]);
 
   return (
-    <div className="flex flex-col items-center bg-background min-h-screen">
+    <div className="flex flex-col items-center bg-background pb-24 min-h-screen">
       <div className="w-full bg-slate-100 px-8 lg:px-cusPadding shadow-md h-auto py-3 flex items-center justify-start gap-4 flex-wrap md:flex-nowrap">
         <span className="text-sm font-bold w-auto shadow-md bg-cardBg px-4 py-[10px] rounded-md text-gray-800 md:text-lg text-center">
           Filter Ads

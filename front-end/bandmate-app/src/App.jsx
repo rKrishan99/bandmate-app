@@ -27,6 +27,9 @@ import DeleteMyPost from "./components/band/myPost/deleteMyPost/DeleteMyPost";
 import Footer from "./components/footer/Footer";
 
 function App() {
+  
+
+
   return (
     <>
       <Navbar />

@@ -6,6 +6,11 @@ body {
     @apply font-sans;
 }
 
+/* Global CSS file or within a Tailwind CSS layer */
+body, html {
+    overflow-x: hidden;
+}
+
 /* :root {
 
 } */

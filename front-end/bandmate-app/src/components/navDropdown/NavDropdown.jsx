@@ -29,10 +29,15 @@ export const NavDropdown = () => {
               src="./musician.png"
               alt=""
             />
-          ) : (
+          ) : currentUser.imgpath ? (
             <img
               className="bg-slate-50 rounded-full border-2 w-14 h-14"
               src={`http://localhost:3000/images/${currentUser.imgpath}`}
+            />
+          ) : (
+            <img
+              className="bg-slate-50 rounded-full border-2 w-14 h-14"
+              src="./avatar.png"
             />
           )}
           <div className="flex flex-col">
