@@ -3,6 +3,7 @@ import { FunctionalityContext } from "../../context/functionalityContext/Functio
 import axios from "axios";
 import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
 import { ApplyDataContext } from "../../context/applyDataContext/ApplyDataContext";
+import { formatDistanceToNow } from "date-fns";
 
 const Post = ({ vacancies }) => {
   const { openApply, setOpenApply } = useContext(FunctionalityContext);
@@ -93,7 +94,9 @@ const Post = ({ vacancies }) => {
                 </span>
                 <span className="text-xs sm:text-sm text-slate-600">
                   {/* Add any additional information here */}
-                  4 hours ago
+                  {formatDistanceToNow(new Date(vacancy.createdAt), {
+                    addSuffix: true,
+                  })}
                 </span>
               </div>
               <div
