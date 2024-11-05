@@ -45,7 +45,7 @@ const ApplyDialog = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        "http://192.168.43.30:3000/application",
+        "http://localhost:3000/application",
         formData
       );
       console.log("Response from server:", response.data);

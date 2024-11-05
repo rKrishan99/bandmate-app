@@ -98,7 +98,7 @@ const PostAds = () => {
     console.log("Date time check", formData);
     try {
       const result = await axios.post(
-        "http://192.168.43.30:3000/vacancy",
+        "http://localhost:3000/vacancy",
         updatedFormData
       );
       setVisibleAlert(true);

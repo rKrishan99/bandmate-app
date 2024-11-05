@@ -23,7 +23,7 @@ const ConfirmDelete = () => {
 
     try {
       const result = await axios.delete(
-        `http://192.168.43.30:3000/user/${currentUser.email}`
+        `http://localhost:3000/user/${currentUser.email}`
       );
 
       if (result.status === 200) {

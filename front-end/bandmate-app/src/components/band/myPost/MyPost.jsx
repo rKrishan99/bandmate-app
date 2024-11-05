@@ -3,6 +3,8 @@ import { FunctionalityContext } from "../../../context/functionalityContext/Func
 import axios from "axios";
 import { CurrentUserContext } from "../../../context/currentUserContext/CurrentUserContext";
 import { ApplyDataContext } from "../../../context/applyDataContext/ApplyDataContext";
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 
 const MyPost = () => {
   const { openApply, setOpenApply, DeleteVacancyID, setDeleteVacancyID } = useContext(FunctionalityContext);
@@ -17,6 +19,11 @@ const MyPost = () => {
     console.log("applyData updated:", applyData);
   }, [applyData]);
 
+  useEffect(() => {
+    AOS.init({
+      // Only animate once
+    });
+  }, []);
 
   const handleRemove = (vacancyID) => {
    
@@ -34,7 +41,7 @@ const MyPost = () => {
     const fetchVacancies = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.43.30:3000/vacancy/band/${currentUser.email}`
+          `http://localhost:3000/vacancy/band/${currentUser.email}`
         );
         setVacancies(response.data); // Set the vacancies data
       } catch (error) {
@@ -53,7 +60,8 @@ const MyPost = () => {
         .map((vacancy) => (
           <div
             key={vacancy.vacancyID}
-            className="vacancy-item w-full max-w-4xl flex p-4 flex-col h-auto pb-10 bg-cardBg mt-4 rounded-xl shadow-md relative"
+            data-aos="fade-up" data-aos-duration="1000"
+            className="vacancy-item  w-full max-w-4xl flex p-4 flex-col h-auto pb-10 bg-cardBg mt-4 rounded-xl shadow-md relative"
           >
             <div className="pl-5 mt-2 flex flex-col sm:flex-row gap-6">
               {vacancy.type === "band" && vacancy.imgpath === "band" ? (
@@ -71,7 +79,7 @@ const MyPost = () => {
               ) : (
                 <img
                   className="bg-slate-50 rounded-full w-20 h-20 border-2 border-gray-300 cursor-pointer"
-                  src={`http://192.168.43.30:3000/images/${vacancy.imgpath}`}
+                  src={`http://localhost:3000/images/${vacancy.imgpath}`}
                   alt=""
                 />
               )}

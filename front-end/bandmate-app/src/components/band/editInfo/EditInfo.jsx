@@ -81,7 +81,7 @@ const EditInfo = () => {
 
     try {
       const result = await axios.put(
-        "http://192.168.43.30:3000/user",
+        "http://localhost:3000/user",
         formData
       );
       setAlertMessage("Update successful!");

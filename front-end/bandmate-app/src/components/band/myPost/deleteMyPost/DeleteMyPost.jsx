@@ -38,7 +38,7 @@ const DeleteMyPost = () => {
 
     try {
       const result = await axios.delete(
-        `http://192.168.43.30:3000/vacancy/${DeleteVacancyID}`
+        `http://localhost:3000/vacancy/${DeleteVacancyID}`
       );
 
       console.log("Delete result:", result);

@@ -121,7 +121,7 @@ const BandProfile = () => {
   };
 
   return (
-    <div className="px-cusPadding pt-8 bg-slate-100 min-h-screen">
+    <div className="px-10 md:px-cusPadding pt-8 bg-slate-100 min-h-screen pb-24">
       {/* Overlay for Darken or Blur Background */}
       {profileDialogOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
@@ -130,9 +130,9 @@ const BandProfile = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
       )}
       <div>
-        <div className="flex md:flex-col lg:flex-row">
+        <div className="flex flex-col md:flex-col lg:flex-row">
           {/* Profile details */}
-          <div className=" w-full rounded-xl shadow-lg mb-6">
+          <div className=" w-full bg-cardBg h-auto rounded-xl shadow-lg mb-6">
             <div className="">
               {/* Cover Image */}
               <img
@@ -186,13 +186,13 @@ const BandProfile = () => {
                 />
               </div>
             </Dialog>
-            <div className="bg-white flex flex-col px-6 md:px-8 py-6 rounded-b-xl relative">
+            <div className="flex flex-col bg-white h-auto  px-6 md:px-8 py-6 rounded-b-xl relative">
               {/* Avatar Image */}
               {currentUser.type === "band" && currentUser.imgpath === "band" ? (
                 <img
                   className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 cursor-pointer bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
                   src="./band.png"
-                  alt=""
+                  alt="Band"
                   onClick={() => setProfileDialogOpen(true)}
                 />
               ) : currentUser.type === "player" &&
@@ -200,14 +200,21 @@ const BandProfile = () => {
                 <img
                   className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
                   src="./musician.png"
-                  alt=""
+                  alt="Musician"
                   onClick={() => setProfileDialogOpen(true)}
+                />
+              ) : currentUser.imgpath ? (
+                <img
+                  className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
+                  src={`http://localhost:3000/images/${currentUser.imgpath}`}
+                  alt="User Image"
+                  onClick={() => setProfileDialogOpen(false)}
                 />
               ) : (
                 <img
                   className="w-24 h-24 md:w-32 md:h-32 lg:w-44 lg:h-44 rounded-full border-4 bg-slate-300 border-white absolute -top-16 md:-top-32 left-6 md:left-8"
-                  src={`http://192.168.43.30:3000/images/${currentUser.imgpath}`}
-                  alt=""
+                  src="./avatar.png" // Path to your default image
+                  alt="Default User"
                   onClick={() => setProfileDialogOpen(false)}
                 />
               )}

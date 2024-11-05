@@ -65,7 +65,7 @@ const Login = () => {
     // API call to login
     try {
       const response = await axios.post(
-        "http://192.168.43.30:3000/auth/login",
+        "http://localhost:3000/auth/login",
         formData
       );
       console.log("Login response:", response);

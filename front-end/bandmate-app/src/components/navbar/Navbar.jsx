@@ -6,9 +6,14 @@ import Logo from "../../assests/Bandmate_logo.png";
 import { LoginContext } from "../../context/loginContext/LoginContext";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
 import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
-
+import AOS from "aos"; // Import AOS
+import "aos/dist/aos.css"; // Import AOS styles
 
 const Navbar = () => {
+  useEffect(() => {
+    AOS.init({});
+  }, []);
+
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -84,11 +89,19 @@ const Navbar = () => {
                   alt=""
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                 />
+              ) : currentUser.imgpath ? (
+                <img
+                  ref={avatarRef}
+                  className="bg-slate-50 rounded-full w-14 cursor-pointer"
+                  src={`http://localhost:3000/images/${currentUser.imgpath}`}
+                  alt=""
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                />
               ) : (
                 <img
                   ref={avatarRef}
                   className="bg-slate-50 rounded-full w-14 cursor-pointer"
-                  src={`http://192.168.43.30:3000/images/${currentUser.imgpath}`}
+                  src="./avatar.png"
                   alt=""
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                 />
@@ -107,13 +120,13 @@ const Navbar = () => {
             <div>
               <button
                 onClick={handleSetVisibleLogin}
-                className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md mr-4"
+                className="bg-primaryButton font-medium text-lg hover:bg-primaryButton-hover text-white px-8 py-[9px] rounded-md mr-4"
               >
                 Signin
               </button>
 
               <button
-                className="bg-primaryButton hover:bg-primaryButton-hover text-white px-8 py-3 rounded-md"
+                className="bg-primaryButton font-medium text-lg hover:bg-primaryButton-hover text-white px-8 py-[9px] rounded-md"
                 onClick={handleSetVisibleRegister}
               >
                 Signup
@@ -121,11 +134,26 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          className="md:hidden transition duration-300 ease-in-out "
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {isOpen ? (
-            <img className="md:hidden w-8" src="./close.png" alt="" />
+            <img
+              className={`md:hidden w-8 transition-opacity duration-300 ease-in-out ${
+                isOpen ? "opacity-100" : "opacity-0"
+              }`}
+              src="./close.png"
+              alt="Close"
+            />
           ) : (
-            <img className="md:hidden w-10" src="./burger.png" alt="" />
+            <img
+              className={`md:hidden w-10 transition-opacity duration-300 ease-in-out ${
+                isOpen ? "opacity-0" : "opacity-100"
+              }`}
+              src="./burger.png"
+              alt="Menu"
+            />
           )}
         </button>
       </div>
@@ -149,13 +177,41 @@ const Navbar = () => {
             <div className="flex space-x-3">
               {isLog ? (
                 <div className="flex items-center justify-between gap-4 ">
-                  <img
-                    ref={avatarRef}
-                    className="bg-slate-50 rounded-full w-14 cursor-pointer"
-                    src="./avatar.png"
-                    alt=""
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                  />
+                  {currentUser.type === "band" &&
+                  currentUser.imgpath === "band" ? (
+                    <img
+                      ref={avatarRef}
+                      className="bg-slate-50 rounded-full w-14 cursor-pointer"
+                      src="./band.png"
+                      alt=""
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    />
+                  ) : currentUser.type === "player" &&
+                    currentUser.imgpath === "player" ? (
+                    <img
+                      ref={avatarRef}
+                      className="bg-slate-50 rounded-full w-14 cursor-pointer"
+                      src="./musician.png"
+                      alt=""
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    />
+                  ) : currentUser.imgpath ? (
+                    <img
+                      ref={avatarRef}
+                      className="bg-slate-50 rounded-full w-14 cursor-pointer"
+                      src={`http://localhost:3000/images/${currentUser.imgpath}`}
+                      alt=""
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    />
+                  ) : (
+                    <img
+                      ref={avatarRef}
+                      className="bg-slate-50 rounded-full w-14 cursor-pointer"
+                      src="./avatar.png"
+                      alt=""
+                      onClick={() => setDropdownOpen(!dropdownOpen)}
+                    />
+                  )}
                   {dropdownOpen && (
                     <div
                       ref={dropdownRef}
@@ -166,7 +222,7 @@ const Navbar = () => {
                   )}
                 </div>
               ) : (
-                <div>
+                <div className="flex flex-col gap-3">
                   <button
                     onClick={handleSetVisibleLogin}
                     className="bg-primaryButton hover:bg-primaryButton-hover px-6 py-2 rounded-md text-white transition-colors duration-300 ease-in-out"
