@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap-grid.min.css";
-import Logo from "../../assets/Bandmate_logo.png";
+import Logo from "../../../public/Bandmate_logo.png";
 import {} from "./Footer.css";
 
 import React from "react";

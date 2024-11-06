@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import {} from "./About.css";
 import AOS from "aos"; // Import AOS
 import "aos/dist/aos.css"; // Import AOS styles
 
@@ -26,7 +25,7 @@ const About = () => {
         <div className="flex flex-col md:flex-row justify-center gap-8 mt-10">
           <img
             className="m-8 md:w-[400px] h-auto rounded-xl" // Responsive image
-            src="../../src/assets/saxophone-4473023_1280.jpg"
+            src="./saxophone-4473023_1280.jpg"
             alt="Musician with Saxophone"
           />
 
@@ -71,10 +70,10 @@ const About = () => {
         </p>
 
         <div className="flex justify-center gap-10 mb-4 flex-wrap"> {/* Flex-wrap for responsive layout */}
-          {[
-            "../../src/assets/drum-set-1839383_1280.jpg",
-            "../../src/assets/man-1281642_1280.jpg",
-            "../../src/assets/music-sheet-5117328_1280.jpg",
+          {[ 
+            "./drum-set-1839383_1280.jpg",
+            "./man-1281642_1280.jpg",
+            "./music-sheet-5117328_1280.jpg"
           ].map((src, index) => (
             <div key={index} className="bg-black rounded-full overflow-hidden w-[100px] h-[100px] md:w-[150px] md:h-[150px]">
               <img

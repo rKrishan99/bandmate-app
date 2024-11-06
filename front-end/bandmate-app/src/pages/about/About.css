@@ -1,8 +1,0 @@
-.image{
-    max-width: 100%;
-    height: 100%;
-}
-.custom-rating .MuiRating-icon, /* Material-UI specific class */
-.custom-rating svg { /* For other libraries using SVG icons */
-  font-size: 10rem; /* Adjust the size as needed */
-}
