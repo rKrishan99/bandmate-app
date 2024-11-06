@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import IconLocation from "../../assests/svg/location-pin-svgrepo-com.svg";
-import IconCall from "../../assests/svg/call-chat-svgrepo-com.svg";
-import IconTime from "../../assests/svg/time-twenty-four-svgrepo-com.svg";
-import "./contact.css";
-import AOS from "aos"; // Import AOS
-import "aos/dist/aos.css"; // Import AOS styles
+import IconLocation from "../../../public/svg/location-pin-svgrepo-com.svg";
+import IconCall from "../../../public/svg/call-chat-svgrepo-com.svg";
+import IconTime from "../../../public/svg/time-twenty-four-svgrepo-com.svg";
 import PopupAlert from "../../components/alert/popupAlert/PopupAlert";
+
+import styles from "./contact.module.css"; // Import the new CSS Module
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -16,9 +17,8 @@ const Contact = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertInfo, setAlertInfo] = useState("");
 
-  // Initialize AOS when the component mounts
   useEffect(() => {
-    AOS.init({});
+    AOS.init();
   }, []);
 
   const resetForm = () => {
@@ -28,7 +28,7 @@ const Contact = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
 
     resetForm();
 
@@ -58,31 +58,35 @@ const Contact = () => {
           </div>
 
           <div className="flex flex-col md:flex-row mt-10 h-auto justify-between">
-            <div className="relative flex flex-col gap-6 h-full mt-0 contact">
+            <div className={`relative flex flex-col gap-6 h-full mt-0 ${styles.contact}`}>
               <div className="md:pl-6">
-                <img src={IconLocation} alt="" className="h-7 w-7 my-1 mb-0" />
+                <img
+                  src={IconLocation}
+                  alt="location"
+                  className="h-7 w-7 my-1 mb-0"
+                />
                 <p className="text-sm font-bold text-gray-800">
                   No.87, Kandy Road ,Kiribathgoda,
                 </p>
                 <p className="text-sm font-bold text-gray-800">Gampaha.</p>
               </div>
               <div className="md:pl-6">
-                <img src={IconCall} alt="" className="h-7 w-7 my-1" />
+                <img src={IconCall} alt="call" className="h-7 w-7 my-1" />
                 <p className="text-sm font-bold text-gray-800">077-60 45 700</p>
                 <p className="text-sm font-bold text-gray-800">041-22 65 345</p>
                 <p className="text-sm font-bold text-gray-800">070-80 90 900</p>
               </div>
               <div className="md:pl-6">
-                <img src={IconTime} alt="" className="h-7 w-7" />
+                <img src={IconTime} alt="time" className="h-7 w-7" />
                 <p className="text-sm font-bold text-gray-800">
-                  open in 24 hours
+                  Open in 24 hours
                 </p>
               </div>
             </div>
             <div className="flex-row">
               <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-md bg-opacity-90 p-6 rounded-lg form-padding"
+                className={`w-full max-w-lg bg-opacity-90 p-6 rounded-lg ${styles.formPadding}`}
               >
                 <div>
                   <label

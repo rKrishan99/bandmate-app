@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import "./home.css";
 import { Rating } from "primereact/rating";
 import "primeicons/primeicons.css";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
 import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";
 import AOS from "aos"; // Import AOS
 import "aos/dist/aos.css"; // Import AOS styles
+import styles from './home.module.css'; // Import home.module.css
 
 const Home = () => {
   const { visibleRegister, setVisibleRegister } = useContext(RegisterContext);
@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div>
       <div className="relative h-screen overflow-hidden">
-        <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
+        <div className={`absolute inset-0 bg-cover bg-center filter blur-sm ${styles.heroImg}`}></div>
         <div className="relative flex flex-col items-center mt-10 justify-center h-full p-8 md:p-20 lg:p-28">
           <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold text-center">
             Welcome to BandMate Connect
@@ -107,7 +107,7 @@ const Home = () => {
           className="w-full md:w-1/2 shadow-md bg-slate-50"
         >
           <img
-            src="../../src/assests/men-7484239_1280.jpg"
+            src="./men-7484239_1280.jpg"
             alt=""
             className="w-full h-full object-cover"
           />
@@ -152,28 +152,10 @@ const Home = () => {
         className="container mx-auto p-4 md:p-10"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            {
-              name: "Shen Max",
-              role: "Guitarist",
-              image: "../../src/assests/colours-7402147_1280.jpg",
-            },
-            {
-              name: "Guwen Charu",
-              role: "Saxophonist",
-              image: "../../src/assests/saxophone-4473023_1280.jpg",
-            },
-            {
-              name: "Mark David",
-              role: "Drummer",
-              image: "../../src/assests/man-5979081_1280.jpg",
-            },
-            {
-              name: "Rubi Shey",
-              role: "Violinist",
-              image: "../../src/assests/people-2591943_1280.jpg",
-            },
-          ].map((artist, idx) => (
+          {[{ name: "Shen Max", role: "Guitarist", image: "./colours-7402147_1280.jpg" },
+          { name: "Guwen Charu", role: "Saxophonist", image: "./saxophone-4473023_1280.jpg" },
+          { name: "Mark David", role: "Drummer", image: "./man-5979081_1280.jpg" },
+          { name: "Rubi Shey", role: "Violinist", image: "./people-2591943_1280.jpg" }].map((artist, idx) => (
             <div
               key={idx}
               className="bg-gray-200 text-black p-6 rounded-lg flex flex-col items-center shadow-lg transform transition-transform duration-200 hover:scale-110"
@@ -209,20 +191,13 @@ const Home = () => {
           <h1 className="text-2xl md:text-3xl text-gray-700 font-bold p-4">
             Why Hire Musicians Through Us?
           </h1>
-          {[
-            "Over 20 Years experience in the events industry",
-            "All bands hand-picked by our team of experts",
-            "Dedicated member of our team assigned to your event",
-            "Professional contracts for your peace of mind",
-          ].map((benefit, idx) => (
+          {[ "Over 20 Years experience in the events industry", "All bands hand-picked by our team of experts", "Dedicated member of our team assigned to your event", "Professional contracts for your peace of mind" ].map((benefit, idx) => (
             <div key={idx} className="flex items-center py-2 px-3">
               <i
                 className="pi pi-verified"
                 style={{ fontSize: "1.25rem", color: "#ADD8E6" }}
               ></i>
-              <p className="px-3 text-base md:text-xl text-gray-700">
-                {benefit}
-              </p>
+              <p className="px-4 text-gray-700">{benefit}</p>
             </div>
           ))}
         </div>
@@ -230,25 +205,17 @@ const Home = () => {
         <div
           data-aos="fade-left"
           data-aos-duration="3000"
-          className="relative w-full h-auto md:w-1/2  p-4 m-4 mt-8 md:mt-0 flex flex-col items-center bg-background rounded-xl shadow-lg"
+          className="w-full px-4 md:w-1/2 shadow-lg bg-gradient-to-tl from-sky-500 to-sky-700 text-white rounded-xl flex flex-col justify-center items-center py-10 md:py-16"
         >
-          <div className="relative w-32 h-32 mb-4 overflow-hidden">
-            <img
-              className="object-cover w-full absolute h-full rounded-full"
-              src="../../src/assests/girls-1741925_1280.jpg"
-              alt="User testimonial"
-            />
-          </div>
-          <Rating
-            className="text-yellow-300 mb-4"
-            value={5}
-            readOnly
-            cancel={false}
-          />
-          <p className="px-4 text-center text-base md:text-xl text-gray-700">
-            Bandmate saved us so much time! We found a talented singer for our
-            party within minutes. Definitely using this service again!
-          </p>
+          <h1 className="text-3xl md:text-4xl font-semibold mb-4">
+            Ready to Make Your Event Special?
+          </h1>
+          <button
+            onClick={handleSetVisibleRegister}
+            className="bg-yellow-500 text-white font-semibold text-lg rounded-md p-3 hover:bg-yellow-400"
+          >
+            Hire Your Musician Today
+          </button>
         </div>
       </div>
     </div>

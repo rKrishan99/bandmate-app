@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { NavDropdown } from "../navDropdown/NavDropdown";
 import navItems from "./navItems";
-import Logo from "../../assests/Bandmate_logo.png";
+import Logo from "../../../public/Bandmate_logo.png";
 import { LoginContext } from "../../context/loginContext/LoginContext";
 import { RegisterContext } from "../../context/registerContext/RegisterContext";
 import { CurrentUserContext } from "../../context/currentUserContext/CurrentUserContext";

@@ -1,0 +1,33 @@
+.heroImg {
+  background-image: url('./band-7014354_1280.jpg'); /* Replace with actual image path */
+  background-size: cover;
+  background-position: center;
+}
+
+.background {
+  background-color: #f0f0f0;
+}
+
+.primaryButton {
+  background-color: #0044cc;
+}
+
+.primaryButton-hover {
+  background-color: #0033aa;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.md\:text-5xl {
+  font-size: 3rem;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

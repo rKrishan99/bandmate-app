@@ -1,0 +1,33 @@
+/* contact.module.css */
+
+/* Padding for the form */
+.formPadding {
+    margin-top: 15px;
+    margin-right: 168px;
+    padding-right: 21px;
+  }
+  
+  /* Button padding */
+  .form-button {
+    padding-right: 13px;
+    padding-left: 13px;
+    padding: 6px;
+  }
+  
+  /* Textarea styling */
+  .form-textarea {
+    width: -webkit-fill-available;
+    height: 142px;
+  }
+  
+  /* Custom contact padding */
+  .contact {
+    padding-left: 23px;
+  }
+  
+  /* Success alert styling */
+  .success {
+    margin-right: 69px;
+    margin-top: 117px;
+  }
+  
