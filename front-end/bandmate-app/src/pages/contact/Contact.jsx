@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import IconLocation from "../../assests/svg/location-pin-svgrepo-com.svg";
-import IconCall from "../../assests/svg/call-chat-svgrepo-com.svg";
-import IconTime from "../../assests/svg/time-twenty-four-svgrepo-com.svg";
+import IconLocation from "../../assets/svg/location-pin-svgrepo-com.svg";
+import IconCall from "../../assets/svg/call-chat-svgrepo-com.svg";
+import IconTime from "../../assets/svg/time-twenty-four-svgrepo-com.svg";
 import "./contact.css";
 import AOS from "aos"; // Import AOS
 import "aos/dist/aos.css"; // Import AOS styles

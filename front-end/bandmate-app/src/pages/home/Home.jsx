@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div>
       <div className="relative h-screen overflow-hidden">
-        <div className="absolute inset-0 bg-[url('../../src/assests/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
+        <div className="absolute inset-0 bg-[url('../../src/assets/band-7014354_1280.jpg')] bg-cover bg-center filter blur-sm"></div>
         <div className="relative flex flex-col items-center mt-10 justify-center h-full p-8 md:p-20 lg:p-28">
           <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold text-center">
             Welcome to BandMate Connect
@@ -107,7 +107,7 @@ const Home = () => {
           className="w-full md:w-1/2 shadow-md bg-slate-50"
         >
           <img
-            src="../../src/assests/men-7484239_1280.jpg"
+            src="../../src/assets/men-7484239_1280.jpg"
             alt=""
             className="w-full h-full object-cover"
           />
@@ -156,22 +156,22 @@ const Home = () => {
             {
               name: "Shen Max",
               role: "Guitarist",
-              image: "../../src/assests/colours-7402147_1280.jpg",
+              image: "../../src/assets/colours-7402147_1280.jpg",
             },
             {
               name: "Guwen Charu",
               role: "Saxophonist",
-              image: "../../src/assests/saxophone-4473023_1280.jpg",
+              image: "../../src/assets/saxophone-4473023_1280.jpg",
             },
             {
               name: "Mark David",
               role: "Drummer",
-              image: "../../src/assests/man-5979081_1280.jpg",
+              image: "../../src/assets/man-5979081_1280.jpg",
             },
             {
               name: "Rubi Shey",
               role: "Violinist",
-              image: "../../src/assests/people-2591943_1280.jpg",
+              image: "../../src/assets/people-2591943_1280.jpg",
             },
           ].map((artist, idx) => (
             <div
@@ -235,7 +235,7 @@ const Home = () => {
           <div className="relative w-32 h-32 mb-4 overflow-hidden">
             <img
               className="object-cover w-full absolute h-full rounded-full"
-              src="../../src/assests/girls-1741925_1280.jpg"
+              src="../../src/assets/girls-1741925_1280.jpg"
               alt="User testimonial"
             />
           </div>
