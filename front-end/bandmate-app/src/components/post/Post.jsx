@@ -25,7 +25,7 @@ const Post = ({ vacancies }) => {
       priceMin: vacancy.priceMin,
       priceMax: vacancy.priceMax,
       bandemail: vacancy.bandemail,
-      createdAt: formatDateForMySQL(vacancy.createdAt),
+      createdAt: vacancy.createdAt,
     });
 
     setOpenApply(true);

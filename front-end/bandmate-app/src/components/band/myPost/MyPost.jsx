@@ -5,9 +5,11 @@ import { CurrentUserContext } from "../../../context/currentUserContext/CurrentU
 import { ApplyDataContext } from "../../../context/applyDataContext/ApplyDataContext";
 import AOS from "aos"; // Import AOS
 import "aos/dist/aos.css"; // Import AOS styles
+import { formatDistanceToNow } from "date-fns";
 
 const MyPost = () => {
-  const { openApply, setOpenApply, DeleteVacancyID, setDeleteVacancyID } = useContext(FunctionalityContext);
+  const { openApply, setOpenApply, DeleteVacancyID, setDeleteVacancyID } =
+    useContext(FunctionalityContext);
   const [openMenuId, setOpenMenuId] = useState(null); // Track which vacancy menu is open
   const [vacancies, setVacancies] = useState([]); // State to store fetched vacancies
   const { isLog, currentUser } = useContext(CurrentUserContext);
@@ -26,13 +28,10 @@ const MyPost = () => {
   }, []);
 
   const handleRemove = (vacancyID) => {
-   
     console.log("vacancyID:", vacancyID);
-    setDeleteVacancyID(vacancyID); 
-    setVisiblePostDelete(true);// Set the ID for deletion
+    setDeleteVacancyID(vacancyID);
+    setVisiblePostDelete(true); // Set the ID for deletion
   };
-
-  
 
   useEffect(() => {
     console.log("isLog:", isLog, "currentUser:", currentUser);
@@ -60,7 +59,8 @@ const MyPost = () => {
         .map((vacancy) => (
           <div
             key={vacancy.vacancyID}
-            data-aos="fade-up" data-aos-duration="1000"
+            data-aos="fade-up"
+            data-aos-duration="1000"
             className="vacancy-item  w-full max-w-4xl flex p-4 flex-col h-auto pb-10 bg-cardBg mt-4 rounded-xl shadow-md relative"
           >
             <div className="pl-5 mt-2 flex flex-col sm:flex-row gap-6">
@@ -88,7 +88,9 @@ const MyPost = () => {
                   {vacancy.name}
                 </span>
                 <span className="text-xs sm:text-sm text-slate-600">
-                  4 hours ago
+                  {formatDistanceToNow(new Date(vacancy.createdAt), {
+                    addSuffix: true,
+                  })}
                 </span>
               </div>
             </div>

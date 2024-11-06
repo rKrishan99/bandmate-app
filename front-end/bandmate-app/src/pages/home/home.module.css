@@ -1,5 +1,5 @@
 .heroImg {
-  background-image: url('./band-7014354_1280.jpg'); /* Replace with actual image path */
+  background-image: url('/band-7014354_1280.jpg'); /* Replace with actual image path */
   background-size: cover;
   background-position: center;
 }
