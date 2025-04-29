@@ -9,7 +9,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="px-10 lg:px-cusPadding bg-background py-10">
+    <div className="px-8 lg:px-cusPadding bg-background py-10">
       <div
         data-aos="fade-up"
         data-aos-duration="2000"
